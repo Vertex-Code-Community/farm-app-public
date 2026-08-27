@@ -1,0 +1,15 @@
+.error-container {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+    transition: 0.4s;
+}
+
+.error-container ::deep .error-msg {
+    color: var(--state-error);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    white-space: pre-line;
+}

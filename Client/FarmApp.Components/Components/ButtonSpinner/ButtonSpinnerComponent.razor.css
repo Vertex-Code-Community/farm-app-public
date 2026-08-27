@@ -1,0 +1,29 @@
+.spinner-cont {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+
+    animation: 0.6s steps(8) spin infinite;
+}
+
+    .spinner rect {
+        fill: var(--spinner-color,#2D2D2D);
+    }
+
+.farm-button.primary ::deep .spinner rect {
+    fill: red;
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg)}
+    100% {
+        transform: rotate(360deg)
+    }
+}

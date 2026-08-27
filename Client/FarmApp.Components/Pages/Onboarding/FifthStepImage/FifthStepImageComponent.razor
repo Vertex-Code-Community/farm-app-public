@@ -1,0 +1,33 @@
+﻿@if (_icons.Length != 0)
+{
+    <div class="fifth-step-img-container">
+
+        <div class="orbit-ring" @ref="_orbitRing">
+            @for (int i = 0; i < _icons.Length; i++)
+            {
+                var index = i;
+                var icon = _icons[i];
+
+                <div class="orbit-icon" @ref="_iconRefs[index]">
+                    <IconComponent IconContSize="50"
+                                   BorderRadius="10"
+                                   IconColor="@icon.Color"
+                                   IconContBackground="@icon.BgColor"
+                                   IconSrc="@($"_content/FarmApp.Components/img/{icon.Src}")" />
+                </div>
+            }
+        </div>
+
+        <div class="center-icon" @ref="_centerIcon">
+            <IconComponent IconSize="56"
+                           IconContSize="56"
+                           IconColor="original"
+                           IconSrc="_content/FarmApp.Components/img/onboarding/step5_main_block.svg" />
+        </div>
+
+        <img @ref="_leafIcon" src="_content/FarmApp.Components/img/onboarding/step5_leaf.svg"
+             class="leaf-icon" />
+
+    </div>
+}
+

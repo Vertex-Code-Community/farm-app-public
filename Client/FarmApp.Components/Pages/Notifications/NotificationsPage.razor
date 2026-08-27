@@ -1,0 +1,54 @@
+﻿@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.Switch
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+@using FarmApp.Shared.Enums
+@attribute [Route(Constants.ClientRoutes.NotificationsPage)]
+@attribute [Route(Constants.ClientRoutes.NotificationsSettings)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Models.Theme
+@using Microsoft.AspNetCore.Components.Forms
+
+@layout PageLayout
+
+<div class="notifications-settings-cont">
+    <TopNavigationComponent Title="@Localizer["Notifications"]"/>
+
+    <div class="ul-cont">
+        <UnorderedListComponent ItemHeight="48px" ItemFlexGap="12" ItemExtraStyles="justify-content: space-between">
+            <ListItemComponent ItemCallback="ToggleSoundRow">
+                <p class="body-16-regular text-secondary">@Localizer["Notifications_Sound"]</p>
+                <div @onclick:stopPropagation>
+                    <SwitchComponent IsEnabled="@_sound" IsEnabledChanged="OnSoundChanged" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="ToggleVibrationRow">
+                <p class="body-16-regular text-secondary">@Localizer["Notifications_Vibration"]</p>
+                <div @onclick:stopPropagation>
+                    <SwitchComponent IsEnabled="@_vibration" IsEnabledChanged="OnVibrationChanged" />
+                </div>
+            </ListItemComponent>
+        </UnorderedListComponent>
+    </div>
+
+    <div class="notification-types-section">
+        <p class="body-16-regular text-secondary notification-types-hint">@Localizer["Notifications_Choose"]</p>
+        <UnorderedListComponent ItemHeight="fit-content" ItemsInteractable="false" ItemFlexGap="12"
+                                ItemExtraStyles="align-items: flex-start;">
+            @foreach (var item in NotificationPermissionMetadata.Items)
+            {
+                <ListItemComponent>
+                    <div class="setting-text">
+                        <p class="body-16-regular text-secondary">@Localizer[item.Title]</p>
+                        <p class="body-14-regular text-tertiary">@Localizer[item.Description]</p>
+                    </div>
+                    <SwitchComponent IsEnabled="@IsEnabled(item.Category)"
+                                     IsEnabledChanged="@(enabled => OnPermissionChanged(item.Category, enabled))" />
+                </ListItemComponent>
+            }
+        </UnorderedListComponent>
+    </div>
+</div>

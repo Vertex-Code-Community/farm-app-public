@@ -1,0 +1,33 @@
+﻿@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.FadeInLoader
+@using FarmApp.Components.Components.FieldBlock
+@using FarmApp.Components.Components.NoteBlockSkeleton
+@using FarmApp.Components.Components.SectionTitle
+
+<div class="section">
+    @if (FieldsList.Count > 0)
+    {
+        @if (!String.IsNullOrEmpty(SectionTitle))
+        {
+            <SectionTitleComponent Title="@SectionTitle" IsHeading="true" IconCallback="NavigateToMap"
+                                   IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" IconOpacity="IsLoading ? 0 : 1" />
+        }
+
+        <div class="section-list">
+            @for (var i = 0; i < FieldsList.Count; i++)
+            {
+                var index = i;
+                var field = FieldsList[i];
+
+                <FadeInLoaderComponent IsLoading="@IsLoading" AnimationDuration="250" AnimationDelay="50 * (index + StartingAnimationIndex)">
+                    <Loader> <NoteBlockSkeletonComponent Height="72" /> </Loader>
+                    <Content> <FieldBlockComponent Property="field" AnimationIndex="(index + StartingAnimationIndex)" /> </Content>
+                </FadeInLoaderComponent>
+            }
+        </div>
+    }
+    else if (!IsLoading && FieldsList.Count <= 0)
+    {
+        <CreateNoteComponent Styles="margin-top: 24px" Type="field" OnCreateClicked="NavigateToMap" />
+    }
+</div>

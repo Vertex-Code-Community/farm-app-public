@@ -1,0 +1,47 @@
+﻿<div class="loader">
+    <svg width="30"
+             height="30"
+             viewBox="0 0 30 30"
+             xmlns="http://www.w3.org/2000/svg">
+        @if (!OperatingSystem.IsIOS())
+        {
+            <defs>
+                <mask id="stroke-mask">
+                    <circle class="circle"
+                            cx="15"
+                            cy="15"
+                            r="12.5"
+                            stroke="white"
+                            stroke-width="5"
+                            fill="none" />
+                </mask>
+            </defs>
+
+            <foreignObject x="0"
+                           y="0"
+                           width="100%"
+                           height="100%"
+                           mask="url(#stroke-mask)">
+                <div xmlns="http://www.w3.org" class="conic-gradient-bg"></div>
+            </foreignObject>
+
+            <circle class="rotate-start"
+                    cx="15"
+                    cy="15"
+                    stroke-width="5"
+                    r="12.5"
+                    stroke="var(--media-loader)"
+                    fill="none" />
+        }
+        else
+        {
+            <circle class="circle ios"
+                    cx="15"
+                    cy="15"
+                    r="12.5"
+                    stroke="var(--media-loader)"
+                    stroke-width="5"
+                    fill="none" />
+        }
+    </svg>
+</div>

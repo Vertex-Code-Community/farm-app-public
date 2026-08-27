@@ -1,0 +1,117 @@
+.calendar {
+    width: fit-content;
+    margin: auto;
+    height: 343px;
+    color: var(--text-primary);
+    background-color: var(--surface-inputs);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    font-weight: bold;
+    width: 325px;
+    margin-bottom: 2px;
+}
+
+.month-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+    .month-display p {
+        margin: 0;
+    }
+
+.month-text {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 600;
+    letter-spacing: -0.41px;
+}
+
+.open .month-text {
+    color: #FF3B30;
+}
+
+.month-chevron {
+    transition: 0.2s;
+}
+
+.open .month-chevron {
+    transform: rotate(90deg);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    width: 325px;
+    opacity: 0;
+    animation: fade-in 0.3s forwards;
+}
+
+.day-name {
+    color: var(--text-tertiary);
+    width: 32px;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    height: 18px;
+    margin-bottom: 5px;
+}
+
+.day {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: 0.38px;
+}
+
+.selected {
+    background-color: #FF3B30;
+    color: white;
+}
+
+.nav-buttons {
+    width: 51px;
+    justify-content: space-between;
+    display: flex;
+    opacity: 0;
+    animation: fade-in 0.3s forwards;
+}
+
+.nav-btn {
+    border: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    width: fit-content;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

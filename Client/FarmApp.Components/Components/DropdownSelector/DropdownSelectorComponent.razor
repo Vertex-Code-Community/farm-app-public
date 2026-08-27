@@ -1,0 +1,13 @@
+﻿<div id="@_elementId" class="dropdown-selector">
+    <div class="selected-item" @onclick="ToggleSelector">
+        @SelectedItem
+    </div>
+
+    <div id="dropdown-selector-list" class="selector @(_openSelector ? "open" : "")" 
+    style="max-height: @(MaxHeight)px; width: @(Width)px; margin-bottom: @(Bottom)px; margin-right: @(Right)px;">
+        <div class="selector-items" style="max-height: @(MaxHeight - 24)px; gap: @(Gap)px">
+            @SelectOptions
+        </div>
+    </div>
+</div>
+

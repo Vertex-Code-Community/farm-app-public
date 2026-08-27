@@ -1,0 +1,13 @@
+﻿<div class="img-cont"
+     ontouchstart="onRippleEffectTouchStartListener(event, true)" @onclick="IconCallback"
+     style="height: @(IconContSize)px; width: @(IconContSize)px; opacity: @(Opacity); background-color: @(IconContBackground);
+     border-radius: @(BorderRadius)px;  @(_isInteractable && Opacity > 0 ? "" : "pointer-events: none;"); @(ExtraStyles); ">
+
+    <div class="icon" style="
+        height: @(IconSize)px; width: @(IconSize)px;
+        @(IconColor == "original" ? 
+        $"background: url({IconSrc}) center / contain no-repeat" 
+        : $"mask-image: url({IconSrc}); -webkit-mask-image: url({IconSrc}); background: {IconColor}" )">
+    </div>
+
+</div>

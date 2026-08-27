@@ -1,0 +1,5 @@
+﻿<div class="main-header">
+    <div class="cancel-icon" @onclick="async () => {await OnBackClickedAsync();}" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+    <div class="title">@Title</div>
+    <div class="add-icon" @onclick="async () => { await OnCreateClicked.InvokeAsync();}"></div>
+</div>

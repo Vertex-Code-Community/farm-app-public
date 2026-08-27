@@ -1,0 +1,268 @@
+@using Bch.Components.Calendar
+@using Bch.Components.RadioButton.RadioButtonComponent
+@using Bch.Components.RadioButton.RadioButtonsContainer
+@using Bch.Components.Select
+@using Blazored.FluentValidation
+@using System.Linq
+@using FarmApp.Models.PushNotification
+@using FarmApp.Models.User
+@using FarmApp.Shared.Constants
+@using FarmApp.Shared.Enums.PushNotification
+@using FarmApp.Shared.Helpers
+
+
+<EditForm Model="@Notification"
+          OnValidSubmit="SendNotificationAsync">
+    <FluentValidationValidator/>
+
+    <div class="notification-container" style="display: flex; gap: 40px; align-items: flex-start;">
+        <div style="flex: 1; min-width: 350px;">
+            <div class="notification-input-block">
+                <h2 class="title-block">Your Message:</h2>
+                <div class="notification-input-group">
+                    <p class="input-label">Title</p>
+                    <input class="notification-input"
+                           @bind-value="Notification.Title"
+                           @bind-value:event="oninput"
+                           placeholder="Enter title"/>
+                    <ValidationMessage For="@(() => Notification.Title)"/>
+                </div>
+                <div class="notification-input-group">
+                    <p class="input-label">Notification</p>
+                    <input class="notification-input"
+                           @bind-value="Notification.Message"
+                           @bind-value:event="oninput"
+                           placeholder="Enter message"/>
+                    <ValidationMessage For="@(() => Notification.Message)"/>
+                </div>
+                <div class="notification-input-group">
+                    <p class="input-label">Notification Sender</p>
+                    <input class="notification-input"
+                           @bind-value="Notification.Sender"
+                           @bind-value:event="oninput"
+                           placeholder="Enter sender"/>
+                    <ValidationMessage For="@(() => Notification.Sender)"/>
+                </div>
+                <div class="notification-input-group">
+                    <p class="input-label">Notification type</p>
+                    <BchSelect TItem="NotificationKind"
+                               Options="@(Enum.GetValues(typeof(NotificationKind)).Cast<NotificationKind>().ToArray())"
+                               @bind-Selected="Notification.NotificationKind"
+                               DefaultText="Select notification type"
+                               Width="350"
+                               Height="48"
+                               ContentHeight="220"
+                               ItemHeight="36"
+                               Filtering="true"/>
+                </div>
+            </div>
+
+            <div class="notification-input-block">
+                <h2 class="title-block">Send This Message:</h2>
+                <fieldset>
+                    <BchRadioButtonsContainer TItem="string"
+                                              @bind-Selected="Notification.TypeOfSend">
+                        <BchRadioButton TItem="string" Key="@TypeOfSend.Now">
+                            <DataTemplate Context="isSelected">
+                                <label>Now</label>
+                            </DataTemplate>
+                        </BchRadioButton>
+
+                        <BchRadioButton TItem="string"
+                                        Key="@TypeOfSend.SpecificDate">
+                            <DataTemplate Context="isSelected">
+                                <label>On A Specific Date (@ClientDateTimeHelper.TimeZone)</label>
+                            </DataTemplate>
+                        </BchRadioButton>
+                    </BchRadioButtonsContainer>
+                </fieldset>
+                <ValidationMessage For="@(() => Notification.TypeOfSend)"/>
+
+                @{
+                    if (Notification.TypeOfSend == TypeOfSend.SpecificDate)
+                    {
+                        <div class="notification-input-group date-time">
+                            <BchCalendar Value="DateTimeOfSendInUsersGmt"
+                                         ValueChanged="@((DateTime? newValue) => DateTimeOfSendInUsersGmt = newValue ?? DateTime.Now)"
+                                         Format="MM/dd/yyyy"/>
+
+                            <input type="time"
+                                   @bind="DateTimeOfSendInUsersGmt"/>
+                        </div>
+                        <ValidationMessage For="@(() => Notification.DateTimeOfSend)"/>
+                    }
+                }
+
+            </div>
+
+            <div class="notification-input-block">
+                <h2 class="title-block">Redirect From This Message:</h2>
+                <fieldset>
+                    <BchRadioButtonsContainer TItem="string"
+                                              @bind-Selected="Notification.TypeUrlForRedirection">
+                        <BchRadioButton TItem="string" Key="@TypeOfRedirection.None">
+                            <DataTemplate Context="isSelected">
+                                <label>Without redirection</label>
+                            </DataTemplate>
+                        </BchRadioButton>
+
+                        <BchRadioButton TItem="string"
+                                        Key="@TypeOfRedirection.WithUrl">
+                            <DataTemplate Context="isSelected">
+                                <label>With Url for Redirection</label>
+                            </DataTemplate>
+                        </BchRadioButton>
+                    </BchRadioButtonsContainer>
+                </fieldset>
+                <ValidationMessage For="@(() => Notification.TypeUrlForRedirection)"/>
+
+                @if (Notification.TypeUrlForRedirection == TypeOfRedirection.WithUrl)
+                {
+                    <div class="notification-input-group">
+                        <p class="input-label">Url</p>
+                        <input class="notification-input"
+                               @bind-value="Notification.UrlForRedirection"
+                               @bind-value:event="oninput"
+                               placeholder="Enter url for redirection"/>
+                        <ValidationMessage For="@(() => Notification.UrlForRedirection)"/>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div style="flex: 1; min-width: 350px;">
+            @* <div class="notification-input-block"> *@
+            @*     <h2 class="title-block">Recipients:</h2> *@
+            @*     <p>Select the platform the notification will be sent on below</p> *@
+            @* *@
+            @* *@
+            @*     <fieldset class="column"> *@
+            @*         <BchRadioButtonsContainer TItem="string" *@
+            @*                                   @bind-Selected="Notification.TypeOfTargetUser"> *@
+            @*             <BchRadioButton TItem="string" Key="@TargetUserType.OldVersionOwner"> *@
+            @*                 <DataTemplate Context="isSelected"> *@
+            @*                     <label>People who don't have the latest update of your app</label> *@
+            @*                 </DataTemplate> *@
+            @*             </BchRadioButton> *@
+            @*         </BchRadioButtonsContainer> *@
+            @*     </fieldset> *@
+            @*     <ValidationMessage For="@(() => Notification.TypeOfTargetUser)"/> *@
+            @* </div> *@
+            <div class="notification-input-block">
+                <h2 class="title-block">Tags:</h2>
+                @if (_isTagDropdownIsOpen)
+                {
+                    <div class="notification-tag-wrapper">
+                        <BchSelect TItem="NotificationTagsType"
+                                   Options="Enum.GetValues<NotificationTagsType>()"
+                                   @bind-Selected="_selectedType"
+                                   DefaultText="Select Tag Type"
+                                   Width="300"
+                                   Height="48"
+                                   ContentHeight="200"
+                                   ItemHeight="30"
+                                   Filtering="true"/>
+
+                        <button class="notification-button-confirm" @onclick="OnSelectTheTagOption">Choose Tag Type
+                        </button>
+                    </div>
+                }
+                
+                @if (_isUserTagSelected)
+                {
+                    <div class="notification-tag-wrapper">
+                        <BchSelect TItem="UserSearchModel"
+                                   @bind-Selected="_selectedUser"
+                                   Options="_userSearchResults"
+                                   OptionNamePredicate="user => user.DisplayName"
+                                   DefaultText="Search for user by email, first name, or last name"
+                                   Width="300"
+                                   Height="48"
+                                   ContentHeight="200"
+                                   ItemHeight="30"
+                                   Filtering="true"
+                                   FilterByPredicate="user => user.DisplayName"
+                                   FilterChanged="OnUserSearchChanged"/>
+                        <button class="notification-button-confirm @(_selectedUser is null || (string.IsNullOrWhiteSpace(_selectedUser.Id) && string.IsNullOrWhiteSpace(_selectedUser.Email)) ? "btn-disabled" : "")" @onclick="AddUser">ADD TAG</button>
+                    </div>
+                }
+
+                @if (_isVersionApplication)
+                {
+                    <div class="notification-tag-wrapper">
+                        <BchSelect TItem="string"
+                                   @bind-Selected="_selectedVersionOwner"
+                                   Options="_versionTypeList"
+                                   DefaultText="Select version"
+                                   Width="300"
+                                   Height="48"
+                                   ContentHeight="200"
+                                   ItemHeight="30"
+                                   Filtering="true"
+                                   FilterChanged="OnUserSearchChanged"/>
+                        <button class="notification-button-confirm @(string.IsNullOrWhiteSpace(_selectedVersionOwner) ? "btn-disabled" : "")" @onclick="AddVersionApplication">ADD TAG</button>
+                    </div>
+                }
+                
+                @if (_isOperationSystemTagSelected && _operationSystemList.Any())
+                {
+                    <div class="platforms">
+                        <div class="platform-item ios @(Notification.Platform == Platform.IOS ? "active" : "")"
+                             @onclick="() => Notification.Platform = Platform.IOS">
+                            <img src="_content/FarmApp.AdminComponents/icons/sendNotification/ios-icon.svg"
+                                 alt="iOS"/>
+                        </div>
+
+                        <div class="platform-item android @(Notification.Platform == Platform.Android ? "active" : "")"
+                             @onclick="() => Notification.Platform = Platform.Android">
+                            <img src="_content/FarmApp.AdminComponents/icons/sendNotification/android-icon.svg"
+                                 alt="Android"/>
+                        </div>
+
+                        <div class="platform-item all @(Notification.Platform == Platform.All ? "active" : "")"
+                             @onclick="() => Notification.Platform = Platform.All">
+                            ALL
+                        </div>
+                    </div>
+                    <ValidationMessage For="@(() => Notification.Platform)"/>
+                    <button class="notification-button-confirm" @onclick="AddOperationSystem">ADD TAG</button>
+                }
+                
+                
+                <div class="tags-wrap">
+                    @foreach (var tag in Notification.Tags)
+                    {
+                        @foreach (var tagValue in tag.Value)
+                        {
+                            <div class="tag-chip">
+                                <span class="tag-chip__key">@tag.Key:</span>
+                                <span class="tag-chip__value">@tagValue</span>
+
+                                <div class="tag-chip__remove"
+                                     role="button"
+                                     tabindex="0"
+                                     @onclick="() => RemoveTag(tag.Key, tagValue)">
+                                    ×
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div
+                        class="add-tag @(!_isTagDropdownIsOpen && !_isOperationSystemTagSelected && !_isVersionApplication &&!_isUserTagSelected ? "" : "btn-disabled")" 
+                        @onclick="OpenTheTagsDropdown">+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="notification-submit-btn-wrapper">
+        <button type="submit"
+                class="btn btn-success notification-submit-btn">
+            @(Notification.TypeOfSend is TypeOfSend.Now ? "Send Notification" : "Schedule Notification")
+        </button>
+    </div>
+</EditForm>

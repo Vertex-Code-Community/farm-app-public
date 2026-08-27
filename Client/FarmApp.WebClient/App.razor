@@ -1,0 +1,15 @@
+﻿<FlexibleRouter AppAssembly="@typeof(App).Assembly"
+                AdditionalAssemblies="new[] { typeof(StatusBarColorAttribute).Assembly }">
+    <Found Context="routeData">
+        <FlexibleRouteView RouteData="@routeData" DefaultLayout="@typeof(EmptyLayout)"/>
+        @* <AppRouteViewWebClient RouteData="@routeData" DefaultLayout="@typeof(TabLayout)"/> *@
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(EmptyLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</FlexibleRouter>
+
+<PictogramCanvasComponent/>
+<NotificationComponent/>

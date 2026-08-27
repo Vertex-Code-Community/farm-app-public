@@ -1,0 +1,18 @@
+﻿<div class="content-container">
+    <div class="top">Choose photo or video</div>
+    <div class="media-choose">
+
+        <IconComponent BorderRadius="8" IconContSize="80" IconCallback="() => OnSubmit.InvokeAsync(FarmApp.ViewModels.Media.MediaChoice.Photo)" 
+                       IconSrc="_content/FarmApp.Components/img/media/camera-01.svg" IconContBackground="var(--background-surface)" />
+
+        <IconComponent BorderRadius="8" IconContSize="80" IconCallback="() => OnSubmit.InvokeAsync(FarmApp.ViewModels.Media.MediaChoice.Video)"
+                       IconSrc="_content/FarmApp.Components/img/media/record-video.svg" IconContBackground="var(--background-surface)" />
+
+    </div>
+    <div class="cancel-button" @onclick="() => {OnClose.InvokeAsync();}">
+        Cancel
+    </div>
+</div>
+
+
+

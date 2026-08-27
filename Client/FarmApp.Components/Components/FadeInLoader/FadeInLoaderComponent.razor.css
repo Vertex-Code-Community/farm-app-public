@@ -1,0 +1,45 @@
+.loader-content-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.abs-cont-loader, .abs-cont-content {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    transition: opacity var(--anim-dur) linear, visibility var(--anim-dur);
+}
+
+.abs-cont-loader {
+    width: 100%;
+}
+
+.abs-cont-content {
+    min-width: 0;
+}
+
+.loader-content-container.loaded .abs-cont-loader {
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0ms;
+}
+
+.loader-content-container.loaded .abs-cont-content {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: var(--anim-dur);
+}
+
+.loader-content-container.loading .abs-cont-loader {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: var(--anim-dur);
+}
+
+.loader-content-container.loading .abs-cont-content {
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0ms;
+}

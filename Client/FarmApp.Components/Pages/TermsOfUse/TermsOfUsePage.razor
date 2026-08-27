@@ -1,0 +1,47 @@
+@attribute [Layout(typeof(EmptyLayout))]
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<ModalSheetComponent IsOpen="IsOpen"
+                     IsOpenChanged="IsOpenChanged"
+                     IsViewMode="true"
+                     Title="@Localizer["Terms-of-Use"]">
+
+<div class="terms-of-use-container" style="margin-top: @(offsetTop)px; height: calc(100% - @(offsetTop)px)">
+
+        <div class="document-list">
+            <div class="scroller">
+                <b>1. @Localizer["Terms_Data-Security_Title"]:</b> @Localizer["Terms_Data-Security_Desc"]
+                <br/>
+                <br/>
+                <b>2. @Localizer["Terms_Accurate-Information_Title"]:</b> @Localizer["Terms_Accurate-Information_Desc"]
+                <br/>
+                <br/>
+                <b>3. @Localizer["Terms_Respect-for-Others_Title"]:</b> @Localizer["Terms_Respect-for-Others_Desc"]
+                <br/>
+                <br/>
+                <b>4. @Localizer["Terms_Prohibited-Actions_Title"]:</b> @Localizer["Terms_Prohibited-Actions_Desc"]
+                <br/>
+                <br/>
+                <b>5. @Localizer["Terms_Intellectual-Property_Title"]:</b> @Localizer["Terms_Intellectual-Property_Desc"]
+                <br/>
+                <br/>
+                <b>6. @Localizer["Terms_Changes-to-Rules_Title"]:</b> @Localizer["Terms_Changes-to-Rules_Desc"]
+                <br/>
+                <br/>
+                <b>7. @Localizer["Terms_Use-of-Data_Title"]:</b> @Localizer["Terms_Use-of-Data_Desc"]
+            
+                <div style="height: calc(@(ScreenOffsetProvider.Bottom)px)"></div>
+            </div>
+        </div>
+
+    </div>
+</ModalSheetComponent>
+<style>
+    body {
+        background: var(--surface-cards);
+        color: var(--text-primary);
+    }
+</style>

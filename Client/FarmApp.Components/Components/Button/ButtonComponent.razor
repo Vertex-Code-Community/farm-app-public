@@ -1,0 +1,29 @@
+﻿@using FarmApp.Components.Components.ButtonSpinner
+@using FarmApp.Components.Components.MediaLoader
+<button data-animate class="farm-button @ClassName @(!string.IsNullOrEmpty(IconUrl) ? "has-icon" : "") @(Disabled ? "disabled" : "")"
+        disabled="@Disabled"
+        type="@Type"
+
+        @attributes="RippleAttributes"
+        style="@(String.IsNullOrEmpty(TextColor) ? "" : $"color: {TextColor}"); @(String.IsNullOrEmpty(BorderColor) ? "" : $"border-color: {BorderColor}");
+               @(String.IsNullOrEmpty(Background) ? "" : $"background: {Background};"); @(HasBorder == false ? "border: none" : null );
+               @(String.IsNullOrEmpty(Width) ? "" : $"width: {Width}"); @(String.IsNullOrEmpty(Height) ? "" : $"height: {Height}");
+               @(ExtraStyles);"
+
+
+        @onclick="async () => { await OnClick.InvokeAsync(); }">
+    @if (!string.IsNullOrEmpty(IconUrl) && !Loading)
+    {
+        <IconComponent IconSrc="@IconUrl" IconContSize="24" IconColor="@IconColor" />
+    }
+    @if(Loading)
+    {
+        <div class="btn-loader">
+            <MediaLoaderComponent />
+        </div>
+    }
+    @if(!Loading)
+    {   
+        @Name
+    }
+</button>

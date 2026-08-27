@@ -1,0 +1,16 @@
+.custom-ul-with-bg {
+    min-height: 0;
+    border-radius: 12px;
+    width: 100%;
+    list-style: none;
+    padding: 4px 0;
+    margin: 0;
+    height: 100%;
+    overflow-y: auto;
+
+    scrollbar-width: none;
+}
+
+.custom-ul-with-bg::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,69 @@
+﻿@using FarmApp.AdminComponents.ComponentsCommon.Sidebar.Root
+@using Bch.Components.Calendar
+@using Bch.Components.Select
+
+<div class="header-container">
+	<div class="left-side">
+		<div class="burger-button @(PanelService.IsShown ? "active" : "")"
+		     @onclick="() => { PanelService.Show(!PanelService.IsShown); }">
+			<img src="_content/FarmApp.AdminComponents/icons/sidebar/apps-icon.svg" />
+		</div>
+
+		<div class="insertion-area">
+			<RootSidebarInsertionComponent />
+		</div>
+	</div>
+	<div class="right-side">
+		<div class="bottom-section">
+			<div class="theme-toggle @(ThemeService.IsDark ? "is-dark" : "is-light")">
+				<div class="theme-toggle-thumb"></div>
+				<button class="theme-toggle-btn" @onclick="OnLightThemeClick" title="Light">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="5"/>
+						<line x1="12" y1="1" x2="12" y2="3"/>
+						<line x1="12" y1="21" x2="12" y2="23"/>
+						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+						<line x1="1" y1="12" x2="3" y2="12"/>
+						<line x1="21" y1="12" x2="23" y2="12"/>
+						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+					</svg>
+				</button>
+				<button class="theme-toggle-btn" @onclick="OnDarkThemeClick" title="Dark">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+					</svg>
+				</button>
+			</div>
+
+			<div class="hide-on-mobile">
+				@if (HeaderControlsService.ShowDate)
+				{
+					<BchCalendar Value="DateTime.Now"
+							 ValueChanged="() => { }"
+							 ShowClearButton="true" />
+				}
+			</div>
+
+			<div class="logout-button"
+			     @onclick="OnLogoutClick">
+				<div class="icon"></div>
+			</div>
+
+			@if (HeaderControlsService.ShowDate)
+			{
+				<button class="settings-button"
+				        @onclick="OnSettingsClick">
+					<div class="icon"></div>
+				</button>
+			}
+		</div>
+	</div>
+</div>
+
+@* <SettingsModalComponent @bind-Show="_showSettings" *@
+@* 					RetailersList="_retailersList" *@
+@* 					OnDateChange="OnDateChangeAsync" *@
+@* 					OnRetailerChange="OnRetailerChangedAsync" *@
+@* 					OnStoreChange="OnStoreChangedAsync"/> *@

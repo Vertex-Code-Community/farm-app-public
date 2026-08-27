@@ -1,0 +1,82 @@
+@using FarmApp.Services.Services.Interfaces
+@using FarmApp.Components.Services.Interfaces
+@using FarmApp.Components.Components.CreateEditProperty
+
+<div class="navigation-control-panel @(ShowCreateFieldHint && !_animationPlayed ? "hint-animate" : "") @(IMapPropertyService.IsFieldCreateModalOpen ? "map-chrome-inert" : "")" data-map-chrome>
+
+    <div class="block steads @(IMapSteadService.IsDrawingModeOn ? "expanded" : "")"
+         data-map-chrome="@(IMapSteadService.IsDrawingModeOn ? "" : null)">
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/shared/check-02.svg" OnClick="OnSaveSteadEditorClicked" CenterRipple="true"
+                         HasBorder="false" Background="var(--surface-cards)" IconColor="var(--text-secondary)" Width="48px" Height="48px" />
+
+        <ButtonComponent Width="48px" Height="48px" IconUrl="_content/FarmApp.Components/img/shared/x-02.svg" IconColor="var(--text-secondary)" 
+                         HasBorder="false" Background="var(--surface-cards)" OnClick="() => IMapSteadService.InvokeSwitchDrawingMode(false)" CenterRipple="true" />
+
+        <ButtonComponent Width="48px" Height="48px" IconColor="var(--text-secondary)" HasBorder="false" ClassName="choose-a-method-guide"
+         IconUrl="@(IMapSteadService.IsTranslateModeOn ? "_content/FarmApp.Components/img/map-icons/shape-off.svg" : "_content/FarmApp.Components/img/map-icons/shape.svg")"
+         Background="var(--surface-cards)" OnClick="IMapSteadService.InvokeSwitchTranslateMode" CenterRipple="true" />
+    </div>
+
+    @if (Visibility.IsVisible(MapControlButton.Create) && (!_createButtonHidden || GuideTourService.ActiveGroup != TourGroup.None))
+    {
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" ClassName="primary guide-target" CenterRipple="true"
+                         OnClick="OnCreateButtonClickedAsync" Width="52px" Height="52px" HasBorder="false" />
+    }
+
+    @if (Visibility.IsVisible(MapControlButton.PropertyCreate))
+    {
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/shared/leaf.svg" ClassName="primary" CenterRipple="true"
+                         OnClick="OnTogglePropertyCreationModeAsync" Width="52px" Height="52px" HasBorder="false"
+                         Background="@(IMapPropertyService.IsCreationModeOn ? "var(--drawing-mode-on-bg)" : String.Empty)" />
+    }
+
+    @if (ShowPropertyConfirmButton)
+    {
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/shared/check-02.svg" CenterRipple="true"
+                         OnClick="OpenCreatePropertyModalAsync" Width="52px" Height="52px" HasBorder="false"
+                         Background="@(IsCurrentPropertyAreaOverLimit ? "var(--state-error)" : "var(--surface-cards)")"
+                         IconColor="@(IsCurrentPropertyAreaOverLimit ? "var(--surface-cards)" : "var(--text-secondary)")" />
+    }
+
+    @if (Visibility.IsVisible(MapControlButton.FlyToCountry))
+    {
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/map-icons/fly-to-country.svg" OnClick="OnFlyToSelectedCountryClickedAsync" CenterRipple="true"
+                         HasBorder="false" Background="var(--surface-cards)" IconColor="var(--text-secondary)" Width="52px" Height="52px" />
+    }
+
+    @if (showCompass && Visibility.IsVisible(MapControlButton.Compass))
+    {
+        <div class="compass" @onclick="OnCompassClickedAsync" ontouchstart="onRippleEffectTouchStartListener(event, true)">
+            <svg width="52" class="compass-base" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="26" cy="26" r="25" fill="var(--surface-cards)" />
+                <circle cx="26.0002" cy="26" r="22.1481" fill="var(--surface-cards)" stroke="var(--text-disabled)" stroke-width="2" />
+                <line x1="26.0742" y1="42.7407" x2="26.0742" y2="48.1481" stroke="var(--text-disabled)" stroke-width="2" stroke-linecap="round" />
+                <line x1="26.0742" y1="3.85181" x2="26.0742" y2="9.25921" stroke="var(--text-disabled)" stroke-width="2" stroke-linecap="round" />
+                <line x1="10.1851" y1="26.074" x2="4.77765" y2="26.074" stroke="var(--text-disabled)" stroke-width="2" stroke-linecap="round" />
+                <line x1="47.2222" y1="26.074" x2="41.8148" y2="26.074" stroke="var(--text-disabled)" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <svg class="compass-arrow" style="transform: rotate(@(_compassRotation)deg)" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.5904 29.6459L18.2173 34.7478L22.9342 23.2101L34.3073 18.1069L29.5904 29.6459ZM27.3359 25.3184C26.7231 24.726 25.7451 24.7424 25.1527 25.3551C24.5605 25.9679 24.5775 26.9452 25.1901 27.5376C25.8028 28.1296 26.7796 28.1133 27.3719 27.5009C27.9642 26.8883 27.9483 25.9108 27.3359 25.3184Z" fill="var(--state-error)" />
+            </svg>
+        </div>
+    }
+    else if (!showCompass && Visibility.IsVisible(MapControlButton.Location))
+    {
+        <ButtonComponent IconUrl="_content/FarmApp.Components/img/map-icons/pointer-01.svg" OnClick="OnUserLocationClickedAsync" CenterRipple="true"
+                         HasBorder="false" Background="var(--surface-cards)" IconColor="var(--text-secondary)" Width="52px" Height="52px"
+                         Loading="@(_getLocationTask is not null)" />
+    }
+</div>
+
+@if (IMapPropertyService.IsCreationModeOn || IMapSteadService.IsDrawingModeOn)
+{
+    <div class="area-counter-top @(IsCurrentPropertyAreaOverLimit ? "over-limit" : "")">
+        @CurrentPropertyAreaLabel
+    </div>
+}
+
+<CreateEditPropertyComponent @bind-Show="ShowPropertyCreateModal"
+                             @bind-Name="_propertyName"
+                             @bind-AreaText="_propertyAreaText"
+                             OnClicked="OnCreatePropertyAsync"
+                             EditMode="true" />

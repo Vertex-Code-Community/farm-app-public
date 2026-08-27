@@ -1,0 +1,33 @@
+trigger:
+- feature/property-notes-core
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: Release
+
+steps:
+- checkout: self
+
+- task: UseDotNet@2
+  displayName: Install .NET SDK
+  inputs:
+    version: '9.x'
+
+- script: |
+    dotnet restore Api/FarmApp.API/FarmApp.API.csproj
+    dotnet publish Api/FarmApp.API/FarmApp.API.csproj \
+      -c $(buildConfiguration) \
+      -o $(Build.ArtifactStagingDirectory)/publish
+  displayName: Build and Publish API
+
+- task: AzureWebApp@1
+  displayName: Deploy to Azure App Service
+  inputs:
+    azureSubscription: FarmApp-Azure-Connection
+    appType: webAppLinux
+    appName: FarmApp-api-test
+    package: $(Build.ArtifactStagingDirectory)/publish

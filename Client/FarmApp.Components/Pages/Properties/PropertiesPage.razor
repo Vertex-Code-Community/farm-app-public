@@ -1,0 +1,39 @@
+@using FarmApp.Components.Components.FieldsListSection
+@using FarmApp.Components.Components.NotesListSection
+
+@attribute [Route(Constants.ClientRoutes.PropertiesPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.GREEN)]
+
+@layout TabLayout
+
+<div class="properties-container">
+    <div class="fields-page-title">
+        <h3>@Localizer["Fields"]</h3>
+        <IconComponent IconSrc="_content/FarmApp.Components/img/notes/calendar-02.svg" IconCallback="OnCalendarClicked" />
+    </div>
+
+    @if (!_isLoading)
+    {
+        <div class="page-content">
+            <FieldsListSectionComponent FieldsList="StateService.Properties" />
+
+            @if(StateService.Properties.Count > 0 && _userNotes.Count > 0)
+            {
+                <NotesListSectionComponent SectionTitle="@Localizer["All_Notes"]" NotesList="_userNotes" StartingAnimationIndex="StateService.Properties.Count" PropertyId="@(StateService.Properties.FirstOrDefault()?.Id)" />
+            }
+        </div>
+    }
+    else
+    {
+        <div class="loader-cont">
+            <PullLoaderComponent />
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        background: white;
+    }
+</style>

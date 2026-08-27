@@ -1,0 +1,7 @@
+﻿<li class="custom-list-item"
+    style="height: @(Parent?.ItemHeight); --line-bg: @(Parent?.SeparatorColor);">
+    <div class="list-item-content"
+         style="gap: @(Parent?.ItemFlexGap)px; @(Parent?.ItemExtraStyles);"
+         ontouchstart="if(@Parent?.ItemsInteractable.ToString().ToLower()) onRippleEffectTouchStartListener(event)" @onclick="ItemCallback">
+        @ChildContent</div>
+</li>

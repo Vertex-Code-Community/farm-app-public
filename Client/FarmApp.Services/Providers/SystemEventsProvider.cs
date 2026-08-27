@@ -1,0 +1,23 @@
+namespace FarmApp.Services.Providers;
+
+public static class SystemEventsProvider
+{
+    public static event Action? OnLastTouchLifted;
+    public static event Func<object, bool>? OnTouchEvent;
+    public static event Func<object, bool>? OnHitTestTouchEvent;
+    
+    public static void InvokeLastTouchLifted()
+    {
+        OnLastTouchLifted?.Invoke();
+    }
+    
+    public static bool InvokeTouch(object e)
+    {
+        return OnTouchEvent?.Invoke(e) ?? true;
+    }
+    
+    public static bool InvokeHitTestTouch(object e)
+    {
+        return OnHitTestTouchEvent?.Invoke(e) ?? true;
+    }
+}

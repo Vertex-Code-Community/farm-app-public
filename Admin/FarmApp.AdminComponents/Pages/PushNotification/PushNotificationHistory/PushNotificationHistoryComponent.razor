@@ -1,0 +1,111 @@
+@using Bch.Components.Table
+@using Bch.Components.Table.TableColumn
+@using FarmApp.AdminComponents.ComponentsCommon.InfoComponent
+@using FarmApp.Models.PushNotification
+@using FarmApp.Shared.Constants
+@using FarmApp.Shared.Helpers
+
+<div class="page-wrapper">
+	<BchTable @ref="_notificationsTable"
+	          TRowData="NotificationModel"
+	          PageSize="10"
+	          Items="Notifications"
+	          MinWidth="100%"
+	          IsPagination="true"
+	          IsScrollPagination="false"
+	          @bind-CurrentPage="_currentPage">
+
+		<BchTableColumn TRowData="NotificationModel"
+		                Title="Action"
+		                TdClass="text-center">
+			<TdTemplate Context="notification">
+				@{
+					var isDisabled = notification.Status == NotificationStatus.Canceled
+					                 || notification.Status == NotificationStatus.Sent;
+				}
+
+				@if (!isDisabled)
+				{
+					<button class="btn btn-success"
+					        @onclick="() => OnEditNotification.InvokeAsync(notification)">
+						Edit
+					</button>
+				}
+			</TdTemplate>
+
+		</BchTableColumn>
+
+		<BchTableColumn TRowData="NotificationModel" Title="Kind" Expression="x => x.NotificationKind" />
+		<BchTableColumn TRowData="NotificationModel" Title="Status">
+			<TdTemplate Context="notification">
+				<span class="notification-status @(notification.Status?.ToLower())">@notification.Status</span>
+			</TdTemplate>
+		</BchTableColumn>
+
+		<BchTableColumn TRowData="NotificationModel" Title="Title" Expression="x => x.Title" />
+		
+		<BchTableColumn TRowData="NotificationModel" Title="Message">
+			<TdTemplate Context="notificationModel">
+				<div class="cell-with-eye">
+					<span class="cell-content">@notificationModel.Message</span>
+					@if (!string.IsNullOrWhiteSpace(notificationModel.Message))
+					{
+						<button type="button"
+						        class="eye-button"
+						        title="View full"
+						        @onclick='() => { _infoModalText = notificationModel.Message; StateHasChanged(); }'>
+							<img src="_content/EpicApp.AdminComponents/icons/eye.svg" alt="View" />
+						</button>
+					}
+				</div>
+			</TdTemplate>
+		</BchTableColumn>
+		<BchTableColumn TRowData="NotificationModel" Title="Sender" Expression="x => x.Sender" />
+		<BchTableColumn TRowData="NotificationModel" Title="@($"DateTimeOfSend ({ClientDateTimeHelper.TimeZone})")" Expression="x => x.DateTimeOfSend" />
+		<BchTableColumn TRowData="NotificationModel" Title="TypeOfSend" Expression="x => x.TypeOfSend" />
+		<BchTableColumn TRowData="NotificationModel" Title="Platform" Expression="x => x.Platform" />
+		<BchTableColumn TRowData="NotificationModel" Title="TypeOfTargetUser" Expression="x => x.TypeOfTargetUser" />
+		<BchTableColumn TRowData="NotificationModel" Title="Redirection Url" Expression="x => x.UrlForRedirection ?? string.Empty" />
+	</BchTable>
+</div>
+
+<InfoModalComponent Title="Detail"
+                    Opened="_infoModalText is not null"
+                    OpenedChanged="opened => { if (!opened) { _infoModalText = null; StateHasChanged(); } }"
+                    Info="@_infoModalText" />
+
+
+<style>
+	.notification-status {
+		padding: 4px;
+		border-radius: 3px;
+	}
+
+		.notification-status.sent {
+			background-color: rgba(0, 255, 58, 0.22);
+		}
+
+
+		.notification-status.scheduled {
+			background-color: rgba(238, 255, 0, 0.22);
+		}
+
+
+		.notification-status.canceled {
+			background-color: rgba(255, 0, 0, 0.22);
+		}
+
+	.bch-table-wrapper .bch-tbody tr td {
+		white-space: nowrap !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		max-width: 0;
+	}
+
+		.bch-table-wrapper .bch-tbody tr td > * {
+			white-space: nowrap !important;
+			overflow: hidden !important;
+			text-overflow: ellipsis !important;
+			display: block !important;
+		}
+</style>

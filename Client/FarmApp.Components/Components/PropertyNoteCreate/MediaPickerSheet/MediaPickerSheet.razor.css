@@ -1,0 +1,31 @@
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+}
+
+.title-row > .title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0%;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.btn-all-images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+}
+
+.btn-all-images > .text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0%;
+    color: var(--text-secondary);
+}

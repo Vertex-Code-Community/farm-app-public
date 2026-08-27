@@ -1,0 +1,47 @@
+.bch-slider-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+    .bch-slider-container > .bch-slider-content {
+        position: relative;
+        overflow: hidden;
+        /*border-radius: 8px;*/
+    }
+
+        .bch-slider-container > .bch-slider-content > .bch-scroller {
+            overflow-x: auto;
+            /*-ms-scroll-snap-type: x mandatory;*/
+            scroll-snap-type: x mandatory;
+            /*padding-inline: var(--slider-padding);*/
+            scroll-behavior: smooth;
+            position: relative;
+            /*position: absolute;*/
+            /*left: 0;*/
+            /*top: 0;*/
+            height: 100%;
+            width: 100%;
+            scrollbar-width: none;
+            /*transition-property: all;*/
+            /*transition-timing-function: linear;*/
+            /*transition: all 0.5s linear;*/
+        }
+
+            .bch-slider-container > .bch-slider-content > .bch-scroller::-webkit-scrollbar {
+                display: none;
+            }
+
+            .bch-slider-container > .bch-slider-content > .bch-scroller > .bch-item {
+                scroll-snap-stop: always;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+                .bch-slider-container > .bch-slider-content > .bch-scroller > .bch-item.bch-snap-start-anchor {
+                    scroll-snap-align: start;
+                }

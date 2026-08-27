@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>FarmApp.Mobile</title>
+    <base href="/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="FarmApp.Mobile.styles.css" rel="stylesheet" />
+    <link href="_content/FarmApp.Components/css/theme-light.css" rel="stylesheet" />
+    <link href="_content/FarmApp.Components/css/theme-dark.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+
+    <script src="_content/FarmApp.Components/js/lottie-handler.js"></script>
+    <script src="_content/FarmApp.Components/js/lottie.min.js"></script>
+    <script src="_content/FarmApp.Components/js/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/pmtiles@4.2.0/dist/pmtiles.js"></script>
+    <link href="_content/FarmApp.Components/css/maplibre-gl.css" rel="stylesheet" />
+    <link href="_content/FarmApp.Components/css/map-styles.css" rel="stylesheet" />
+    <link href="_content/FarmApp.Components/css/app-styles.css" rel="stylesheet" />
+    <link href="_content/FarmApp.Components/css/fonts.css" rel="stylesheet" />
+
+    <script src="_content/FarmApp.Components/js/map-utils.js"></script>
+    <script src="_content/FarmApp.Components/js/map.js"></script>
+    <script src="_content/FarmApp.Components/js/map-modals.js"></script>
+    <script src="_content/FarmApp.Components/js/map-config.js"></script>
+    <script src="_content/FarmApp.Components/js/map-polygon-drawing.js"></script>
+    <script src="_content/FarmApp.Components/js/map-custom-steads.js"></script>
+    <script src="_content/FarmApp.Components/js/map-property-editor.js"></script>
+    <script src="_content/FarmApp.Components/js/map-feature-pictogram.js"></script>
+    <script src="_content/FarmApp.Components/js/map-steads.js"></script>
+    <script src="_content/FarmApp.Components/js/common.js"></script>
+    <script src="_content/FarmApp.Components/js/pull-to-refresh.js"></script>
+    <script src="_content/FarmApp.Components/js/videoViewer.js"></script>
+
+    <script src="_content/FarmApp.Components/js/heightAnimator.js"></script>
+
+    <script src="_content/Bch.Modules.DomInterop/js/script.js"></script>
+    <script src="_content/Bch.Components.SnapSlider/js/script.js"></script>
+
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/bg.jpg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/apple.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/google.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/info.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/mail.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/eye.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/auth-icons/eye-off.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/shared/left-chevron.svg" as="fetch" crossorigin />
+
+
+    <link rel="preload" href="_content/FarmApp.Components/img/tabs/account.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/tabs/home.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/tabs/map.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/shared/leaf.svg" as="fetch" crossorigin />
+
+    <link rel="preload" href="_content/FarmApp.Components/img/shared/check-02.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/shared/x-02.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/shared/plus-02.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/map-icons/pointer-01.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/map-icons/shape.svg" as="fetch" crossorigin />
+    <link rel="preload" href="_content/FarmApp.Components/img/map-icons/shape-off.svg" as="fetch" crossorigin />
+
+</head>
+
+<body> 
+  <div class="status-bar-safe-area"></div>
+
+    <div id="app"></div>
+    <div id="modal" style="width: 100%; height: 100%; pointer-events: none; position:absolute; inset: 0; overflow: hidden;"></div>
+    
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script src="_content/Bch.Modules.GlobalEvents/js/event-handlers.js"></script>
+</body>
+
+</html>

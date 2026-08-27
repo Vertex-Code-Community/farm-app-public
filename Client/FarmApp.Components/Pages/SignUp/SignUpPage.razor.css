@@ -1,0 +1,133 @@
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 32px;
+}
+
+    .sign-up-container.loading {
+        pointer-events: none;
+    }
+
+    .sign-up-container .sign-up-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .sign-up-container .sign-up-form .sign-up-form-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .sign-up-container .sign-up-form .sign-up-form-control:not(:last-child) {
+                gap: 16px;
+            }
+
+            .sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+                .sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field:nth-child(2) {
+                    max-height: 52px;
+                    height: 100%;
+                    gap: 6px;
+                    overflow: hidden;
+                    transition: max-height 0.4s ease-in-out;
+                }
+
+                    .sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field:nth-child(2):has(:focus),
+                    .sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field:nth-child(2).has-password {
+                        max-height: 209px;
+                    }
+
+.pass-requirements {
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: top;
+    font-size: 12px;
+    line-height: 21px;
+    transition: all 0.4s ease-in-out;
+}
+
+.sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field:nth-child(2):has(:focus) .pass-requirements,
+.sign-up-container .sign-up-form .sign-up-form-control .sign-up-form-field:nth-child(2).has-password .pass-requirements{
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.pass-requirements p {
+    margin-bottom: 4px;
+    color: var(--status-done);
+    font-weight: 600;
+}
+
+.pass-requirements ul {
+    margin: 0;
+    padding-left: 24px;
+}
+
+    .pass-requirements ul li {
+        color: var(--text-placeholder);
+        transition: 0.2s;
+    }
+
+        .pass-requirements ul li.green-text {
+            color: var(--status-done);
+        }
+
+        .pass-requirements ul li.red-text {
+            color: var(--state-error);
+        }
+
+.sign-up-container .sign-up-form .sign-up-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .sign-up-container .sign-up-form .sign-up-actions .sign-up-agree-policy {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+        .sign-up-container .sign-up-form .sign-up-actions .sign-up-agree-policy .agree-text {
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .sign-up-container .sign-up-form .sign-up-actions .sign-up-agree-policy a {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .sign-up-container .sign-up-form .sign-up-actions .sign-up-button {
+        text-align: center;
+        position: relative;
+    }
+
+    .sign-up-container .sign-up-form .sign-up-actions .sign-up-sign-in-link {
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        color: var(--text-secondary);
+    }
+
+        .sign-up-container .sign-up-form .sign-up-actions .sign-up-sign-in-link .sign-in-redirect-link {
+            color: var(--status-done);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }

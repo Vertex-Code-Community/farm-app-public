@@ -1,0 +1,35 @@
+﻿@using FarmApp.Components.Components.TextWMaxWidth
+
+<div class="notification block @(ShowFull ? "show-full" : "") @(AnimationIndex.HasValue ? "animate" : "")" @onclick="() => NavigateToViewNotification(Notification)"
+     style="animation-delay: @((AnimationIndex) * 50)ms">
+
+    @if (ShowFull)
+    {
+        <p class="body-14-regular text-tertiary">@(GetNotificationDateString(Notification.CreatedAt)) | @(Notification.CreatedAt.ToString("HH:mm"))</p>
+    }
+
+    <IconComponent IconContSize="68" IconSize="28" BorderRadius="10" IconSrc="@_iconStyles.Source"
+                   IconContBackground="@_iconStyles.BackgroundColor" IconColor="@_iconStyles.Color" />
+
+    <div class="note-columns-wrapepr">
+        <div class="note-column">
+            <p class="note-title">
+                <TextWMaxWidthComponent TextContent="@Notification.Title" />
+            </p>
+            <p class="description body-14-regular">
+                <TextWMaxWidthComponent TextContent="@Notification.Content" />
+            </p>
+            @if (!ShowFull)
+            {
+                <p class="time">@Notification.CreatedAt.ToString("HH:mm")
+                </p>            
+            }
+        </div>
+        @if(!ShowFull)
+        {  
+            <div class="note-column">
+                <div class="dot-cont @(Notification.IsRead ? "read" : "")"></div>
+            </div>
+        }
+    </div>
+</div>

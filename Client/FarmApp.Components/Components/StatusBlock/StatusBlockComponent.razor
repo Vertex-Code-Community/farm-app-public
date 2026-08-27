@@ -1,0 +1,11 @@
+﻿@using FarmApp.Components.Components.TextWMaxWidth
+@if (Status != null)
+{
+    <div class="note-status @(Small ? "small" : "")" style="background:@(Status?.BGColorHex)">
+        <span class="dot"
+              style="background:@(Status?.TextColorHex)">
+        </span>
+
+        <TextWMaxWidthComponent Width="auto" Color="@Status?.TextColorHex" TextContent="@GetStatusName()" />
+    </div>
+}

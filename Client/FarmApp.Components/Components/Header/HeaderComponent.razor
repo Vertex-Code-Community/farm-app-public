@@ -1,0 +1,13 @@
+﻿<div class="main-header">
+    <div class="title">
+        <p>@Title</p>
+        @if (!string.IsNullOrEmpty(TitleImgUrl))
+        {
+            <img src="@TitleImgUrl"/>
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(ImgUrl))
+    {
+        <div class="header-icon" @onclick="IconCallback" ontouchstart="onRippleEffectTouchStartListener(event, true)"><img src="@ImgUrl" /></div>
+    }
+</div>

@@ -1,0 +1,47 @@
+.media {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+    .media.contain {
+        background-size: contain;
+    }
+
+    .media.cover {
+        background-size: cover;
+    }
+
+    .media > .thumbnail {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #FFFFFF4D;
+    }
+
+    .media > .delete-btn {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 24px;
+        height: 24px;
+        border: none;
+        border-radius: 50%;
+        background: #FFFFFF80;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .media > .retry-upload {
+        filter: var(--icon-filter);
+    }

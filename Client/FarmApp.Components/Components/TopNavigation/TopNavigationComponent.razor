@@ -1,0 +1,25 @@
+﻿@using FarmApp.Components.Components.TextWMaxWidth
+
+<div class="header-cont">
+    <div class="icons left">
+        @* @if (!IsEditMode) *@
+            <IconComponent IconSrc="@BackIconUrl" IconSize="@IconSize" IconCallback="BackCallback" />
+            <IconComponent IconSrc="@LeftIconUrl" IconSize="@IconSize" Opacity="!String.IsNullOrWhiteSpace(LeftIconUrl) ? 1 : 0" />
+    </div>
+    
+
+    <div class="header-title">
+        <h3 class="title"><TextWMaxWidthComponent TextContent="@Title" /></h3>
+        @if(!String.IsNullOrEmpty(Subtitle))
+        {
+            <h4 class="subtitle"><TextWMaxWidthComponent TextContent="@Subtitle" /></h4>
+        }
+    </div>
+
+    <div class="icons right">
+        <IconComponent IconSrc="@RightIconUrl" IconSize="@IconSize" Opacity="!String.IsNullOrWhiteSpace(RightIconUrl) ? 1 : 0" />
+        <IconComponent IconSrc="@IconUrl" IconSize="@IconSize" IconCallback="IconCallback" Opacity="!String.IsNullOrWhiteSpace(IconUrl) ? 1 : 0"
+                       ExtraStyles=@($"visibility: {(IsViewMode ? "hidden" : "visible")}") />
+    </div>
+
+</div>

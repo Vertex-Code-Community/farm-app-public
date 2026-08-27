@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+@using AppLayout
+@using FarmApp.Services.Services.Interfaces;
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+    var offsetBottom = ScreenOffsetProvider.Bottom;
+    var tabBarReserve = IMapPropertyService.IsFieldCreateModalOpen ? "0px" : ITabsService.TabsHeight;
+}
+
+<LayoutView Layout="typeof(AppLayout)">
+    <div class="tab-layout-container @(TransparentNativeMapUnderlay ? "tab-layout--native-map-underlay" : null)">
+        <div class="content" style="padding-top: @(offsetTop)px">
+            <div class="content-wrapper" style="padding-bottom: calc(@(offsetBottom + 16)px + @(tabBarReserve))">
+                @Body
+            </div>
+        </div>
+    </div>
+</LayoutView>
+
+<style>
+    body {
+        background: @(TransparentNativeMapUnderlay ? "transparent" : "var(--background-surface)");
+    }
+</style>
+@if (TransparentNativeMapUnderlay)
+{
+    <style>
+        #app {
+            background: transparent !important;
+        }
+    </style>
+}

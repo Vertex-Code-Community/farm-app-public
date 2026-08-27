@@ -1,0 +1,109 @@
+.navigation-control-panel {
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
+    width: 52px;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.navigation-control-panel.map-chrome-inert,
+.navigation-control-panel.map-chrome-inert * {
+    pointer-events: none !important;
+}
+           
+.map-control-panel {
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+    .navigation-control-panel > .block {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateY(calc(-100% - 12px));
+        transform-origin: bottom right;
+        height: 44px;
+        display: flex;
+        border-radius: 10px;
+        gap: 8px;
+    }
+
+        .navigation-control-panel > .block > ::deep .farm-button {
+            scale: 0;
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .navigation-control-panel > .block > ::deep .farm-button:nth-child(3) {transition-delay: 0.2s;}
+        .navigation-control-panel > .block > ::deep .farm-button:nth-child(2) { transition-delay: 0.1s;}
+        .navigation-control-panel > .block > ::deep .farm-button:nth-child(1) {transition-delay: 0s;}
+
+        .navigation-control-panel > .block.expanded > ::deep .farm-button {
+            scale: 1;
+            opacity: 1;
+        }
+
+            .navigation-control-panel > .block.expanded > ::deep .farm-button:nth-child(1) {transition-delay: 0.2s;}
+            .navigation-control-panel > .block.expanded > ::deep .farm-button:nth-child(2) {transition-delay: 0.1s;}
+            .navigation-control-panel > .block.expanded > ::deep .farm-button:nth-child(3) {transition-delay: 0s;}
+
+            .compass {
+                position: relative;
+                width: 52px;
+                height: 52px;
+                overflow: hidden;
+                border-radius: 50%;
+            }
+
+            .compass .compass-base, .compass .compass-arrow {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+.navigation-control-panel.hint-animate ::deep .farm-button:nth-child(2) {
+    animation: hint-anim 0.3s linear 10 alternate;
+}
+
+@keyframes hint-anim {
+    from {
+        transform: scale(1) translateY(0);
+    }
+
+    to {
+        transform: scale(1.15) translateY(-15%);
+    }
+}
+
+.area-counter-top {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 80px);
+    right: 16px;
+    z-index: 1100;
+
+    background: var(--surface-cards);
+    color: var(--text-secondary);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.area-counter-top.over-limit {
+    background: var(--state-error);
+    color: var(--surface-cards);
+}

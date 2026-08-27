@@ -1,0 +1,68 @@
+@* <div id="map-id" class="@(NavigationService.CurrentPage?.Route != Constants.ClientRoutes.MainPage ? "disabled" : "")"></div> *@
+@* *@
+@* $1$ @if (SubscriptionStateService.IsSubscribed) #1# *@
+@* @if (true) *@
+@* { *@
+@*     <div class="map-right-control-panel @(NavigationService.CurrentPage?.Route != Constants.ClientRoutes.MainPage ? "disabled" : "")" *@
+@*          style="top: @(ScreenOffsetProvider.Top)px;"> *@
+@*         <div class="control"> *@
+@*             <button @onclick='async () => { await MapPropertyService.SwitchCreateModeAsync(true); }' *@
+@*                     class="@(MapPropertyService.IsCreateModeOn || MapSteadService.IsDrawingModeOn ? "disabled" : "")"> *@
+@*                 P *@
+@*             </button> *@
+@*         </div> *@
+@* *@
+@*         <div class="control"> *@
+@*             <button @onclick='async () => { await MapPropertyService.SwitchCreateModeAsync(false); }' *@
+@*                     class="@(!MapPropertyService.IsCreateModeOn || MapSteadService.IsDrawingModeOn ? "disabled" : "")"> *@
+@*                 C *@
+@*             </button> *@
+@*         </div> *@
+@* *@
+@*         <div class="control"> *@
+@*             <button @onclick="OnCreatePropertyAsync" *@
+@*                     class="@(!MapPropertyService.IsCreateModeOn || MapSteadService.IsDrawingModeOn ? "disabled" : "")"> *@
+@*                 + *@
+@*             </button> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <div class="map-left-control-panel @(NavigationService.CurrentPage?.Route != Constants.ClientRoutes.MainPage ? "disabled" : "")" *@
+@*          style="top: @(ScreenOffsetProvider.Top)px;"> *@
+@*         <div class="control"> *@
+@*             <button @onclick='async () => { await MapSteadService.SwitchDrawingModeAsync(true); }' *@
+@*                     class="@(MapSteadService.IsDrawingModeOn || MapPropertyService.IsCreateModeOn ? "disabled" : "")"> *@
+@*                 D *@
+@*             </button> *@
+@*         </div> *@
+@* *@
+@*         <div class="control"> *@
+@*             <button @onclick='async () => { await MapSteadService.SwitchTranslateModeAsync(); }' *@
+@*                     class="@(!MapSteadService.IsDrawingModeOn || MapPropertyService.IsCreateModeOn ? "disabled" : "")"> *@
+@*                 @(MapSteadService.IsTranslateModeOn ? "P" : "M") *@
+@*             </button> *@
+@*         </div> *@
+@* *@
+@*         <div class="control"> *@
+@*             <button @onclick='async () => { await MapSteadService.SwitchDrawingModeAsync(false); }' *@
+@*                     class="@(!MapSteadService.IsDrawingModeOn || MapPropertyService.IsCreateModeOn ? "disabled" : "")"> *@
+@*                 C *@
+@*             </button> *@
+@*         </div> *@
+@* *@
+@*         <div class="control"> *@
+@*             <button @onclick="OnCreateCustomSteadAsync" *@
+@*                     class="@(!MapSteadService.IsDrawingModeOn || MapPropertyService.IsCreateModeOn ? "disabled" : "")"> *@
+@*                 + *@
+@*             </button> *@
+@*         </div> *@
+@*     </div> *@
+@* } *@
+@* *@
+@* <canvas id="farm-app-pictogram-canvas"></canvas> *@
+@* *@
+@* <style> *@
+@*     #map-id.disabled .maplibregl-control-container {  *@
+@*         display: none; *@
+@*     } *@
+@* </style> *@

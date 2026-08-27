@@ -1,0 +1,64 @@
+@using FarmApp.Components.Components.GuideTour
+@using FarmApp.Components.Pages.Main.MapSearch
+@using FarmApp.Components.Pages.Main.Modals.MapLoader
+@using FarmApp.Components.Pages.Main.Modals.MapStead
+@using FarmApp.Components.Pages.Main.Modals.MapProperty
+@using FarmApp.Components.Pages.Main.Modals.MapCustomStead
+@using FarmApp.Components.Pages.Main.Modals.MapCloseVertex
+@using FarmApp.Components.Pages.Main.Modals.MapAdPrompt
+@using FarmApp.Components.Pages.Main.Modals.MapAdPromptFail
+@using FarmApp.Components.Pages.Main.MapModal
+@using FarmApp.Components.Pages.Main.MapControls
+@using FarmApp.Components.Pages.Main.MapChrome
+@using FarmApp.Shared.Enums
+
+@layout TabLayout;
+
+<div class="main-page-cont">
+<MapChromeReporterComponent/>
+<MapSearchComponent/>
+<MapControlsComponent ShowCreateFieldHint="@ShowCreateFieldHint"/>
+
+<MapModalComponent>
+    @switch (context)
+    {
+        case MapModalType.Loading:
+            <MapLoaderComponent/>
+            break;
+        case MapModalType.Property:
+            <MapPropertyComponent Property="_propertyModel"/>
+            break;
+        case MapModalType.Stead:
+            <MapSteadComponent Stead="_steadModel"/>
+            break;
+        case MapModalType.CustomStead:
+            <MapCustomSteadComponent CustomStead="_customStead" Area="_selectedArea"/>
+            break;
+        case MapModalType.CloseButton:
+            <MapCloseVertexComponent/>
+            break;
+        case MapModalType.AdPrompt:
+            <MapAdPromptComponent OnAdShowClicked="OnShowAdAsync"/>
+            break;
+        case MapModalType.AdPromptFail:
+            <MapAdPromptFailComponent/>
+            break;
+    }
+</MapModalComponent>
+</div>
+
+<style>
+    html, body {
+        scrollbar-width: none;
+    }
+    
+    body {
+        background: transparent !important;
+    }
+    
+    ::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
+        height: 0 !important;
+    }
+</style>

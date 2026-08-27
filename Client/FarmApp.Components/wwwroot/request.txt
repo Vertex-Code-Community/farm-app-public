@@ -1,0 +1,50 @@
+Together with my team we work on mobile application for ukrainian farmers accounting. Farmers are able to draw or select
+fields on the map and create note for some date. In this application we have four tabs in the bottom, the first one is
+"Map" where map with steads is rendered, next one is "Fields" where listed fields that have notes, third one is 
+"Subscriptions" and the last one is "SignIn" or "Profile" depending on if user is authorized respectively.
+
+Authorization flow
+
+In authorization flow we have next pages: SignIn, SignUp, ForgotPassword, TypeVerificationCode, ResetPassword. On SignIn
+page we have fields for phone number and password and confirm button, buttons for navigating to SignUp and 
+ForgotPassword page. SignUp page has fields for typing phone number and password, confirm button. After registration we 
+are redirected to TypeVerificationCode, where we have field for verification code and confirm button, verification code 
+is sent by SMS service. On ForgotPassword we have phone number field and confirm button after confirming we are 
+redirected to ResetPassword where we type password, the same password in another field for confirmation and confirm 
+button after confirming those we are redirected to SignIn page.
+
+Subscription flow
+
+In "Subscription" page we have three subscriptions that user can by listed in vertical list, subscription item has name,
+price and button 'Buy', 'Cancel' or cancel depending on fact if subscription is bought. Above of that list we have block
+with information about current subscription.
+
+Fields tab
+
+We have list of items, at the left side with have icon with the form of field, on right one creation date and field 
+coordinates.
+
+Map tab
+
+We have map rendered, at the top left corner we have four icon-buttons placed in column. First one for enabling stead 
+drawing mode, another one for switching between translation modes, if in mode 1, then when we move map in drawing 
+polygon we move map together with drawing polygon, otherwise we move polygon separately when we start moving pointer 
+inside drawing polygon. Next one button for canceling drawing mode and the last one for submitting and adding new stead 
+based on drawn polygon. On the right one side we have three icons, one for enabling property creation mode (property is
+a union of several steads) when this mode is enabled when user clicks on stead it becomes selected, next button for 
+disabling property creation mode and the last one for submitting and creating property on map based on selected steads. 
+When we click stead on map we should see modal window with stead address, category (just a couple of words), area in 
+gectares and 'Open calendar button'. When we click it we go to next page "CalendarPage"
+
+Calendar Page
+
+Calendar is used for selecting specific date for adding notes on that date. At the top section of calendar page we have
+year and month name from the left side and two arrows for switching calendar's months, after that we have days grid to 
+the very bottom of the screen, we can switch that with swipe also, when we click on some day we are redirected to 
+"NotesPage" where we should see list of notes and "Add" button, notes item consists of note header, note creation 
+datetime, when we click item we are redirected to "NoteItemPage" this page contains "Header" field, "Content" textarea, 
+update and remove buttons.
+
+I want you to generate design for me for that application, I wish it would be in light style with a lot of green colors 
+and mix of green-like colors, also It would be good to have spinner as moving red tractor, maybe growing spikelet, 
+moving plants such as corn, sunflowers or others.

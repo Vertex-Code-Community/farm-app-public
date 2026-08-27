@@ -1,0 +1,21 @@
+<BchModal Show="@(NotificationService.LastNotification is not null)"
+                CssClass="notification-container"
+                Width="calc(100% - 40px)"
+                Height="auto"
+                CssStyles="max-width: 370px;"
+                ShowOverlay="true"
+                CloseOnOverlayClicked="false">
+
+    <div data-ui class="content-container">
+        <div class="top">@NotificationService.LastNotification!.Title</div>
+        <div class="middle scroll">
+            <div class="scroller">@((MarkupString)NotificationService.LastNotification!.Content)</div>
+        </div>
+        <div class="bottom">
+            <div ontouchstart="onRippleEffectTouchStartListener(event)" @onclick="() => { NotificationService.Close(NotificationService.LastNotification!); }" class="save noselectable-text">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+</BchModal>

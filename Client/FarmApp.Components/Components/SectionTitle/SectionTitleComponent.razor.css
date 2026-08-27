@@ -1,0 +1,25 @@
+.section-title-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+
+    .section-title-row .section-title {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+.section-title-row.heading-title {
+    height: 48px;
+}
+
+    .section-title-row.heading-title .section-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 25px;
+    }

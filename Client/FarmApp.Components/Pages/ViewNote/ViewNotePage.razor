@@ -1,0 +1,114 @@
+﻿@using FarmApp.Components.Components.BottomSheet
+@using FarmApp.Components.Components.MediaViewer
+@using FarmApp.Components.Components.PropertyNoteCreate.MediaPickerSheet
+@using FarmApp.Components.Components.SectionTitle
+@using FarmApp.Components.Components.StatusBlock
+@using FarmApp.Components.Components.Switch
+@using FarmApp.Components.Components.TimeDropdown
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.PropertyNoteCreate
+@attribute [Route(Constants.ClientRoutes.ViewNotePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@layout PageLayout
+
+<div class="note-container">
+    <TopNavigationComponent Title="@Note.Header" BackCallback="async () => await NavigateBack(true)" IconUrl="_content/FarmApp.Components/img/shared/edit.svg" IconCallback="EditNote" />
+
+    <div class="note-content @(_closing ? "closing" : "")" style="padding-bottom: calc(@(ScreenOffsetProvider.Bottom)px + 16px);">
+        @if (_isLoading)
+        {
+            <PullLoaderComponent />
+        }
+        else
+        {
+            <div class="section">
+                <div class="note-overview">
+                    <div class="timeline">
+                        <p class="time body-16-regular">@Note.StartTime.ToString("HH:mm")</p>
+                        <p class="time body-16-regular">@Note.EndTime.ToString("HH:mm")</p>
+                    </div>
+
+                    <div class="note-info">
+                        @if (Note.StatusId != -1)
+                        {
+                            <StatusBlockComponent StatusId="@Note.StatusId" Small="true" />
+                    
+                        }
+                        <div class="title-and-field">
+                            <p class="body-18-medium title">@Note.Header</p>
+                            <p class="body-14-regular text-tertiary">@PropertyName</p>
+                        </div>
+                        <div class="body-14-regular text-tertiary">
+                            <span>@Note.StartTime.ToString("dd.MM.yyyy")</span> - <span>@Note.EndTime.ToString("dd.MM.yyyy")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <SectionTitleComponent Title="@Localizer["Note"]" />
+                <div class="note-description">
+                    <p class="body-16-regular text-secondary">@Note.Text</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <SectionTitleComponent Title="@Localizer["Property-Note_Add-Photo-Video"]" IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" IconCallback="OpenMediaPickerModal" />
+                <DisplayMediaComponent IsEditMode = "false" @bind-Files="_files" OnPreviewSet = "OnPreviewNoteSet"
+                MediaViewerTitle="@Note.Header" MediaViewerSubtitle="@Note.CreatedAt.ToString("dd.MM.yyyy")" PropertyNoteId="@Note.Id" />
+            </div>
+
+            <div class="section" style="z-index: 1">
+                <div class="notifications-settings">
+                    <div class="notifications">
+                        <p class="body-18-medium text-primary">@Localizer["Notifications"]</p>
+                        <SwitchComponent @bind-IsEnabled="_isNotificationsEnabled" />
+                    </div>
+                    <div class="settings">
+                        <div class="setting-item">
+                            <TimeDropdownComponent SelectTitle="@Localizer["Notifications_Remind-Start"]" SelectedTime="_remindAtStart" OnSelect="OnRemindAtStartSelected" />
+                        </div>
+                        <div class="setting-item">
+                            <TimeDropdownComponent SelectTitle="@Localizer["Notifications_Remind-end"]" SelectedTime="_remindAtEnd" OnSelect="OnRemindAtEndSelected" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <ButtonComponent ClassName="delete" Name="@Localizer["Status_Delete"]" Background="var(--background-surface)" OnClick="() => _showDeleteModal = true" />
+            </div>
+        }
+    </div>
+</div>
+
+
+<BottomSheetComponent @bind-IsOpen="_showDeleteModal">
+    <div class="delete-modal">
+      <IconComponent IconContSize="56" IconSize="32" IconColor="var(--component-icon)" IconContBackground="var(--accent-primary-10)"
+                     IconSrc="_content/FarmApp.Components/img/profile/trash-02.svg" ExtraStyles="margin: 0 auto; margin-bottom: 8px;" />
+        <p class="body-18-medium text-secondary">@Localizer["Status_Delete_Title"]</p>
+
+        <div class="buttons-cont">
+            <ButtonComponent ClassName="primary" Name="@Localizer["Status_Delete_Cancel"]" OnClick="() => _showDeleteModal = false" />
+            <ButtonComponent ClassName="tertiary" Name="@Localizer["Status_Delete"]" TextColor="var(--state-error)" OnClick="DeleteNote" />
+        </div>
+    </div>
+</BottomSheetComponent>
+
+
+<PropertyNoteCreateModal @bind-IsOpen="_showEditModal" @bind-Files="_files"
+                         isNested="true" @bind-RemindAtStart="_remindAtStart" @bind-RemindAtEnd="_remindAtEnd"
+                         PropertyId="@Note.PropertyId" PropertyNoteId="@Note.Id"
+                         OnPropertyNoteUpdated="OnPropertyNoteUpdated" />
+
+
+<MediaPickerSheet @bind-IsOpen="_showMediaPickerModal" OnFilesPicked="OnFilesPicked" />
+
+<style>
+    body:has(.note-container) {
+        background-color: var(--surface-cards);
+    }
+</style>

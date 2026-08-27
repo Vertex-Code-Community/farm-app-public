@@ -1,0 +1,53 @@
+﻿.loader-points {
+    color: #fff;
+    padding: 10px;
+    min-height: 36px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    /*.loader-points:hover {*/
+    /*    background-color: #ff6600; !* Warna button saat hover *!*/
+    /*}*/
+
+    .loader-points > .circle {
+        width: 15px;
+        height: 15px;
+        background-color: white;
+        border-radius: 100%;
+        display: inline-block;
+        animation: sk-bouncedelay 1.2s infinite ease-in-out both;
+    }
+
+        .loader-points > .circle.bounce-1 {
+            animation-delay: -0.32s;
+        }
+
+        .loader-points > .circle.bounce-2 {
+            animation-delay: -0.16s;
+        }
+
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}

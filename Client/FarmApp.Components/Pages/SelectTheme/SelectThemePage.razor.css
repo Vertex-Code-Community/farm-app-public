@@ -1,0 +1,10 @@
+.select-theme-cont {
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ul-cont {
+    padding: 0 16px;
+}

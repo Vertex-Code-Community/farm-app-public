@@ -1,0 +1,31 @@
+@using FarmApp.Components.Pages.PropertyCalendar.Calendar.MonthFrame;
+@using FarmApp.Components.Components.SnapSlider
+
+<div class="datepicker-table">
+    <div class="datepicker-days" style="padding: 0px 8px">
+        <SnapSliderComponent TItem="DateTime"
+                             @ref = "_slider"
+                             ScrollIndex="@_scrollIndex"
+                             ScrollIndexChanged="OnScrollIndexChanged"
+                             OnItem="OnItem">
+
+            <ItemTemplate Context="item">
+                <div @key="item" class="month-frame-wrapper" style="padding: 0 8px;">
+                    @if (_renderHidden || item.Month == BaseMonth.Month && item.Year == BaseMonth.Year)
+                    {
+                        <MonthFrameComponent PropertyNotes="PropertyNotes"
+                                             PropertyId="@PropertyId"
+                                             Culture="_culture"
+                                             @bind-SelectedDay="SelectedDay"
+                                             Year="item.Year"
+                                             Month="item.Month"
+                                             onPageChanged="ChangeMonth"
+                                             CalendarComponent="@this"/>
+                    }
+
+                </div>
+            </ItemTemplate>
+
+        </SnapSliderComponent>
+    </div>
+</div>

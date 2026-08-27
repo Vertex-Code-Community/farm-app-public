@@ -1,0 +1,25 @@
+@using FarmApp.Components.Components.NotesListSection
+@using FarmApp.Components.Components.TopNavigation
+
+@attribute [Route(Constants.ClientRoutes.PropertiesDetailsPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.GREEN)]
+
+@layout PageLayout;
+
+<div class="properties-container">
+    <TopNavigationComponent Title="@_property?.Name" IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" 
+                            IconCallback="OnNoteCreateClick" />
+
+    <div class="page-content" style="padding-bottom: @(ScreenOffsetProvider.Bottom + 16)px">
+    @if(!_isLoading)
+    {
+        <NotesListSectionComponent @ref="_notesSection" NotesList="_userNotes" PropertyId="@EffectivePropertyId" IsNested="true" />
+    } else
+    {
+        <div class="loader-cont">
+            <PullLoaderComponent />
+        </div>
+    }
+    </div>
+</div>

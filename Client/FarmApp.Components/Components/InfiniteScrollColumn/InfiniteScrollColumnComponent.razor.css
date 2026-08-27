@@ -1,0 +1,47 @@
+.column {
+    flex: 1;
+    height: 210px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    will-change: scroll-position;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    transform: translateZ(0);
+    touch-action: pan-y;
+    
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.column::-webkit-scrollbar {
+    display: none;
+}
+
+.picker-item {
+    height: 30px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.picker-item-text {
+    font-size: 18px;
+    line-height: 18px;
+    color: var(--text-primary);
+    display: inline-block;
+    will-change: transform;
+    margin: 0;
+}
+
+.no-snap .picker-item {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    scroll-snap-type: none;
+    pointer-events: none;
+}

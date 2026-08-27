@@ -1,0 +1,175 @@
+@using Bch.Components.Modal
+@using Bch.Components.RadioButton.RadioButtonComponent
+@using Bch.Components.RadioButton.RadioButtonsContainer
+@using Bch.Components.Select
+@using Blazored.FluentValidation
+@using FarmApp.AdminComponents.ComponentsCommon.ConfirmComponent
+@using System.Linq
+@using FarmApp.Models.PushNotification
+@using FarmApp.Shared.Constants
+@using FarmApp.Shared.Enums.PushNotification
+
+<BchModal Width="50"
+		  Height="unset"
+		  Show="true"
+		  ShowOverlay="true"
+		  CloseOnOverlayClicked="true"
+		  OnOverlayClicked="() => OnCloseClicked.InvokeAsync()">
+	<div class="modal-container">
+		<div class="modal-header">
+			<h4>Edit Notification</h4>
+			<button type="button" class="close-button" @onclick="() => OnCloseClicked.InvokeAsync()">×</button>
+		</div>
+		<div class="modal-content">
+			<EditForm Model="@SelectedNotification"
+					  OnValidSubmit="SaveNotificationAsync">
+				<FluentValidationValidator />
+
+				<div class="custom-form-container">
+					<div class="custom-row">
+						<div class="custom-col">
+							<label class="custom-label">Title</label>
+							<input class="form-control"
+								   @bind="SelectedNotification.Title"
+								   placeholder="Title" />
+							<ValidationMessage For="@(() => SelectedNotification.Title)" />
+						</div>
+						<div class="custom-col">
+							<label>Message</label>
+							<input class="form-control"
+								   @bind="SelectedNotification.Message"
+								   placeholder="Message" />
+							<ValidationMessage For="@(() => SelectedNotification.Message)" />
+						</div>
+					</div>
+					<div class="custom-row">
+						<div class="custom-col">
+							<label>Sender</label>
+							<input class="form-control"
+								   @bind="SelectedNotification.Sender"
+								   placeholder="Sender" />
+							<ValidationMessage For="@(() => SelectedNotification.Sender)" />
+						</div>
+						<div class="custom-col">
+							<label>Notification type</label>
+							<BchSelect TItem="NotificationKind"
+									   Options="@(Enum.GetValues(typeof(NotificationKind)).Cast<NotificationKind>().ToArray())"
+									   @bind-Selected="SelectedNotification.NotificationKind"
+									   DefaultText="Select notification type"
+									   Width="350"
+									   Height="48"
+									   ContentHeight="220"
+									   ItemHeight="36"
+									   Filtering="true" />
+						</div>
+					</div>
+
+					<div class="custom-row">
+						<div class="custom-col">
+							<label>Date Time Of Send</label>
+							<div class="date-time-container">
+								<BchCalendar Value="SelectedNotification.DateTimeOfSend"
+											 ValueChanged="@((DateTime? newValue) => SelectedNotification.DateTimeOfSend = newValue ?? DateTime.Now)"
+											 Format="MM/dd/yyyy" />
+
+								<BchCalendar Value="SelectedNotification.DateTimeOfSend"
+											 ValueChanged="@((DateTime? newValue) => SelectedNotification.DateTimeOfSend = newValue ?? DateTime.Now)"
+											 Format="HH:mm" />
+							</div>
+							<ValidationMessage For="@(() => SelectedNotification.DateTimeOfSend)" />
+						</div>
+					</div>
+
+					<div class="section-header">Recipients</div>
+
+					<p>Select the platform the notification will be sent on below</p>
+					<div class="platforms">
+						<div class="platform-item ios @(SelectedNotification.Platform == Platform.IOS ? "active" : "")"
+							 @onclick="() => SelectedNotification.Platform = Platform.IOS">
+							<img src="_content/FarmApp.AdminComponents/icons/sendNotification/ios-icon.svg" alt="iOS" />
+						</div>
+
+						<div class="platform-item android @(SelectedNotification.Platform == Platform.Android ? "active" : "")"
+							 @onclick="() => SelectedNotification.Platform = Platform.Android">
+							<img src="_content/FarmApp.AdminComponents/icons/sendNotification/android-icon.svg" alt="Android" />
+						</div>
+
+						<div class="platform-item all @(SelectedNotification.Platform == Platform.All ? "active" : "")"
+							 @onclick="() => SelectedNotification.Platform = Platform.All">
+							ALL
+						</div>
+					</div>
+					<ValidationMessage For="@(() => SelectedNotification.Platform)" />
+
+					<div class="section-header">Users</div>
+					<fieldset>
+						<BchRadioButtonsContainer TItem="string" @bind-Selected="_typeOfUser">
+							<BchRadioButton TItem="string" Key="@RecipientType.All">
+								<DataTemplate Context="isSelected">
+									<label>All</label>
+								</DataTemplate>
+							</BchRadioButton>
+
+							<BchRadioButton TItem="string" Key="@RecipientType.Target">
+								<DataTemplate Context="isSelected">
+									<label>Target</label>
+								</DataTemplate>
+							</BchRadioButton>
+						</BchRadioButtonsContainer>
+					</fieldset>
+
+					@{
+						if (_typeOfUser == RecipientType.Target)
+						{
+							<fieldset class="column">
+								<BchRadioButtonsContainer TItem="string" @bind-Selected="_targetUserSelected">
+									<BchRadioButton TItem="string" Key="@TargetUserType.OldVersionOwner">
+										<DataTemplate Context="isSelected">
+											<label>People who don't have the latest update of your app</label>
+										</DataTemplate>
+									</BchRadioButton>
+
+									<BchRadioButton TItem="string" Key="@TargetUserType.SpecificUser">
+										<DataTemplate Context="isSelected">
+											<label>Specific User</label>
+										</DataTemplate>
+									</BchRadioButton>
+
+									<BchRadioButton TItem="string" Key="@TargetUserType.SpecificStoreLocation">
+										<DataTemplate Context="isSelected">
+											<label>Specific Store Location</label>
+										</DataTemplate>
+									</BchRadioButton>
+								</BchRadioButtonsContainer>
+							</fieldset>
+							<ValidationMessage For="@(() => SelectedNotification.TypeOfTargetUser)" />
+						}
+					}
+
+					<div class="buttons-group">
+						<button type="submit"
+								class="btn btn-success">
+							Save
+						</button>
+
+						<button type="button"
+								class="btn btn-danger"
+								@onclick="() => { _showCancelConfirmationModal = true; }">
+							Cancel
+						</button>
+
+						<button type="button"
+								class="btn btn-outline"
+								@onclick="() => OnCloseClicked.InvokeAsync()">
+							Close
+						</button>
+					</div>
+				</div>
+			</EditForm>
+		</div>
+	</div>
+</BchModal>
+
+<ConfirmModalComponent @bind-Opened="_showCancelConfirmationModal"
+					   ResultChanged="confirmed => confirmed ? OnCancelClicked.InvokeAsync() : Task.CompletedTask"
+					   Title="Cancel send Notification?" />

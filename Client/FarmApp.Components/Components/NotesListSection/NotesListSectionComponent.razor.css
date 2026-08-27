@@ -1,0 +1,14 @@
+.section, .section-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section {
+    gap: 6px;
+    height: fit-content;
+}
+
+.section-list {
+    gap: 8px;
+}

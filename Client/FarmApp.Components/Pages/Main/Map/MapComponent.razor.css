@@ -1,0 +1,62 @@
+#map-id {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    pointer-events: all;
+}
+
+    .map-right-control-panel.disabled,
+    .map-left-control-panel.disabled,
+    #map-id.disabled {
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+.map-right-control-panel {
+    position: absolute;
+    right: 0;
+    height: 300px;
+    width: 40px;
+    /*background: rgba(255, 0, 0, 50);*/
+    z-index: 1000;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.map-left-control-panel {
+    position: absolute;
+    left: 0;
+    height: 300px;
+    width: 40px;
+    /*background: rgba(255, 0, 0, 50);*/
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+    .map-left-control-panel > .control,
+    .map-right-control-panel > .control {
+        pointer-events: all;
+    }
+    
+    button.disabled {
+        pointer-events: none;
+        opacity: 0.3;
+    }
+    
+#farm-app-pictogram-canvas {
+    width: 2000px;
+    height: 2000px;
+    
+    z-index: 1;
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}

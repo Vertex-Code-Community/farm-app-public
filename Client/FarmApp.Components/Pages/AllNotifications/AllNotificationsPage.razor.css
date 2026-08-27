@@ -1,0 +1,66 @@
+.all-notfications-container, .page-content, .section, .notifs-cont, .all-notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.all-notfications-container {
+    padding-top: 2px;
+    height: 100%;
+    min-height: 0;
+}
+
+.page-content {
+    gap: 8px;
+    padding: 0 16px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+    .filters-row .filter-btn {
+        border-radius: 999px;
+        padding: 8px 16px;
+        height: 40px;
+        color: var(--text-placeholder);
+        border: 1px solid var(--text-disabled);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+    }
+
+        .filters-row .filter-btn.active {
+            color: var(--surface-cards);
+
+            border: none;
+            background-color: var(--accent-primary);
+            background-image: var(--accent-primary-gradient);
+        }
+
+.all-notifications {
+    gap: 8px;
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+    .all-notifications::-webkit-scrollbar {
+        display: none;
+    }
+
+.section {
+    gap: 6px;
+}
+
+.notifs-cont {
+    gap: 12px;
+}

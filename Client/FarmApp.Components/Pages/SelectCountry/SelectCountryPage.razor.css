@@ -1,0 +1,18 @@
+.select-country-cont {
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ul-cont {
+    padding: 0 16px;
+}
+
+.country-flag {
+    width: 24px;
+    height: auto;
+    border-radius: 2px;
+    flex-shrink: 0;
+    display: block;
+}

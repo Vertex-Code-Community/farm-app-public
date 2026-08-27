@@ -1,0 +1,14 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <g stroke="#22C55E" stroke-width="1.77273" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Document -->
+        <path d="M6 6h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"></path>
+        <!-- Upload arrow -->
+        <path d="M13 17v-6"></path>
+        <path d="M16 13l-3-3-3 3"></path>
+        <!-- Queue lines (outside, to the right) -->
+        <path d="M18.5 12h3.5"></path>
+        <path d="M18.5 15h3.5"></path>
+        <path d="M18.5 18h3.5"></path>
+    </g>
+</svg>

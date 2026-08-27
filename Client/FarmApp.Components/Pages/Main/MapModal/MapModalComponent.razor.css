@@ -1,0 +1,58 @@
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px -5px rgba(0,0,0,0.75);
+    /*opacity: 0;*/
+    opacity: 1.0;
+}
+
+    .modal-wrapper.shown {
+        opacity: 1.0;
+        transition: ease-in 0.3s;
+    }
+
+.modal-arrow {
+    position: absolute;
+    background: white;
+    /*opacity: 0;*/
+    opacity: 1.0;
+}
+
+    .modal-arrow.shown {
+        opacity: 1.0;
+        transition: opacity ease-in 0.3s;
+    }
+
+.modal-arrow.arrow-mode-0 {
+    bottom: 0.5px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+    clip-path: polygon(50% 100%, 0 0, 100% 0); /* down */
+}
+
+.modal-arrow.arrow-mode-1 {
+    top: 0.5px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* up */
+}
+
+.modal-arrow.arrow-mode-2 {
+    top: 50%;
+    left: 0.5px;
+    transform: translate(-100%, -50%);
+
+    clip-path: polygon(0% 50%, 100% 100%, 100% 0); /* left */
+}
+
+.modal-arrow.arrow-mode-3 {
+    top: 50%;
+    right: 0.5px;
+    transform: translate(100%, -50%);
+
+    clip-path: polygon(100% 50%, 0 100%, 0 0); /* right */
+}

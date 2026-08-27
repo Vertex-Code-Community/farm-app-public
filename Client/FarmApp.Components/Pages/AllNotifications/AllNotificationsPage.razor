@@ -1,0 +1,70 @@
+@attribute [Route(Constants.ClientRoutes.AllNotificationsPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.NotificationBlock
+@using FarmApp.Components.Components.SectionTitle
+@using FarmApp.Components.Components.TopNavigation
+
+@layout PageLayout
+
+<div class="all-notfications-container">
+    <TopNavigationComponent Title="@Localizer["Notifications"]" IconCallback="NavigateToSettings"
+                            IconUrl="_content/FarmApp.Components/img/shared/settings.svg" />
+    
+    <div class="page-content">
+        @if (_apiNotifications.Any())
+        {
+            var groupedNotifications = _filteredNotifications.GroupBy(n => n.CreatedAt.Date).OrderByDescending(g => g.Key).ToList();
+
+            <div class="filters-row">
+                <div class="body-16-regular filter-btn @(CurrentFilter == NotificationFilter.All ? "active" : "")"
+                     @onclick="() => CurrentFilter = NotificationFilter.All">
+                    @Localizer["Notifications_All-Notifications"]
+                </div>
+                @*
+                <div class="body-16-regular filter-btn @(CurrentFilter == NotificationFilter.Unread ? "active" : "")"
+                     @onclick="() => CurrentFilter = NotificationFilter.Unread">
+                    @L["Notifications_Unread"] (@UnreadCount)
+                </div>
+                <div class="body-16-regular filter-btn @(CurrentFilter == NotificationFilter.Read ? "active" : "")"
+                     @onclick="() => CurrentFilter = NotificationFilter.Read">
+                    @L["Notifications_Read"]
+                </div>
+            *@
+                <div class="body-16-regular filter-btn @(CurrentFilter == NotificationFilter.Mock ? "active" : "")"
+                     @onclick="() => CurrentFilter = NotificationFilter.Mock">
+                    Mock
+                </div>
+            </div>
+            <div class="all-notifications" style="padding-bottom: @(ScreenOffsetProvider.Bottom + 24)px">
+
+                @if (_filteredNotifications.Count() > 0)
+                {
+                    foreach (var group in groupedNotifications)
+                    {
+                        <div class="section">
+                            <SectionTitleComponent Title="@GetNotificationDateString(group.Key)" IsHeading="true" />
+                            <div class="notifs-cont">
+                                @foreach (var notification in group.OrderByDescending(n => n.CreatedAt))
+                                {
+                                    <NotificationBlockComponent @key="notification.Id" Notification="notification" />
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <CreateNoteComponent Styles="margin-top: 16px" 
+                    Type="@(CurrentFilter == NotificationFilter.Unread ? "no-new-notifications" : "no-read-notifications")" />
+                }
+            </div>
+        }
+        else
+        {
+            <CreateNoteComponent Styles="margin-top: 12px" Type="no-notifications" />
+        }
+    </div>
+</div>

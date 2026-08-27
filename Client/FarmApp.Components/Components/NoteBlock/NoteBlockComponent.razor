@@ -1,0 +1,30 @@
+﻿@using FarmApp.Components.Components.StatusBlock
+@using FarmApp.Components.Components.TextWMaxWidth
+
+<div class="note block @(Note.StatusId != -1 ? "has-status" : "") @(_isReadyToAnimate ? "animate" : "")" @onclick="() => NavigateToViewNote(Note)"
+     style="@(_isReadyToAnimate ? $"animation-delay: {AnimationIndex * 50}ms;" : "")" >
+
+    @if (!String.IsNullOrEmpty(_imgUrl))
+    {
+        <img class="note-img" src="@_imgUrl" />
+    }
+
+    <div class="note-columns-wrapepr">
+        <div class="note-column">
+            <p class="note-title">
+                <TextWMaxWidthComponent TextContent="@Note.Header" />
+            </p>
+            <p class="description">
+                <TextWMaxWidthComponent TextContent="@Note.Text" />
+            </p>
+        </div>
+
+        <div class="note-column">
+            @if (@Note.StatusId != -1)
+            {
+                <StatusBlockComponent StatusId="@Note.StatusId" Small="true"/>
+            }
+            <p class="date">@Note.StartTime.ToString("dd.MM.yyyy")</p>
+        </div>
+    </div>
+</div>

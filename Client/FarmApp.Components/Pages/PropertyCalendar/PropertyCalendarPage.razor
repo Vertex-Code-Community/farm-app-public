@@ -1,0 +1,86 @@
+@using FarmApp.Components.Components.BottomSheet
+@using FarmApp.Components.Components.NoteBlockSkeleton
+@using FarmApp.Components.Components.PropertyNoteCreate
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Pages.PropertyCalendar.Calendar;
+@using FarmApp.Components.Components.NoteBlock;
+@using FarmApp.Components.Components.PullLoader;
+
+@attribute [Route(Constants.ClientRoutes.PropertyCalendarPage)]
+@attribute [Layout(typeof(EmptyLayout))]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<div class="stead-details-container" style="margin-top: @(offsetTop)px; height: calc(100% - @(offsetTop)px)">
+
+        <TopNavigationComponent Title="@Localizer["Calendar"]" IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg"
+                            IconCallback="OnNoteCreateClick" RightIconUrl="_content/FarmApp.Components/img/notes/calendar-02.svg" />
+
+
+    @if (_isLoading)
+    {
+        <div class="loader-container">
+            <PullLoaderComponent />
+        </div>
+    }
+    else
+    {
+        <CascadingValue Value="this">
+
+            <CalendarComponent PropertyNotes="notes"
+                               PropertyId="@PropertyId"
+                               Date="Date" />
+        </CascadingValue>
+
+
+        @if (_selectedDay != default)
+        {
+        <BottomSheetComponent MinHeight="@($"160px")">
+                    <div class="notes-content">
+                        <div class="sheet-header">
+                            <div class="icon-bg">
+                                <img src="_content/FarmApp.Components/img/shared/leaf.svg" />
+                            </div>
+                            <p>@Localizer["Calendar_Notes"]</p>
+                        </div>
+                        <div class="sheet-content">
+                        @{
+
+                            GetNotesForDay();
+                        }
+
+                        @if (notesForDay.Count == 0)
+                        {
+                            <span>@Localizer["Calendar_Not-Planned"]</span>
+                        }
+                        else
+                        {
+                            @foreach (var note in notesForDay)
+                            {
+                                <NoteBlockComponent Note="note" @key="note.Id" />
+                            }
+                        }
+                        </div>
+                    </div>
+        </BottomSheetComponent>
+        }    
+    }
+</div>
+
+<PropertyNoteCreateModal @bind-IsOpen="_showCreateNoteModal" isNested="true" Date="@_selectedDay" PropertyId="@PropertyId" />
+
+<style>
+    body {
+        background-color: var(--background-surface);
+    }
+
+    .bch-calendar-year-select,
+    .bch-calendar-days-modal-wrapper,
+    .bch-calendar-months-modal-wrapper {
+        pointer-events: all;
+    }
+</style>

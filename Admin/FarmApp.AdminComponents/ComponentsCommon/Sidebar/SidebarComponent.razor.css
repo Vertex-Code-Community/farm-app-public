@@ -1,0 +1,427 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+.left-menu-container {
+    --sidebar-anim-duration: 0.8s;
+    --sidebar-anim-easing: ease;
+
+    height: 100%;
+    background: var(--color-bg-surface);
+    border-right: 1px solid var(--neutral-300);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width var(--sidebar-anim-duration) var(--sidebar-anim-easing);
+}
+
+    .left-menu-container.opened-menu {
+        width: 280px;
+    }
+
+    .left-menu-container.closed-menu {
+        width: 105px;
+    }
+
+    .left-menu-container > .main-content {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+        .left-menu-container > .main-content > .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 34px;
+            padding-top: 16px;
+            min-height: 66px;
+        }
+
+            .left-menu-container > .main-content > .logo > .logo-img {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+.toggle-icon {
+    font-size: 24px;
+}
+
+.test-label {
+    background: var(--color-indigo);
+    color: var(--color-text-inverse);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.left-menu-container > .main-content > .logo > .close-button {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.left-menu-container > .main-content > .logo-tabs-separator {
+    margin-top: 16px;
+}
+
+    .left-menu-container > .main-content > .logo-tabs-separator.line {
+        height: 1px;
+        width: 70px;
+        background: var(--neutral-600);
+        border-radius: 0.5px;
+        margin: 16px auto 0 auto;
+    }
+
+.left-menu-container > .main-content > .tabs {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+    .left-menu-container > .main-content > .tabs > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .left-menu-container > .main-content > .tabs > ul > li {
+            padding-left: 34px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .left-menu-container > .main-content > .tabs > ul .tab-item {
+            display: flex;
+            position: relative;
+            height: 56px;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--sidebar-anim-duration);
+        }
+
+        .left-menu-container > .main-content > .tabs > ul > li.nested {
+            padding-left: 0px;
+        }
+
+        .left-menu-container > .main-content > .tabs > ul > li .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s linear;
+        }
+
+            .left-menu-container > .main-content > .tabs > ul > li .accordion-content.open {
+                max-height: 500px;
+            }
+
+        .left-menu-container > .main-content > .tabs > ul .tab-item.active-tab {
+            background: var(--neutral-200);
+            width: 100%;
+        }
+
+        .left-menu-container > .main-content > .tabs > ul li.nested .tab-item > .tab-icon {
+            margin-left: 74px;
+            display: flex;
+        }
+
+        .left-menu-container > .main-content > .tabs > ul .tab-item.components:hover {
+            background: var(--neutral-200);
+            max-height: 56px;
+        }
+
+        .left-menu-container > .main-content > .tabs > ul .tab-item.components.active-tab {
+            background: var(--neutral-200);
+        }
+
+            .left-menu-container > .main-content > .tabs > ul .tab-item.components.active-tab > .active-check {
+                background: var(--color-blue);
+            }
+
+            .left-menu-container > .main-content > .tabs > ul .tab-item.components.active-tab > .tab-name > label {
+                color: var(--color-blue);
+            }
+
+    .left-menu-container > .main-content > .tabs .active-check {
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 6px;
+        height: 34px;
+        box-shadow: 0 8px 12px var(--shadow-blue-300);
+        border-radius: 0 8px 8px 0;
+    }
+
+    .left-menu-container > .main-content > .tabs > ul .tab-item > .tab-icon {
+        font-size: 18px;
+        min-width: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .left-menu-container > .main-content > .tabs > ul .tab-item > .tab-name {
+        padding-left: 16px;
+    }
+
+    .left-menu-container > .main-content > .tabs > ul .tab-item > .accordion-toggle {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin-right: 18px;
+    }
+
+.icon-toggle {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.45s linear;
+    filter: invert(0);
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.rotate--90 {
+    transform: rotate(-90deg);
+}
+
+.rotate-0 {
+    transform: rotate(0deg);
+}
+
+.rotate--180 {
+    transform: rotate(-180deg);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item > .accordion-toggle img {
+    margin-right: 18px;
+}
+
+.dark .icon-toggle {
+    filter: invert(1);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item > .tab-name label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.active-tab > .tab-name label {
+    white-space: nowrap;
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item:hover {
+    cursor: pointer;
+    transition: var(--sidebar-anim-duration);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item > .tab-name label:hover {
+    cursor: pointer;
+}
+
+.bottom-section {
+    margin-top: auto;
+    padding: 16px 40px;
+    border-top: 1px solid var(--neutral-350);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dropdown-section {
+    overflow: hidden;
+}
+
+.closed-menu .bottom-section {
+    align-items: center;
+    padding: 16px 20px;
+}
+
+.left-menu-container > .open-button {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-left: 34px;
+    cursor: pointer;
+}
+
+@media (min-width: 150px) and (max-width: 860px) {
+    .left-menu-container {
+        position: absolute;
+        z-index: 999;
+    }
+
+        .left-menu-container.closed-menu {
+            left: -300px;
+            transition: calc(var(--sidebar-anim-duration) / 2);
+        }
+
+        .left-menu-container.opened-menu {
+            transition: calc(var(--sidebar-anim-duration) / 2);
+            left: 0;
+            width: 280px;
+        }
+}
+
+.hide-text {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity calc(var(--sidebar-anim-duration) / 2), transform calc(var(--sidebar-anim-duration) / 2);
+    pointer-events: none;
+}
+
+.show-text {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity calc(var(--sidebar-anim-duration) / 2) 0.2s, transform calc(var(--sidebar-anim-duration) / 2) 0.2s;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: flex !important;
+}
+
+.noselectable-text {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.coupons-download.active-tab > .active-check {
+    background: var(--icon-coupons-download);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.coupons-download.active-tab > .tab-name > label {
+    color: var(--icon-coupons-download);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads.active-tab > .active-check {
+    background: var(--icon-weekly-ads);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads.active-tab > .tab-name > label {
+    color: var(--icon-weekly-ads);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-list.active-tab > .active-check {
+    background: var(--icon-weekly-ads-list);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-list.active-tab > .tab-name > label {
+    color: var(--icon-weekly-ads-list);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.offers.active-tab > .active-check {
+    background: var(--icon-offers);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.offers.active-tab > .tab-name > label {
+    color: var(--icon-offers);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.retailers.active-tab > .active-check {
+    background: var(--icon-retailers);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.retailers.active-tab > .tab-name > label {
+    color: var(--icon-retailers);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.store-groups.active-tab > .active-check {
+    background: var(--icon-store-groups);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.store-groups.active-tab > .tab-name > label {
+    color: var(--icon-store-groups);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.push-notification.active-tab > .active-check {
+    background: var(--icon-push-notification);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.push-notification.active-tab > .tab-name > label {
+    color: var(--icon-push-notification);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-upload.active-tab > .active-check {
+    background: var(--icon-weekly-ads-upload);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-upload.active-tab > .tab-name > label {
+    color: var(--icon-weekly-ads-upload);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-preview.active-tab > .active-check {
+    background: var(--icon-weekly-ads-preview);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.weekly-ads-preview.active-tab > .tab-name > label {
+    color: var(--icon-weekly-ads-preview);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.pdf-upload.active-tab > .active-check {
+    background: var(--icon-pdf-upload);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.pdf-upload.active-tab > .tab-name > label {
+    color: var(--icon-pdf-upload);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.store-map.active-tab > .active-check {
+    background: var(--icon-store-map);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.store-map.active-tab > .tab-name > label {
+    color: var(--icon-store-map);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.print-weekly-ad.active-tab > .active-check {
+    background: var(--icon-print-weekly-ad);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.print-weekly-ad.active-tab > .tab-name > label {
+    color: var(--icon-print-weekly-ad);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.logs.active-tab > .active-check {
+    background: var(--icon-logs);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.logs.active-tab > .tab-name > label {
+    color: var(--icon-logs);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.reward-banner.active-tab > .active-check {
+    background: var(--icon-reward-banner);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.reward-banner.active-tab > .tab-name > label {
+    color: var(--icon-reward-banner);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.warning-settings.active-tab > .active-check {
+    background: var(--icon-warning-settings);
+}
+
+.left-menu-container > .main-content > .tabs > ul .tab-item.warning-settings.active-tab > .tab-name > label {
+    color: var(--icon-warning-settings);
+}

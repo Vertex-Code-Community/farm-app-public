@@ -1,0 +1,12 @@
+#farm-app-pictogram-canvas {
+    width: 2000px;
+    height: 2000px;
+
+    z-index: 1;
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}

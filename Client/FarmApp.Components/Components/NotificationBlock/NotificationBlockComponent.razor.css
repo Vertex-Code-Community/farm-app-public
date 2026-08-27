@@ -1,0 +1,153 @@
+.block {
+    background-color: var(--surface-cards);
+    border-radius: 12px;
+    display: flex;
+}
+
+    .block * {
+        margin: 0;
+        padding: 0;
+    }
+
+.notification {
+    gap: 12px;
+    padding: 12px 16px;
+    align-items: center;
+    height: 92px;
+    width: 100%;
+}
+
+.note-columns-wrapepr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    position: relative;
+}
+
+.note-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: space-between;
+}
+
+    .note-column:nth-child(1) {
+        flex-grow: 1;
+        line-height: 22px;
+        min-width: 0;
+    }
+
+    .note-column:nth-child(2) {
+        flex-shrink: 0;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+.note-title, .description {
+    color: var(--text-primary);
+    height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.note-title {
+    font-weight: 600;
+    font-size: 16px;
+
+}
+
+.time {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+
+.dot-cont {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    position: relative;
+    opacity: 1;
+
+    transition: opacity 0.3s linear;
+}
+
+.dot-cont::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: var(--status-done);
+}
+
+.dot-cont.read {
+    opacity: 0;
+}
+
+.notification.show-full {
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    height: fit-content;
+    align-items: flex-start;
+}
+
+    .body-14-regular.text-tertiary {
+        margin-bottom: 8px;
+    }
+
+    .notification.show-full .note-column {
+        gap: 8px;
+    }
+
+    .note-title, .description {
+        color: var(--text-primary);
+        height: fit-content;
+    }
+
+    .notification.show-full ::deep .text-truncate {
+        white-space: wrap;
+        word-break: break-all;
+    }
+
+    .notification.show-full .note-title {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 30px;
+    }
+
+    .notification.show-full .description {
+        font-size: 16px;
+        line-height: 22px;
+        color: var(--text-secondary);
+    }
+
+
+.animate {
+    animation: appear 0.3s ease-in-out;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,17 @@
+﻿﻿@using Microsoft.AspNetCore.Components.Forms
+@typeparam T
+@if (ShouldShow)
+{
+    <div class="error-container">
+        <IconComponent IconSrc="_content/FarmApp.Components/img/auth-icons/info.svg" IconContSize="20" IconColor="var(--state-error)" />
+
+        @if (For != null)
+        {
+            <ValidationMessage For="@For" class="error-msg" />
+        }
+        else
+        {
+            <p class="error-msg">@Message</p>
+        }
+    </div>
+}

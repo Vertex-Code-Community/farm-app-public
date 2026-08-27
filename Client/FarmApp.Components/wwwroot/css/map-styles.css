@@ -1,0 +1,35 @@
+.vertex-polygon-selected-point {
+    
+}
+
+    .vertex-polygon-selected-point > .maplibregl-popup-tip {
+        visibility: hidden;
+    }
+
+    .vertex-polygon-selected-point > .maplibregl-popup-content {
+        width: 35px;
+        height: 35px;
+        
+        padding: 0;
+        border-radius: 0;
+        background: #ffffff80;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.vertex-polygon-selected-point > .maplibregl-popup-content >.remove-vertex-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.property-has-notes-marker {
+    width: 20px;
+    height: 20px;
+    background: red;
+    cursor: pointer;
+}

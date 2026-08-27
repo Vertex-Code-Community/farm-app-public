@@ -1,0 +1,34 @@
+.fifth-step-img-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 272px;
+    height: 272px;
+    margin-bottom: 56px;
+}
+
+.leaf-icon {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 2;
+}
+
+.orbit-ring {
+    position: absolute;
+    inset: 0;
+}
+
+.orbit-icon {
+    position: absolute;
+    transform-origin: center;
+    z-index: 1;
+}
+
+.center-icon {
+    position: relative;
+    z-index: 3;
+}

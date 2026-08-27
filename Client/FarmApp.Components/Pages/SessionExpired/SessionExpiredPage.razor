@@ -1,0 +1,18 @@
+﻿@attribute [Route(Constants.ClientRoutes.SessionExpiredPage)]
+@attribute [Layout(typeof(EmptyLayout))]
+@attribute [AllowAnonymous]
+
+<div class="page-container">
+    <div class="page-content">
+        <h2>@Localizer["Session-Expired_Title"]</h2>
+        <div class="login-btn" @onclick="OnSignInPage">
+            @Localizer["Session-Expired_Log-in"]
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: var(--surface-cards);
+    }
+</style>

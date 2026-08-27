@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.profile-cont {
+    padding-top: 2px;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.medium-text {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-info { 
+    gap: 16px; 
+    height: 100%; 
+    padding: 0 16px;
+}
+
+.profile-picture-cont { gap: 8px;}
+
+    .profile-picture-cont .pfp {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-picture-cont .change-photo {
+        height: 26px;
+        border-bottom: 1px solid var(--text-primary);
+        display: flex;
+        align-items: center;
+    }
+
+.field-name {
+    color: var(--text-secondary);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.field-value {
+    background-color: var(--surface-cards);
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.modal-cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-buttons-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: -4px;
+}
+
+.modal-cont h3, .modal-cont p {
+    text-align: center;
+}

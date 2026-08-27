@@ -1,0 +1,15 @@
+﻿<div class="create-cont" style="@(Styles);">
+    <IconComponent IconContSize="64" IconSize="32" IconContBackground="var(--accent-primary-10)" IconColor="var(--component-icon)"
+                   IconSrc="@_iconSrc" />
+    <div class="text">
+        <h3>@_title</h3>
+        <p class="body-16-regular">@_subtitle</p>
+    </div>
+
+    @if (!Type.Contains("notif"))
+    {
+        <ButtonComponent OnClick="OnCreateClick" Name="@Localizer["Create"]" ClassName="primary guide-target-create-field-or-note"
+                         ExtraStyles="flex-direction: row-reverse; gap: 2px;" Width="171px"
+                         IconUrl="_content/FarmApp.Components/img/shared/plus-03.svg" />
+    }
+</div>

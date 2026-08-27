@@ -1,0 +1,50 @@
+@attribute [Route(Constants.ClientRoutes.GuidePage)]
+@attribute [Layout(typeof(EmptyLayout))]
+@attribute [Authorize]
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<div class="guide-container" style="margin-top: @(offsetTop)px; margin-bottom: @(ScreenOffsetProvider.Bottom)px; height: calc(100% - @(offsetTop)px - @(ScreenOffsetProvider.Bottom)px)">
+    <div class="block top">
+        <div class="logo"></div>
+        <div class="image"></div>
+    </div>
+    <div class="block bottom">
+        <div class="header">@SelectedItem.Header</div>
+        <div class="subtitle">@SelectedItem.Subtitle</div>
+        <div class="description">
+            <div class="txt-content">@SelectedItem.Description</div>
+        </div>
+        
+        <div class="buttons">
+            <div class="bt back @(_index  == 0 ? "disabled" : "")" 
+                 @onclick="() => { _index--; if (_index < 0) _index = 0; }"
+                 ontouchstart="onRippleEffectTouchStartListener(event, true)">Назад</div>
+            
+            <div class="label">@(_index + 1)/@(_items.Count)</div>
+            
+            <div class="bt next @(_index  == _items.Count - 1 ? "disabled" : "")" 
+                 @onclick="OnNextClicked"
+                 ontouchstart="onRippleEffectTouchStartListener(event, true)">Далі</div>
+        </div>
+        
+        @if (ShowBackButton)
+        {
+            <div class="skip" @onclick="() => { NavigationService.Back(); }" 
+                 ontouchstart="onRippleEffectTouchStartListener(event, true)">Назад</div>
+        }
+        else
+        {
+            <div class="skip" ontouchstart="onRippleEffectTouchStartListener(event, true)" 
+                 @onclick="GoToMainPage">Пропустити знайомство</div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background: white;
+    }
+</style>

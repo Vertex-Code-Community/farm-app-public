@@ -1,0 +1,70 @@
+﻿@using FarmApp.Components.Components.TextWMaxWidth
+
+<div class="calendar-frame-wrapper">
+    <div class="month-heading">
+        <IconComponent IconCallback="() => OnArrowClicked(-1)" IconSrc="_content/FarmApp.Components/img/shared/left-chevron.svg" />
+        <p class="month-text">@_monthNames[Month - 1] </p>
+        <IconComponent IconCallback="() => OnArrowClicked(1)" IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            @foreach (var day in _weekDays)
+            {
+                <th>
+                    <div class="day-name">@day.Name</div>
+                </th>
+            }
+        </tr>
+        </thead>
+        <tbody class="@(Month % 2 == 0 ? "month-even" : "month-odd")" style="height: @(_tbodyHeightString)px;">
+
+        @for (var r = 0; r < 6; r++)
+        {
+            <tr @key="@($"index-tr-{r}")">
+                @{
+                    var limit = r * 7 + 7;
+
+                    for (var i = r * 7; i < limit; i++)
+                    {
+                        var day = _days[i];
+                            var notes = PropertyNotes
+                            .Where(x => x.StartTime.Date == day.Date).ToList();
+
+                            <td @key="@(day.ToString("yyyy-MM-dd"))" @onclick='async() => { await SelectDate(day); }'
+                                style="height: @(_tdHeightString)px"
+                                class="@(SelectedDay != null && day.Date == SelectedDay?.Date && day.Month == SelectedDay?.Month && day.Year == SelectedDay?.Year ? "selected" : "")">
+                                <div class="day @(Month != day.Month ? "another-month" : "")"
+                                onclick="onRippleEffectClickListener(event)">
+                                    <div class="number">
+                                        @day.Day
+                                    </div>
+
+                                    @if (notes.Count > 0)
+                                    {
+                                    
+                                        <div class="notes">
+                                            <div class="scroller">
+                                                @foreach (var item in notes)
+                                                {
+                                                    var colors = GetColorsFromStatus(item);
+                                                    <div class="item @(SelectedDay != null && day.Date == SelectedDay?.Date ? "selected" : "")"
+                                                    style="@(colors != null ? $"background:{colors.Value.bgColor}; color: {colors.Value.textColor}" : "")">
+                                                        <TextWMaxWidthComponent TextContent="@item.Header" />
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </td>
+                    }
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

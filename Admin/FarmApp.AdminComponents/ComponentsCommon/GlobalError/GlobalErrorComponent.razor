@@ -1,0 +1,30 @@
+﻿@using Bch.Components.Modal
+@if (!string.IsNullOrEmpty(_errorMessage))
+{
+	<BchModal Width="25%"
+			  Height="auto"
+			  Show="true"
+			  ShowOverlay="true"
+			  CloseOnOverlayClicked="true"
+			  OnOverlayClicked="CloseError">
+		<div class="modal-container">
+			<div class="modal-header">
+				<h4>@_errorTitle</h4>
+				<button type="button" class="close-button" @onclick="CloseError">
+					<img src="_content/FarmApp.AdminComponents/icons/close.svg" alt="Close" />
+				</button>
+			</div>
+
+			<div class="modal-content">
+				<p>@_errorMessage</p>
+			</div>
+
+			<div class="modal-footer">
+				<button class="btn btn-danger"
+						@onclick="CloseError">
+					Close
+				</button>
+			</div>
+		</div>
+	</BchModal>
+}

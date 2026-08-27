@@ -1,0 +1,29 @@
+﻿@using FarmApp.Components.Components.DropdownSelector
+
+<DropdownSelectorComponent Width="240" @bind-TriggerClosing="_closeDropdown" Bottom="-10" Right="-8">
+    <SelectedItem>
+        <div class="block">
+            <div class="body-16-regular text-primary">@SelectTitle</div>
+            <div class="selected-cont">
+                <div class="body-16-regular text-tertiary">@(SelectedTime != null ? $"{SelectedTime.Label}" : Localizer["None"])</div>
+                <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+            </div>
+        </div>
+
+    </SelectedItem>
+
+    <SelectOptions>
+        @foreach (var time in _timeOptions)
+        {
+            <div class="time-option" @onclick="() => HandleSelect(time)">
+                <p class="body-16-regular text-primary">@time.Label</p>
+                <IconComponent Opacity="time == SelectedTime ? 1 : 0" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg" IconContSize="24"/>
+            </div>
+        }
+        <div class="line"></div>
+        <div class="time-option" @onclick="() => HandleSelect(null)">
+            <p class="body-16-regular text-primary">@Localizer["None"]</p>
+            <IconComponent Opacity="null == SelectedTime ? 1 : 0" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg" IconContSize="24" />
+        </div>
+    </SelectOptions>
+</DropdownSelectorComponent>

@@ -1,0 +1,38 @@
+﻿@attribute [Route(Constants.ClientRoutes.SupportPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+
+@layout PageLayout
+
+<div class="support-container">
+    <TopNavigationComponent Title="@Localizer["Support"]" />
+
+    <div class="ul-cont">
+        <p class="support-info">@Localizer["Support_Title"]</p>
+        <UnorderedListComponent>
+            <ListItemComponent>
+                <IconComponent IconContSize="24" IconColor="original" IconSrc="_content/FarmApp.Components/img/socials/whatsapp.svg" />
+                <p class="body-16-regular text-secondary">Whatsapp</p>
+                <IconComponent IconContSize="24" ExtraStyles="margin-left: auto" IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+            </ListItemComponent>
+
+            <ListItemComponent>
+                <IconComponent IconContSize="24" IconColor="original" IconSrc="_content/FarmApp.Components/img/socials/telegram.svg" />
+                <p class="body-16-regular text-secondary">Telegram</p>
+                <IconComponent IconContSize="24" ExtraStyles="margin-left: auto" IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+            </ListItemComponent>
+
+            <ListItemComponent>
+                <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/auth-icons/mail.svg" />
+                <p class="body-16-regular text-secondary">Email</p>
+                <IconComponent IconContSize="24" ExtraStyles="margin-left: auto" IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+            </ListItemComponent>
+        </UnorderedListComponent>
+    </div>
+
+</div>
+

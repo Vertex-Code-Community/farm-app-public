@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\..\Data\FarmApp.ViewModels\FarmApp.ViewModels.csproj" />
+        <ProjectReference Include="..\..\FarmApp.Models\FarmApp.Models.csproj" />
+        <ProjectReference Include="..\..\FarmApp.Shared\FarmApp.Shared.csproj" />
+
+
+        <ProjectReference Include="..\BCH\Bch.Modules.Themes\Bch.Modules.Themes.csproj" />
+        <ProjectReference Include="..\BCH\Bch.Modules.Storage\Bch.Modules.Storage.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Bch.Components.Calendar" Version="0.0.19-alpha" />
+      <PackageReference Include="Bch.Components.Modal" Version="0.0.19-alpha" />
+      <PackageReference Include="Bch.Components.RadioButton" Version="0.0.19-alpha" />
+      <PackageReference Include="Bch.Components.Select" Version="0.0.19-alpha" />
+      <PackageReference Include="Bch.Components.Table" Version="0.0.19-alpha" />
+      <PackageReference Include="Bch.Modules.Themes" Version="0.0.19-alpha" />
+      <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.4" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\PushNotification\EditNotificationModal\EditNotificationModalComponent.razor" />
+      <UpToDateCheckInput Remove="Pages\PushNotification\PushNotificationHistory\PushNotificationHistoryComponent.razor" />
+      <UpToDateCheckInput Remove="Pages\PushNotification\PushNotificationPage.razor" />
+      <UpToDateCheckInput Remove="Pages\PushNotification\SendNotification\SendNotificationComponent.razor" />
+    </ItemGroup>
+</Project>

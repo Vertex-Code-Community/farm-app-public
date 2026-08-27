@@ -1,0 +1,12 @@
+﻿@using FarmApp.Components.Components.MediaViewerModal.PhotoViewer;
+@using FarmApp.Components.Components.MediaViewerModal.VideoViewer;
+<div class="media-viewer-container">
+    @if (isVideo)
+    {
+        <VideoViewerComponent Src="@_src"/>
+    }
+    else
+    {
+        <PhotoViewerComponent Src="@_src" OnClose="OnClose"/>
+    }
+</div>

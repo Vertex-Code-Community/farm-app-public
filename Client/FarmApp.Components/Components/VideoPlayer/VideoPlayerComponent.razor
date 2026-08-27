@@ -1,0 +1,23 @@
+﻿<div class="video-player" @ref="_videoPlayer">
+    <div class="video-cont">
+        <video class="video-el"
+               playsinline
+               preload="metadata">
+            <source src="@VideoSrc" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="play-btn">
+            <svg width="26" height="33" viewBox="0 0 26 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.8721 14.4799C25.1496 15.749 25.1579 17.3456 22.8721 18.7805L5.21045 30.6919C2.9913 31.8762 1.4841 31.1769 1.32589 28.6144L1.25094 3.68401C1.20098 1.32355 3.14535 0.656641 4.99811 1.78837L22.8721 14.4799Z" fill="var(--surface-cards)" stroke="var(--surface-cards)" stroke-width="2.5" />
+            </svg>
+        </button>
+    </div>
+    <div class="video-timeline">
+        <div class="current time">-:--</div>
+        <div class="timeline">
+            <div class="watched"></div>
+            <div class="loaded"></div>
+        </div>
+        <div class="total time">-:--</div>
+    </div>
+</div>

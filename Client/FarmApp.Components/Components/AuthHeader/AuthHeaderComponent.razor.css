@@ -1,0 +1,16 @@
+.auth-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.auth-title-icon {
+    cursor: pointer;
+}
+
+.auth-title {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 500;
+    color: var(--text-primary);
+}

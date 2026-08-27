@@ -1,0 +1,36 @@
+﻿@using FarmApp.Components.Components.PullLoader
+@using FarmApp.Components.Components.TopNavigation
+@using Microsoft.AspNetCore.Components.Routing
+@implements IDisposable
+
+@{
+    var offsetTop = ScreenOffsetProvider.Top;
+    var offsetBottom = ScreenOffsetProvider.Bottom;
+    offsetTop += TopOffset;
+}
+
+<BchModal Show="@_isOpen" Width="100%" Height="100%" ShowOverlay="false" CloseOnOverlayClicked="false">
+    <div class="overlay" style="animation-delay: @(_isClosingCssFlag ? "0" : NestedModal ? "0" : "0.3s")">
+        <div class="modal-wrapper @(_isClosingCssFlag ? "closing" : "")"
+             style="margin-top: @(offsetTop)px; max-height: calc(100% - @(offsetTop)px); padding-bottom: @(offsetBottom)px;
+            animation-delay: @(_isClosingCssFlag ? "0" : NestedModal ? "0.1s" : "0.4s");">
+
+            <TopNavigationComponent Title="@Title" IconSize="28" IsEditMode="IsEditMode" BackIconUrl="_content/FarmApp.Components/img/shared/x-02.svg" BackCallback="HandleBack" 
+                                    IconUrl="@TitleIconUrl" IconCallback="TitleIconCallback" IsViewMode="IsViewMode" />
+
+            @if (IsLoading)
+            {
+                <div class="loader-container">
+                    <PullLoaderComponent />
+                </div>
+            }
+            else
+            {
+                <div class="content-wrapper">
+                    @ChildContent
+                </div>
+            }
+        </div>
+    </div>
+    @OverlaySibling
+</BchModal>

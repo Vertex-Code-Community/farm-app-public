@@ -1,0 +1,55 @@
+@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.FadeInLoader
+@using FarmApp.Components.Components.FieldsListSection
+@using FarmApp.Components.Components.GuideTour
+@using FarmApp.Components.Components.NotesListSection
+@using FarmApp.Components.Components.WeatherBlock
+@using FarmApp.Components.Components.PullLoader
+
+@attribute [Route(Constants.ClientRoutes.HomePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@layout TabLayout
+
+<div class="home-page-container">
+    
+    <div class="home-page-header @(_hasNotifications ? "notification" : "")">
+        <div class="location-cont" @onclick="() => NavigationService.NavigateTo(Constants.ClientRoutes.ChooseLocationPage)">
+            <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/marker-02.svg" />
+            <p class="location-text">@_location</p>
+        </div>
+
+        <IconComponent IconSrc="_content/FarmApp.Components/img/shared/bell.svg" IconCallback="NavigateToNotificaitons" />
+    </div>
+
+    <div class="pull-loader-wrapper @(_isRefreshing ? "active" : "")">
+        <PullLoaderComponent />
+    </div>
+
+    <div class="weather-cont">
+        <WeatherBlockComponent IsLoading="_isRefreshing || _isLoading" @bind-Location="_location" />
+    </div>
+
+
+    <FadeInLoaderComponent IsLoading="_isLoading" AnimationDuration="400" AlignItems="Start">
+
+        <Loader>
+            <FieldsListSectionComponent IsLoading="true" SectionTitle="@Localizer["Home_Last-Fields"]" FieldsList="_loaderFields" />
+        </Loader>
+
+        <Content>
+            <div class="user-notes">
+                <FieldsListSectionComponent IsLoading="@(_isLoading || _isRefreshing)" SectionTitle="@Localizer["Home_Last-Fields"]" FieldsList="_lastFields" />
+                @if (_lastNotes.Count > 0 && _lastFields.Count > 0)
+                {
+                    <NotesListSectionComponent IsLoading="@(_isLoading || _isRefreshing)" StartingAnimationIndex="_lastFields.Count" SectionTitle="@Localizer["Home_Last-Notes"]" NotesList="_lastNotes" PropertyId="@(_lastFields.Count > 0 ? _lastFields[0].Id : null)" />
+                }
+            </div>
+        </Content>
+
+    </FadeInLoaderComponent>
+
+    @* <CreateNoteComponent Styles="margin-top: 24px" Type="field" OnCreateClicked="OnFieldCreateClick" /> *@
+
+</div>

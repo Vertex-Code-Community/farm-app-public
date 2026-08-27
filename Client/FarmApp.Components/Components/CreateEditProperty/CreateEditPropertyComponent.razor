@@ -1,0 +1,28 @@
+@using FarmApp.Components.Components.BottomSheet
+@using FarmApp.Components.Components.Icon
+
+<BottomSheetComponent IsOpen="Show" IsOpenChanged="HandleSheetOpenChanged" MinHeight="0px" AllowDrag="false">
+    <div class="create-field-sheet">
+        <div class="create-field-header">
+            <IconComponent IconSrc="_content/FarmApp.Components/img/shared/x-02.svg"
+                           IconColor="var(--text-secondary)"
+                           IconContSize="44"
+                           IconSize="24"
+                           IconCallback="CloseSheetAsync" />
+            <span class="create-field-title">@(EditMode ? "Створення поля" : "Редагування назви")</span>
+            <IconComponent IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                           IconColor="var(--accent-primary)"
+                           IconContSize="44"
+                           IconSize="24"
+                           IconCallback="ConfirmAsync" />
+        </div>
+
+        <div class="create-field-inputs">
+            <InputComponent @bind-Value="Name" Label="Назва поля" />
+            @if (EditMode)
+            {
+                <InputComponent @bind-Value="AreaText" Label="Площа (га)" />
+            }
+        </div>
+    </div>
+</BottomSheetComponent>

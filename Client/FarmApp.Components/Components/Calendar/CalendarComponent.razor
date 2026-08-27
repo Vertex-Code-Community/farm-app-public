@@ -1,0 +1,67 @@
+﻿@using System.Globalization
+@using FarmApp.Components.Components.InfiniteScrollColumn
+@using FarmApp.Components.Components.InfiniteScrollContainer
+
+<div class="calendar">
+    <div class="header">
+        <div class="month-display @(_isPickerOpen ? "open" : "")" @onclick="TogglePicker">
+            <p class="month-text">@DisplayMonth</p>
+            <p class="month-chevron">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.69043 5.71924C6.69043 5.44629 6.59521 5.22412 6.37305 5.01465L1.50439 0.253906C1.33936 0.0825195 1.13623 0 0.888672 0C0.399902 0 0 0.393555 0 0.882324C0 1.12354 0.101562 1.3457 0.279297 1.52344L4.5957 5.71289L0.279297 9.91504C0.101562 10.0864 0 10.3086 0 10.5562C0 11.0449 0.399902 11.4385 0.888672 11.4385C1.12988 11.4385 1.33936 11.356 1.50439 11.1846L6.37305 6.42383C6.59521 6.21436 6.69043 5.98584 6.69043 5.71924Z" fill="#FF3B30" />
+                </svg>
+            </p>
+        </div>
+        @if (!_isPickerOpen)
+        {
+        <div class="nav-buttons">
+            <button type="button" @onclick="PreviousMonth" class="nav-btn">
+                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 8.66211C0 9.00391 0.126953 9.29688 0.400391 9.55078L7.99805 16.9922C8.21289 17.207 8.48633 17.3242 8.80859 17.3242C9.45312 17.3242 9.9707 16.8164 9.9707 16.1621C9.9707 15.8398 9.83398 15.5566 9.61914 15.332L2.77344 8.66211L9.61914 1.99219C9.83398 1.76758 9.9707 1.47461 9.9707 1.16211C9.9707 0.507812 9.45312 0 8.80859 0C8.48633 0 8.21289 0.117188 7.99805 0.332031L0.400391 7.76367C0.126953 8.02734 0 8.32031 0 8.66211Z" fill="#FF3B30" />
+                </svg>
+            </button>
+                <button type="button" @onclick="NextMonth" class="nav-btn">
+                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9707 8.66211C9.96094 8.32031 9.83398 8.02734 9.57031 7.76367L1.97266 0.332031C1.74805 0.117188 1.48438 0 1.16211 0C0.507812 0 0 0.507812 0 1.16211C0 1.47461 0.126953 1.76758 0.351562 1.99219L7.1875 8.66211L0.351562 15.332C0.126953 15.5566 0 15.8398 0 16.1621C0 16.8164 0.507812 17.3242 1.16211 17.3242C1.47461 17.3242 1.74805 17.207 1.97266 16.9922L9.57031 9.55078C9.84375 9.29688 9.9707 9.00391 9.9707 8.66211Z" fill="#FF3B30" />
+                </svg>
+            </button>
+        </div>
+        }
+    </div>
+
+    @if (_isPickerOpen)
+    {
+        <InfiniteScrollContainerComponent ColumnsWidth="280px">
+                <InfiniteScrollColumnComponent TItem="string"
+                                               Items="_monthsCycleBase"
+                                               CurrentValue="@_viewDate.ToString("MMMM", CultureInfo.CurrentCulture)"
+                                               OnValueChanged="SelectMonth" />
+                <InfiniteScrollColumnComponent TItem="int"
+                                               Items="_yearCycleBase"
+                                               CurrentValue="@_viewDate.Year"
+                                               OnValueChanged="SelectYear" />
+        </InfiniteScrollContainerComponent>
+    }
+    else
+    {
+        <div class="grid">
+            @foreach (var dayName in _daysOfWeek)
+            {
+                <div class="day-name">@dayName</div>
+            }
+
+            @for (int i = 0; i < PaddingDays; i++)
+            {
+                <div class="empty-day"></div>
+            }
+
+            @for (int d = 1; d <= DaysInMonth; d++)
+            {
+                var day = d;
+                <div class="day @(IsSelected(day) ? "selected" : "")" @onclick="() => SelectDate(day)">
+                    @day
+                </div>
+            }
+        </div>
+    }
+</div>

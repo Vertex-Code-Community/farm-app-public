@@ -1,0 +1,70 @@
+.picker-container {
+    width: 100%;
+}
+
+.picker-header {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.picker-label {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.time-and-date-cont {
+    display: flex;
+    gap: 4px;
+}
+
+.date, .time {
+    height: 36px;
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: var(--surface-cards);
+}
+
+.date {
+    width: 104px;
+}
+
+.time {
+    width: 76px;
+}
+
+.selected {
+    color: var(--accent-primary);
+}
+
+.calendar, .time-picker {
+    max-height: 0;
+    opacity: 0;
+    transition: 0.2s;
+    overflow: hidden;
+}
+
+.calendar.is-open {
+    max-height: 343px;
+}
+
+.time-picker.is-open {
+    max-height: 200px;
+}
+
+.is-open {
+    opacity: 1;
+}
+

@@ -1,0 +1,55 @@
+﻿@using FarmApp.Components.Components.DisplayMedia.Media
+@using FarmApp.Components.Components.Slider
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.VideoPlayer
+@using FarmApp.ViewModels.Media;
+
+<BchModal Show="true"
+          Width="100%"
+          Height="100%"
+          ShowOverlay="false"
+          CloseOnOverlayClicked="false">
+    <div class="media-viewer-cont @(IsOpen ? "open" : "")"
+         style="padding-top: @(ScreenOffsetProvider.Top + 2)px; padding-bottom: calc(@(ScreenOffsetProvider.Bottom)px + 16px);">
+        <TopNavigationComponent Title="@Title" Subtitle="@Subtitle"
+                                BackIconUrl="_content/FarmApp.Components/img/shared/x-02.svg" BackCallback="CloseMediaViewer"
+                                IconUrl="_content/FarmApp.Components/img/profile/trash-02.svg" IconCallback="DeleteMedia" />
+
+        <div class="media-display" @onclick="() => ShowDisplay(2500)">
+            <div class="cur-pos-display @(_displayCounter ? "visible" : "")">
+                @(ScrollIndex + 1) of @(_mediaToDisplay.Count)
+            </div>
+
+            <SliderComponent StartingIndex="StartingIndex" TItem="PickedMediaFile" Items="_mediaToDisplay" @bind-ScrollIndex="ScrollIndex">
+                <ItemTemplate Context="File">
+                    @if (File.ContentType.StartsWith("image/"))
+                    {
+                        <MediaComponent File="File" isViewMode = "true" />
+                    }
+                    else if (File.ContentType.StartsWith("video/") && File.RemoteUrl != null)
+                    {
+                        var link = MediaService.GetApiBaseForUrl(File.RemoteUrl);
+                        <VideoPlayerComponent VideoSrc="@link" />
+                    }
+                </ItemTemplate>
+            </SliderComponent>
+
+            <div class="all-media-list @(_mediaToDisplay[ScrollIndex].ContentType.StartsWith("video/") ? "" : "all-media-visible")">
+                @for (var i = 0; i < _mediaToDisplay.Count; i++)
+                {
+                    var index = i;
+                    var media = _mediaToDisplay[i];
+
+                    <div class="el-wrapper @(ScrollIndex == index ? "current" : "")" @onclick="() => SelectMedia(index)">
+                        <MediaComponent File="media" ImageFit="contain" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <style>
+            .media-viewer-cont .slider-container {
+                padding-bottom: 80px;
+            }
+    </style>
+</BchModal>

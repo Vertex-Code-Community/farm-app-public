@@ -1,0 +1,61 @@
+@attribute [Route(Constants.ClientRoutes.SignInPage)]
+@attribute [Layout(typeof(AuthLayout))]
+@attribute [Unauthorized]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.AuthHeader
+@using FarmApp.Components.Components.ButtonSpinner
+@using FarmApp.Components.Components.ErrorMessage
+@using FarmApp.Components.Components.PasswordInput
+@using Microsoft.AspNetCore.Components.Forms
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<div class="sign-in-container @(_isLoading ? "loading" : "")">
+    <AuthHeaderComponent Title="@Localizer["Log-in_Title"]" BackCallback="OnClickWelcomePage" />
+
+
+    <EditForm EditContext="_editContext" OnSubmit="SignInAsync">
+        <DataAnnotationsValidator />
+
+        <div class="sign-in-form">
+            <div class="sign-in-form-control">
+                <div class="sign-in-form-field">
+                    <InputComponent Label="@Localizer["Log-in_Email"]" Type="text" IconUrl="_content/FarmApp.Components/img/auth-icons/mail.svg" @bind-Value="_signInRequestModel.Email" />
+                </div>
+
+                <div class="sign-in-form-field">
+                    <PasswordInputComponent @bind-Value="_signInRequestModel.Password" Label="@Localizer["Log-in_Password"]" />
+                </div>
+            </div>
+
+            <div data-animate class="sign-in-redirect-forgot-pass">
+                <a class="sign-in-redirect-link right" @onclick='() => { NavigationService.NavigateTo(Constants.ClientRoutes.ForgotPasswordPage); }'>@Localizer["Log-in_Forgot-The-Password"]</a>
+            </div>
+
+            <div class="sign-in-actions">
+                <div class="sign-in-button">
+                    <ButtonComponent Loading="@_isLoading" Type="submit"
+                     Disabled="@_isLoading"
+                     Name="@Localizer["Log-in"]" />
+                </div>
+
+                <div data-animate class="sign-in-sign-up-link">
+                    @Localizer["Log-in_Create"] <a class="sign-in-redirect-link" @onclick='() => { NavigationService.NavigateTo(Constants.ClientRoutes.SignUpPage); }'>@Localizer["Log-in_Sign-up"]</a>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+<style>
+    body {
+        background: white;
+    }
+
+    body .auth-layout-container .auth-content:has(.sign-in-container) {
+            max-height: calc(396px + var(--global-error-offset));
+    }
+</style>

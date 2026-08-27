@@ -1,0 +1,24 @@
+@typeparam TItem
+
+<div id="@_id" class="bch-slider-container">
+
+    <div class="bch-slider-content" style="width: 100%">
+
+        <div id="@_scrollerId" class="bch-scroller" @ref="_scrollerRef">
+            @for (var i = -2; i < 3; i++)
+            {
+                var _i = i;
+                var index = i + _scrollIndex;
+
+                var item = OnItem.Invoke(index);
+                var key = $"index-{index}";
+
+                <div @key="key"
+                     class="bch-item @(!_firstRendered && i < 0 ? "" : "bch-snap-start-anchor") @($"cls-{i} ind-{index}")"
+                     style="@($"width: 100%;" + $"left: {(100.0 * index + DefaultLeftShift * 100).ToString(_nfWithDot)}%" + $"")">
+                    @ItemTemplate(item)
+                </div>
+            }
+        </div>
+    </div>
+</div>

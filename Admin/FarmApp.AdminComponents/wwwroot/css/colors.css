@@ -1,0 +1,146 @@
+﻿:root {
+    --invertion-flag: 0;
+    /* Text */
+    --color-text-primary: #131212;
+    --color-text-secondary: #333333;
+    --color-text-muted: #555555;
+    --color-text-subtle: #666666;
+    --color-text-inverse: #ffffff;
+    /* Backgrounds */
+    --color-bg-page: #fdfdfd;
+    --color-bg-surface: #ffffff;
+    --color-bg-subtle: #fefefe;
+    --color-bg-muted: #f9fafc;
+    /* Primary / Brand */
+    --color-primary: #33b469;
+    --color-primary-hover: #2aa35b;
+    --color-primary-10a: rgba(51, 180, 105, 0.1);
+    --color-primary-20a: rgba(51, 180, 105, 0.2);
+    --color-primary-80a: rgba(51, 180, 105, 0.8);
+    /* Accent */
+    --color-blue: #3170ea;
+    --color-azure: #40abe4;
+    --color-azure-07a: rgba(64, 171, 228, 0.07);
+    --color-indigo: #5028e5;
+    --color-green: #5db276;
+    --color-orange: #ea9532;
+    --color-pink: #c02d76;
+    --color-blue-strong: #1b6ec2;
+    --color-outline-green: #26b050;
+    /* Feedback */
+    --color-error: #dc3545;
+    --color-error-strong: #d32f2f;
+    --color-error-alt: #ff4d4f;
+    --color-error-alt2: #e63946;
+    --color-error-20a: rgba(255, 77, 79, 0.2);
+    /* Title block border */
+    --color-title-border: #e0e0e0;
+    /* Neutrals / Borders */
+    --neutral-50: #f7f7f7;
+    --neutral-75: #f3f1f7;
+    --neutral-100: #f1f7f3;
+    --neutral-150: #f7f6f1;
+    --neutral-200: #f1f3f7;
+    --neutral-250: #f0f0f0;
+    --neutral-300: #e9eaec;
+    --neutral-325: #e8eaed;
+    --neutral-350: #e8e8e8;
+    --neutral-400: #e0e0e0;
+    --neutral-425: #dee2e6;
+    --neutral-500: #bebebe;
+    --neutral-600: #979797;
+    --neutral-650: #5b5b5b;
+    --neutral-675: #5a5959;
+    --neutral-700: #515358;
+    --neutral-750: #333333;
+    --neutral-800: #2e2e2e;
+    --neutral-825: #292d32;
+    --neutral-850: #212529;
+    --neutral-900: #131212;
+    /* Whites */
+    --color-white: #ffffff;
+    --color-white-soft: #fdfdfd;
+    --color-white-alt: #fefefe;
+    /* Utility / Overlays / Shadows */
+    --overlay-600: rgba(0, 0, 0, 0.6);
+    --overlay-200: rgba(0, 0, 0, 0.2);
+    --overlay-150: rgba(0, 0, 0, 0.15);
+    /* Icon helpers */
+    --icon-primary: var(--color-text-primary);
+    --icon-muted: var(--color-text-muted);
+    --icon-inverse: var(--color-text-inverse);
+    --icon-search-url: url("_content/BlazorComponentHeap.Core/bch-img/table/search.svg");
+    --shadow-gray-200: rgba(190, 190, 190, 0.2);
+    --shadow-gray-250: rgba(183, 183, 183, 0.25);
+    --shadow-gray-200b: rgba(183, 183, 183, 0.2);
+    --shadow-blue-300: rgba(135, 145, 233, 0.3);
+    --shadow-soft-100: rgba(203, 203, 203, 0.1);
+    --shadow-soft-250: rgba(203, 203, 203, 0.25);
+    /* Fonts */
+    --font-sans: 'DM Sans', 'Inter', 'Roboto', system-ui, -apple-system, 'Segoe UI', 'Product Sans', Arial, sans-serif;
+    /* Sidebar icon colors */
+    --icon-coupons-download: #0EA5E9;
+    --icon-weekly-ads: #F59E0B;
+    --icon-offers: #EC4899;
+    --icon-warning-settings: #EC4899;
+    --icon-retailers: #26d97b;
+    --icon-store-groups: #06B6D4;
+    --icon-push-notification: #EF4444;
+    --icon-weekly-ads-upload: #22C55E;
+    --icon-weekly-ads-preview: #A855F7;
+    --icon-pdf-upload: #22C55E;
+    --icon-store-map: #14B8A6;
+    --icon-print-weekly-ad: #F97316;
+    --icon-logs: #3B82F6;
+    --icon-reward-banner: #10B981;
+    --icon-weekly-ads-list: #FFFF00;
+}
+
+/* Dark theme overrides (enabled when <html> has class="dark") */
+.dark {
+    --invertion-flag: 1;
+    --color-text-primary: #ededed;
+    --color-text-secondary: #e0e0e0;
+    --color-text-muted: #bebebe;
+    --color-text-subtle: #a0a0a0;
+    --color-text-inverse: #131212;
+    --color-bg-page: #0f1115;
+    --color-bg-surface: #121418;
+    --color-bg-subtle: #151820;
+    --color-bg-muted: #1a1f28;
+    --neutral-50: #181c23;
+    --neutral-75: #191f27;
+    --neutral-100: #1b222c;
+    --neutral-150: #1e2632;
+    --neutral-200: #212a38;
+    --neutral-250: #232e3f;
+    --neutral-300: #2a2e35;
+    --neutral-350: #2f343d;
+    --neutral-400: #333842;
+    --neutral-425: #3a3f4a;
+    --neutral-500: #4a505c;
+    --neutral-750: #c9cbd1;
+    --neutral-800: #d2d4d9;
+    --neutral-825: #d9dbe0;
+    --neutral-850: #e6e7ea;
+    --icon-primary: var(--color-text-secondary);
+    --icon-muted: var(--color-text-muted);
+    --icon-inverse: var(--color-text-inverse);
+    --icon-search-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'><path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/></svg>");
+    --color-error-20a: rgba(255, 77, 79, 0.2);
+    --color-title-border: var(--color-error-alt);
+    /* Sidebar icon colors for dark theme (можна залишити ті ж, або змінити при потребі) */
+    --icon-coupons-download: #0EA5E9;
+    --icon-weekly-ads: #F59E0B;
+    --icon-offers: #EC4899;
+    --icon-retailers: #26d97b;
+    --icon-store-groups: #06B6D4;
+    --icon-push-notification: #EF4444;
+    --icon-weekly-ads-upload: #22C55E;
+    --icon-weekly-ads-preview: #A855F7;
+    --icon-pdf-upload: #22C55E;
+    --icon-store-map: #14B8A6;
+    --icon-print-weekly-ad: #F97316;
+    --icon-logs: #3B82F6;
+    --icon-reward-banner: #10B981;
+}

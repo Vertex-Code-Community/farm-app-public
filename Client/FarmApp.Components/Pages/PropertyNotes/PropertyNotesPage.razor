@@ -1,0 +1,62 @@
+@attribute [Route(Constants.ClientRoutes.PropertyNotesPage)]
+@attribute [Layout(typeof(EmptyLayout))]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.RemoveConfirmation
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<div class="property-notes-container" style="margin-top: @(offsetTop)px; height: calc(100% - @(offsetTop)px)">
+    <HeaderComponent Title="Записи"/>
+
+    @if (_notes.Count > 0)
+    {
+        <div class="notes-list">
+            <div class="scroller">
+                @foreach (var item in _notes)
+                {
+                    _statuses.TryGetValue(item.StatusId ?? 0, out var status);
+                    <div @key="@item" class="item">
+                        <div class="labels">
+                            <div class="name">@(string.IsNullOrWhiteSpace(item.Header) ? " " : item.Header)</div>
+                            <div class="bottom">
+                                <div class="text">@(item.Text)</div>
+                                <div class="date">@item.StartTime.ToString("dd.MM.yyyy")</div>
+                            </div>
+                        </div>
+                        @if(item.StatusId > 0)
+                        {
+                            <div @key="@item"><span style="border:@($"2px solid {status?.BGColorHex}"); color:@(status?.TextColorHex);">@status?.Name</span></div>
+                        }
+                        <div class="icon open" @onclick="() => { OnPropertyNoteClicked(item); }" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+                        <div class="icon remove" @onclick="() => { _propertyNoteToBeRemoved = item; _showRemoveNoteDialog = true; }" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+
+                    </div>
+                }
+                <div style="height: calc(@(ScreenOffsetProvider.Bottom)px + 10px + 60px)"></div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="empty-info">Немає записів</div>
+    }
+
+    <div class="create-new-button" style="@($"bottom: calc({ScreenOffsetProvider.Bottom}px + 5px);")" 
+         @onclick="OnCreateClicked" 
+         ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+    
+</div>
+
+<RemoveConfirmationComponent @bind-IsOpened="_showRemoveNoteDialog" 
+                             Question="Ви дійсно хочете видалити обраний запис?"
+                             OnConfirm="OnDeleteClickedAsync"/>
+
+<style>
+    body {
+        background: white;
+    }
+</style>

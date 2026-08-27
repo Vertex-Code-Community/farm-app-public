@@ -1,0 +1,36 @@
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+@attribute [Route(Constants.ClientRoutes.SelectLanguagePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@layout PageLayout
+
+<div class="select-language-cont">
+    @if (_isLoading)
+    {
+        <div class="loader-container">
+            <PullLoaderComponent />
+        </div>
+    }
+    else
+    {
+        <TopNavigationComponent Title="@Localizer["Select_Language"]" />
+
+        <div class="ul-cont">
+        <UnorderedListComponent ItemHeight="48px">
+            @foreach (var language in Languages)
+            {
+                <ListItemComponent ItemCallback="() => SelectLanguage(language)">
+                    <p class="body-16-regular text-secondary">@language</p>
+                    <IconComponent Opacity="@(language == _selectedLanguage ? 1 : 0)"
+                                   IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                                   ExtraStyles="margin-left: auto" />
+                </ListItemComponent>
+            }
+        </UnorderedListComponent>
+        </div>        
+    }
+</div>
+

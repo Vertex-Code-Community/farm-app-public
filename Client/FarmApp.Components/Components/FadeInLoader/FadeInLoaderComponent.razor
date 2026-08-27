@@ -1,0 +1,11 @@
+﻿<div class="loader-content-container @(_internalIsLoading ? "loading" : "loaded")" style="--anim-dur: @(AnimationDuration / 2)ms; align-items: @(AlignItems);">
+
+    <div class="abs-cont-loader">
+        @Loader
+    </div>
+
+    <div class="abs-cont-content">
+        @Content
+    </div>
+
+</div>

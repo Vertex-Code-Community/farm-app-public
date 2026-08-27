@@ -1,0 +1,19 @@
+:root {
+    /* surfaces */
+    --color-bg-secondary: #FFFFFF;
+    --color-bg: #F5F3FF;
+    --color-inputs: #F5F3FF;
+    --td-selected-bg-color: #dcf0e1;
+    /* texts */
+    --text-primary: #000000;
+    --text-secondary: #191919;
+    --text-tertiary: #414141;
+    --text-placeholder: #646B75;
+    --text-disabled: #D3D3D3;
+    /* borders */
+    --table-border-outer-color: #e9e4ff;
+    --table-border-inner-color: #f5f3ff;
+    --td-selected-border-color: #0cba65;
+    /* tables */
+
+}

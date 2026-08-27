@@ -1,0 +1,34 @@
+﻿.tab-layout-container {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* MAUI: MapLibre is behind this WebView; keep chrome transparent on the map tab. */
+.tab-layout-container.tab-layout--native-map-underlay,
+.tab-layout-container.tab-layout--native-map-underlay > .content,
+.tab-layout-container.tab-layout--native-map-underlay > .content > .content-wrapper {
+    background: transparent !important;
+}
+
+    .tab-layout-container > .content {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        -webkit-overflow-scrolling: auto;
+        transform: none;
+    }
+
+        .tab-layout-container > .content > .content-wrapper {
+            height: 100%;
+            overflow: auto;
+            scrollbar-width: none;
+            box-sizing: border-box;
+        }
+
+        .tab-layout-container > .content > .content-wrapper::-webkit-scrollbar {
+            display: none;
+        }

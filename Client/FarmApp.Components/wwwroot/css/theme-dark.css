@@ -1,0 +1,40 @@
+body:has([data-theme="dark"]) {
+    /* SURFACE */
+    --surface-cards: #212121;
+    --background-surface: #000000;
+    --surface-inputs: #3E3E3E;
+    /* TEXT */
+    --text-primary: #FFFFFF;
+    --text-secondary: #F4F4F4;
+    --text-tertiary: #E8E8E8;
+    --text-placeholder: #838383;
+    --text-disabled: #606060;
+    /* ACCENTS */
+    --accent-primary: #03FF00;
+    --accent-primary-10: #03FF001A;
+    --accent-primary-gradient: linear-gradient(#03FF00, #00FE7C);
+    /* STATES */
+    --state-error: #FF2323;
+    --status-in-progress: #FFCD0A;
+    --status-done: #00DA2C;
+    /* MAP BUTTON */
+    --drawing-mode-on-bg: linear-gradient(#73FF72, #93FFC8);
+    /*  ICONS  */
+    --component-icon: linear-gradient(#03FF00, #00FE7C);
+    /* NOTIFICATIONS */
+    --notification-icon-bg: #1C4227;
+    /* SKELETONS */
+    --skeleton-bg: #212121;
+    --skeleton-shimmer: #444444;
+    /* CALENDAR TABLE */
+    --calendar-outside-border: #4C4C4C;
+    --calendar-inside-border: #343434;
+    /* NOTIFICATION */
+    --border-color: #E0E3EB1F;
+    /* LOADER */
+    --media-loader: #9E9E9E;
+    /* DROPDOWN MODAL */
+    --modal-border: #00000000;
+    /*  WEATHER BLUR BG  */
+    --weather-blur-bg: rgba(0,0,0,0.4);
+}

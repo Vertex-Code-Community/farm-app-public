@@ -1,0 +1,56 @@
+﻿@attribute [Route(Constants.ClientRoutes.EnterVerificationCodePage)]
+@attribute [Layout(typeof(AuthLayout))]
+@attribute [Unauthorized]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.AuthHeader
+@using FarmApp.Components.Components.ButtonSpinner
+@using FarmApp.Components.Components.ErrorMessage
+@using FarmApp.Components.Components.PasswordInput
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="type-password-container">
+    <AuthHeaderComponent Title="@Localizer["Password-Reset_Code_Title"]" BackCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.ForgotPasswordPage)" />
+
+    <div class="password-code-main">
+        <p data-animate class="password-code-info-p">@Localizer["Password-Reset_Code_Description"] @ObfuscateEmail(Email). @Localizer["Password-Reset_Code_Description_2"]</p>
+
+        <div class="code-input-with-error @(invalidCode ? "error" : "")">
+            <div class="code-input">
+                @for (int i = 0; i < 4; i++)
+                {
+                    int index = i;
+                    <input data-animate @ref="inputRefs[index]"
+                           type="text"
+                           maxlength="1"
+                           class="otp-box"
+                           value="@otpValues[index]"
+                           @oninput="(e) => HandleInput(e, index)"
+                           @onkeydown="(e) => HandleBackspace(e, index)" />
+                }
+            </div>
+            <div class="error">
+                <ErrorMessage T="@string" Message="@ErrorMessage" />
+            </div>
+        </div>
+        @if (_isLoading)
+        {
+            <FarmApp.Components.Components.MediaLoader.MediaLoaderComponent />
+        }else
+        {
+            <div data-animate class="resend-text @(canResend ? "ready" : "")">
+                <p @onclick="ResendCode">@Localizer["Password-Reset_Code_Resend"] </p>&nbsp;<span class="resend-countdown">00:@countdown.ToString().PadLeft(2, '0')</span>
+            </div>            
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background: white;
+    }
+
+        body .auth-layout-container .auth-content:has(.password-code-main) {
+            max-height: calc(292px + var(--global-error-offset));
+        }
+</style>

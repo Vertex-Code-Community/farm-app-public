@@ -1,0 +1,135 @@
+.property-notes-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+    .property-notes-container > .create-new-button {
+        position: absolute;
+        right: 20px;
+        
+        width: 60px;
+        height: 60px;
+        background: white url(img/shared/add-icon.svg) no-repeat center;
+        background-size: 70%;
+        box-shadow: 0 0 10px -5px rgba(0,0,0,0.75);
+        border-radius: 30px;
+    }
+
+    .property-notes-container > .empty-info {
+        flex: 1 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+        .property-notes-container > .empty-info > img {
+            width: 100px;
+        }
+
+        .property-notes-container > .empty-info > label {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+
+    .property-notes-container > .notes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        flex: 1 1;
+        overflow: auto;
+        position: relative;
+        
+        justify-content: center;
+        align-items: center;
+    }
+
+        .property-notes-container > .notes-list > .scroller {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    
+            .property-notes-container > .notes-list > .scroller > .item {
+                width: calc(100% - 10px);
+                height: 60px;
+                margin-left: 5px;
+                border-bottom: 1px solid #71737840;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding-left: 8px;
+            }
+                
+                .property-notes-container > .notes-list > .scroller > .item > .labels {
+                    width: calc(100% - 60px - 8px - 8px);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                }
+                
+                    .property-notes-container > .notes-list > .scroller > .item > .labels > .name {
+                        font-size: 14px;
+                        font-weight: 500;
+
+                        max-width: 60%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    
+                    .property-notes-container > .notes-list > .scroller > .item > .labels > .bottom {
+                        width: 100%;
+                        justify-content: space-between;
+                        display: flex;
+                        font-size: 12px;
+                        font-weight: 400;
+                    }
+                    
+                        .property-notes-container > .notes-list > .scroller > .item > .labels > .bottom > .date {
+                            margin-right: 8px;
+                        }
+
+                        .property-notes-container > .notes-list > .scroller > .item > .labels > .bottom > .text {
+                            max-width: 70%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                
+                .property-notes-container > .notes-list > .scroller > .item > .icon {
+                    width: 30px;
+                    height: 30px;
+                
+                    border-radius: 5px;
+                
+                    background-size: 85% !important;
+                    background-position: center !important;
+                    position: relative;
+                }
+                .property-notes-container > .notes-list > .scroller > .item span {
+                    font-size: 12px;
+                    margin-right: 3px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    padding: 2px;
+                    border-radius: 7px;
+                }
+
+                    .property-notes-container > .notes-list > .scroller > .item > .icon.open {
+                        margin-left: auto;
+                        background: white url(img/map-icons/modal/open-icon.png) no-repeat center;
+                    }
+                
+                    .property-notes-container > .notes-list > .scroller > .item > .icon.remove {
+                        background: white url(img/map-icons/modal/throwout-icon.png) no-repeat center;
+                    }

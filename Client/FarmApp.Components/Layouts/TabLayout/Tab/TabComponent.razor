@@ -1,0 +1,6 @@
+<div @onclick="OnTabClicked" class="tab-container  @(Active ? "active" : string.Empty) @(Config.ClassName)">
+    <IconComponent IconSrc="@Config.ImgUrl" IconContSize="24" 
+    IconColor="@(Active ? "var(--component-icon)" : "var(--text-secondary)")" />
+
+    <p class="tab-name">@Config.Name</p>
+</div>

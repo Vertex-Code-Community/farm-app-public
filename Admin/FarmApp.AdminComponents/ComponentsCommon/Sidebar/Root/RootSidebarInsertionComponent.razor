@@ -1,0 +1,11 @@
+﻿@using FarmApp.AdminComponents.ComponentsCommon.FragmentRenderer
+
+@foreach (var renderFragment in HeaderInsertionService.Fragments)
+{
+	<FragmentRendererComponent @key="@renderFragment">
+		<div class="flex-container"
+		     @onclick="@(() => HandleContainerClick())">
+			@renderFragment
+		</div>
+	</FragmentRendererComponent>
+}

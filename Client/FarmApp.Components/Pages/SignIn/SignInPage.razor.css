@@ -1,0 +1,73 @@
+﻿.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 32px;
+}
+
+    .sign-in-container.loading {
+        pointer-events: none;
+    }
+
+    .sign-in-container .sign-in-form .sign-in-form-control {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .sign-in-container .sign-in-form .sign-in-form-control .sign-in-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sign-in-container .sign-in-form .sign-in-form-control:not(:last-child) {
+            gap: 16px;
+        }
+
+    .sign-in-container .sign-in-form .sign-in-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sign-in-container .sign-in-form .sign-in-redirect-forgot-pass {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 10px;
+        height: 32px;
+        margin-bottom: 16px;
+    }
+
+        .sign-in-container .sign-in-form .sign-in-redirect-forgot-pass a {
+            color: var(--text-secondary);
+            font-weight: 400;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+
+    .sign-in-container .sign-in-form .sign-in-actions .sign-in-redirect-link {
+        color: var(--status-done);
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .sign-in-container .sign-in-form .sign-in-actions .sign-in-button {
+        text-align: center;
+        position: relative;
+    }
+
+    .sign-in-container .sign-in-form .sign-in-actions .sign-in-sign-up-link {
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        color: var(--text-secondary);
+    }

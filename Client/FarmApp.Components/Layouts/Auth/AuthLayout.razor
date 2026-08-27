@@ -1,0 +1,12 @@
+﻿@inherits LayoutComponentBase
+@using AppLayout
+<LayoutView Layout="typeof(AppLayout)">
+    <div class="auth-layout-container" style="padding-bottom: @(ScreenOffsetProvider.Bottom)px">
+        <div class="auth-content" id="auth-content">
+            <div class="page-content">
+                @Body
+            </div>
+        </div>
+    </div>
+</LayoutView>
+

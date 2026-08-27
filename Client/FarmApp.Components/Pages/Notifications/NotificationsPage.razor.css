@@ -1,0 +1,30 @@
+.notifications-settings-cont {
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ul-cont {
+    padding: 0 16px;
+}
+
+.notification-types-section,
+.setting-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-types-section {
+    gap: 8px;
+    padding: 0 16px 16px;
+}
+
+.notification-types-hint {
+    margin: 0;
+}
+
+.setting-text {
+    gap: 2px;
+    width: 100%;
+}

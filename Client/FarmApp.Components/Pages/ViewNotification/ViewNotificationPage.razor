@@ -1,0 +1,15 @@
+﻿@using FarmApp.Components.Components.NotificationBlock
+@using FarmApp.Components.Components.TopNavigation
+@attribute [Route(Constants.ClientRoutes.ViewNotificationPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@layout PageLayout
+
+<div class="view-notif-page-cont">
+    <TopNavigationComponent Title="@string.Empty" />
+
+    <div class="page-cont">
+        <NotificationBlockComponent Notification="@Notification" ShowFull="true"/>
+    </div>
+</div>

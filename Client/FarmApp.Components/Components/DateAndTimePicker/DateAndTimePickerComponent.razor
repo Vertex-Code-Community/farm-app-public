@@ -1,0 +1,26 @@
+﻿﻿@using FarmApp.Components.Components.Calendar
+@using FarmApp.Components.Components.TimeSelect
+
+<div class="picker-container">
+
+    <div class="picker-header">
+        <p class="picker-label">@Label</p>
+
+        <div class="time-and-date-cont">
+            <div class="date @(_isCalendarOpen ? "selected" : "")" @onclick="ToggleCalendar">@_selectedDate.ToString("dd.MM.yyyy")</div>
+            <div class="time @(_isTimeSelectorOpen ? "selected" : "")" @onclick="ToggleTimeSelector">@_selectedDate.ToString("HH:mm")</div>
+        </div>
+    </div>
+
+    <div class="selectors-container">
+
+        <div class="time-picker @(_isTimeSelectorOpen ? "is-open" : "")">
+            <TimeSelectComponent @bind-SelectedDate="_selectedDate" />
+        </div>
+
+        <div class="calendar @(_isCalendarOpen ? "is-open" : "")">
+            <CalendarComponent @bind-SelectedDate="_selectedDate" />
+        </div>
+
+    </div>
+</div>

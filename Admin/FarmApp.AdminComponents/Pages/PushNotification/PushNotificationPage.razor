@@ -1,0 +1,60 @@
+﻿@page "/push-notification"
+@attribute [Authorize]
+
+@using FarmApp.AdminComponents.ComponentsCommon.Sidebar
+@using FarmApp.AdminComponents.Pages.PushNotification.EditNotificationModal
+@using FarmApp.AdminComponents.Pages.PushNotification.PushNotificationHistory
+@using FarmApp.AdminComponents.Pages.PushNotification.SendNotification
+@using FarmApp.Shared.Enums.PushNotification
+@using Microsoft.AspNetCore.Authorization
+
+<div class="weekly-ads-page-wrapper @(_isPending ? "pending" : "")">
+
+	<div class="notification-wrapper">
+		<div class="tabs">
+			<SidebarInsertionComponent>
+				<div class="tab-headers">
+					<button type="button"
+					        class="btn @(_selectedTab == PushNotificationTab.Push ? "btn-success" : "btn-outline")"
+					        @onclick="() => { _selectedTab = PushNotificationTab.Push; StateHasChanged(); }">
+						@PushNotificationTab.Push
+					</button>
+					<button type="button"
+					        class="btn @(_selectedTab == PushNotificationTab.History ? "btn-success" : "btn-outline")"
+					        @onclick="() => { _selectedTab = PushNotificationTab.History; StateHasChanged(); }">
+						@PushNotificationTab.History
+					</button>
+				</div>
+			</SidebarInsertionComponent>
+
+			<div class="tab-content">
+				@if (_selectedTab == PushNotificationTab.Push)
+				{
+					<SendNotificationComponent Notification="_notificationModel"
+					                           OnSendNotification="SendNotificationAsync"/>
+				}
+				else if (_selectedTab == PushNotificationTab.History)
+				{
+					<PushNotificationHistoryComponent Notifications="_notifications"
+					                                  OnEditNotification="(e) => _editingNotification = e"/>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="messages">
+	@if (_notificationMessage != string.Empty)
+	{
+		<div class="message @(_notificationMessageStatus.ToString().ToLower())">@_notificationMessage</div>
+	}
+</div>
+
+@if (_editingNotification is not null)
+{
+	<EditNotificationModalComponent SelectedNotification="_editingNotification"
+	                                OnCloseClicked="() => { _editingNotification = null; StateHasChanged(); }"
+	                                OnEditClicked="EditNotificationAsync"
+	                                OnCancelClicked="CancelNotificationAsync"/>
+}
+

@@ -1,0 +1,14 @@
+@using FarmApp.Components.Layouts.TabLayout.Tab
+@using FarmApp.Services.Services.Interfaces
+
+<div class="tabs @(TabsService.Shown && !SuppressTabsForFieldModal ? "show" : "") @(_mapMoving ? "map-moving" : "")" 
+     style="@($"transform: translate(0, calc({ITabsService.TabsHeight} + {ScreenOffsetProvider.Bottom}px + 30px))")">
+    @foreach (var tabModel in _tabModels)
+    {
+        <div @key="tabModel" class="tab-wrapper" ontouchstart="onRippleEffectTouchStartListener(event, true)">
+            <TabComponent Config="tabModel"
+            Active="@(NavigationService.CurrentPage?.Route == tabModel.Reference ||
+            (tabModel.NestedReferences?.Any(route => NavigationService.CurrentPage?.Route == route)) == true)" />
+        </div>
+    }
+</div>

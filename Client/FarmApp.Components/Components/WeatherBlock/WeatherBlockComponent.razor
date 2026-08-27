@@ -1,0 +1,49 @@
+@using FarmApp.Components.Components.FadeInLoader
+@using FarmApp.Components.Components.SkeletonBlock
+
+
+<div class="weather-info">
+    <FadeInLoaderComponent IsLoading="ShowWeatherSkeleton" AnimationDuration="200" AnimationDelay="300">
+        <Loader>
+            <SkeletonBlockComponent Height="76px" MaxWidth="96px" BorderRadius="8px" />
+        </Loader>
+        <Content>
+            <div class="weather-img">
+                <img src="@_weatherIconUrl" alt="" />
+            </div>
+        </Content>
+    </FadeInLoaderComponent>
+
+    <div class="weather-text">
+        <FadeInLoaderComponent IsLoading="ShowWeatherSkeleton" AnimationDuration="200">
+            <Loader>
+                <SkeletonBlockComponent Height="21px" MaxWidth="90px" />
+            </Loader>
+            <Content>
+                <p class="degrees">@_temperatureCelsius °C</p>
+            </Content>
+        </FadeInLoaderComponent>
+
+        <FadeInLoaderComponent IsLoading="ShowWeatherSkeleton" AnimationDuration="200" AnimationDelay="150">
+            <Loader>
+                <SkeletonBlockComponent Height="21px" MaxWidth="80px" />
+            </Loader>
+            <Content>
+                <p class="description">@_weatherConditionLabel</p>
+            </Content>
+        </FadeInLoaderComponent>
+    </div>
+
+    @if (_isUserLocationUnknown)
+    {
+        <div class="weather-overlay" @onclick="RequestLocationPermissionAndReloadWeatherAsync">
+            <p class="body-16-regular">@Localizer["Weather_Enable-Location"]</p>
+        </div>
+    }
+    else if (_weatherRequestFailed)
+    {
+        <div class="weather-overlay">
+            <p class="body-16-regular">@Localizer["Weather_Load_Error"]</p>
+        </div>
+    }
+</div>

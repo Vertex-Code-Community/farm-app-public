@@ -1,0 +1,30 @@
+.create-cont, .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.img-cont {
+    margin-bottom: 8px;
+}
+
+.create-cont {
+    gap: 16px;
+}
+
+.text {
+    gap: 6px;
+    text-align: center;
+}
+
+.text {
+    color: var(--text-secondary);
+}
+
+    .text h3 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0;
+    }

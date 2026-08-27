@@ -1,0 +1,58 @@
+﻿@using FarmApp.Shared.Constants
+
+<div class='left-menu-container @(PanelService.IsShown ? "opened-menu" : "closed-menu")'>
+    <div class="main-content">
+        <div class="logo">
+            <div class="logo-img @(PanelService.IsShown ? "expanded" : "collapsed")" 
+                 >
+                <img src="_content/FarmApp.AdminComponents/icons/sidebar/apps-icon.svg" />
+                @if ( PanelService.IsShown)
+                {
+                    <div class="test-label">Farm App | Admin Mode</div>
+                }
+            </div>
+
+            <div class="close-button @(PanelService.IsShown ? "visible" : "hidden")"
+                 @onclick="() => PanelService.Show(!PanelService.IsShown)">
+                <img class='icon-toggle @(PanelService.IsShown ? "rotate--180" : "rotate-0")' src="_content/FarmApp.AdminComponents/icons/sidebar/open-button.svg" alt="Toggle" />
+            </div>
+        </div>
+
+        <div class="logo-tabs-separator @(!PanelService.IsShown ? "line" : "")"></div>
+
+        <div class="tabs noselectable-text">
+            <ul>
+                <li class="tab-item coupons-download components @GetActive(Constants.ClientRoutesAdmin.UsersPage)"
+                    @onclick='() => NavigateToPage(Constants.ClientRoutesAdmin.UsersPage)' >
+                     
+                    <div style='@(IsHomePage ? "" : "display: none;")'
+                         class='@(IsHomePage ? "active-check" : "")'>
+                    </div>
+                    <div class="tab-icon">
+                        <img src="_content/FarmApp.AdminComponents/icons/sidebar/retailers.svg" alt="Users" />
+                    </div>
+                    <div class="tab-name">
+                        <label class="@(!PanelService.IsShown ? "hide-text" : "show-text")">Users</label>
+                    </div>
+                </li>   
+                <li class="tab-item push-notification components @GetActive(Constants.ClientRoutesAdmin.PushNotification)"
+                    @onclick='() => NavigateToPage(Constants.ClientRoutesAdmin.PushNotification)'>
+                    <div style='@(IsPushNotificationPage ? "" : "display: none;")'
+                         class='@(IsPushNotificationPage ? "active-check" : "")'>
+                    </div>
+                    <div class="tab-icon">
+                        <img src="_content/FarmApp.AdminComponents/icons/sidebar/push-notification.svg" alt="Push" />
+                    </div>
+                    <div class="tab-name">
+                        <label class="@(!PanelService.IsShown ? "hide-text" : "show-text")">Push Notification</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="open-button @(PanelService.IsShown ? "hidden" : "visible")"
+         @onclick="() => PanelService.Show(!PanelService.IsShown)">
+        <img class='icon-toggle @(PanelService.IsShown ? "rotate--180" : "rotate-0")' src="_content/FarmApp.AdminComponents/icons/sidebar/open-button.svg" alt="Toggle" />
+    </div>
+</div>

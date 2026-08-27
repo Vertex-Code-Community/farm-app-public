@@ -1,0 +1,207 @@
+p {
+    margin: 0;
+}
+
+.note-container, .note-content, .section, 
+.note-overview, .notifications-settings, 
+.note-info, .title-and-field, 
+.delete-modal, .buttons-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.note-description, .settings, .note-info {
+    background-color: var(--surface-inputs);
+    border-radius: 12px;
+}
+
+.note-container {
+    padding-top: 2px;
+    height: 100%;
+}
+
+.note-content {
+    padding: 0 16px;
+    flex: 1;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.note-content::-webkit-scrollbar {
+    display: none;
+}
+
+.note-overview {
+    border-radius: 12px;
+    padding: 12px;
+    background-color: var(--accent-primary-10);
+    flex-direction: row;
+}
+
+.timeline {
+    border-left: 2px solid var(--status-done);
+    padding-left: 6px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+    .timeline .time {
+        font-weight: 600;
+        color: var(--status-done);
+    }
+
+.note-info {
+    background-color: var(--surface-cards);
+    gap: 8px;
+    padding: 16px;
+}
+
+.title-and-field {
+    gap: 4px;
+    word-break: break-all;
+}
+
+    .title-and-field .title {
+        color: var(--text-primary);
+    }
+
+.section {
+    gap: 4px;
+    opacity: 0;
+/*    transform: scaleY(0);*/
+    animation: appear 0.15s linear forwards;
+    transform-origin: top center;
+}
+
+.note-content.closing .section {
+    opacity: 1;
+/*    transform: scaleY(1);*/
+    animation: disappear 0.075s linear forwards;
+}
+
+.note-description {
+    padding: 8px 12px;
+    word-wrap: break-word;
+}
+
+.media-list {
+    display: flex;
+    gap: 8px;
+    overflow: auto;
+    margin: 0 -16px;
+    padding: 0 16px;
+
+    scrollbar-width: none;
+}
+
+    .media-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .media-list .el-wrapepr {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+        .media-list .el-wrapepr ::deep img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .notifications-settings {
+            gap: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+.notifications {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.notifications-settings:has(:checked) {
+    animation: handle-overflow 0s forwards;
+    animation-delay: 0.25s;
+}
+
+.settings {
+    padding: 0 12px;
+    max-height: 0;
+    opacity: 0;
+    transition: 0.2s linear;
+}
+
+.notifications-settings:has(:checked) .settings {
+    max-height: 121px;
+    opacity: 1;
+}
+
+.settings .setting-item {
+    padding: 4px 0;
+}
+
+.settings .setting-item:first-child {
+    border-bottom: 1px solid var(--surface-cards);
+}
+
+.section:nth-child(5) {
+    margin-top: auto;
+}
+
+.delete-modal {
+    gap: 20px;
+    align-items: center;
+}
+
+.buttons-cont {
+    gap: 8px;
+}
+
+.section:nth-child(1) { animation-delay: 0s;}
+.section:nth-child(2) { animation-delay: 0.15s;}
+.section:nth-child(3) { animation-delay: 0.3s;}
+.section:nth-child(4) { animation-delay: 0.45s;}
+.section:nth-child(5) { animation-delay: 0.6s;}
+
+.note-content.closing .section:nth-child(1) { animation-delay: 0.3s;}
+.note-content.closing .section:nth-child(2) { animation-delay: 0.225s;}
+.note-content.closing .section:nth-child(3) { animation-delay: 0.15s;}
+.note-content.closing .section:nth-child(4) { animation-delay: 0.075s;}
+.note-content.closing .section:nth-child(5) { animation-delay: 0s;}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+/*        transform: scaleY(1);*/
+    }
+    to {
+        opacity: 0;
+/*        transform: scaleY(0);*/
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+/*        transform: scaleY(0);*/
+    }
+    to {
+        opacity: 1;
+/*        transform: scaleY(1);*/
+    }
+}
+
+@keyframes handle-overflow {
+    from {overflow: hidden}
+    to {overflow: visible}
+}

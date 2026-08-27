@@ -1,0 +1,54 @@
+@attribute [Layout(typeof(EmptyLayout))]
+
+<ModalSheetComponent IsOpen="IsOpen"
+                     IsOpenChanged="IsOpenChanged"
+                     IsViewMode="true"
+                     Title="@Localizer["Privacy_Policy"]">
+
+    <div class="privacy-policy-container" style="margin-top: @(ScreenOffsetProvider.Top)px; height: calc(100% - @(ScreenOffsetProvider.Top)px)">
+
+        <div class="document-list">
+            <div class="scroller">
+                <b>1. @Localizer["Policy_General-Provisions_Title"]:</b>
+                @Localizer["Policy_General-Provisions_Desc"]
+                <br />
+                <br />
+                <b>2. @Localizer["Policy_Information-Collection_Title"]:</b>
+                @Localizer["Policy_Information-Collection_Desc"]:
+                <br />
+                <br />
+                <b>3. @Localizer["Policy_Use-of-Information_Title"]:</b>
+                @Localizer["Policy_Use-of-Information_Desc"]
+                <br />
+                <br />
+                <b>4. @Localizer["Policy_Data-Protection_Title"]:</b>
+                @Localizer["Policy_Data-Protection_Desc"]
+                <br />
+                <br />
+                <b>5. @Localizer["Policy_Information-Sharing_Title"]:</b>
+                @Localizer["Policy_Information-Sharing_Desc"]
+                <br />
+                <br />
+                <b>6. @Localizer["Policy_Your-Rights_Title"]:</b>
+                @Localizer["Policy_Your-Rights_Desc"]
+                <br />
+                <br />
+                <b>7. @Localizer["Policy_Changes-to-Privacy-Policy_Title"]:</b>
+                @Localizer["Policy_Changes-to-Privacy-Policy_Desc"]
+                <br />
+                <br />
+                <b>8. @Localizer["Policy_Contact-Information_Title"]:</b>
+                @Localizer["Policy_Contact-Information_Desc"]
+
+                <div style="height: calc(@(ScreenOffsetProvider.Bottom)px)"></div>
+            </div>
+        </div>
+    </div>
+
+</ModalSheetComponent>
+<style>
+    body {
+        background: var(--surface-cards);
+        color: var(--text-primary);
+    }
+</style>

@@ -1,0 +1,28 @@
+﻿@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+@attribute [Route(Constants.ClientRoutes.SelectCountryPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@layout PageLayout
+
+<div class="select-country-cont">
+    <TopNavigationComponent Title="@Localizer["Country_Select-Country"]" />
+
+    <div class="ul-cont">
+        <UnorderedListComponent ItemHeight="48px">
+            @foreach (var country in AllCountries)
+            {
+                <ListItemComponent ItemCallback="() => SelectCountryClicked(country)">
+                    <img src="_content/FarmApp.Components/img/flags/@(FlagFile(country))" alt="" class="country-flag" />
+                    <p class="body-16-regular text-secondary">@LocalizedName(country)</p>
+                    <IconComponent Opacity="@(country == _selected ? 1 : 0)"
+                                   IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                                   ExtraStyles="margin-left: auto" />
+                </ListItemComponent>
+            }
+        </UnorderedListComponent>
+    </div>
+</div>
+

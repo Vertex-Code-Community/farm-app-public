@@ -1,0 +1,13 @@
+﻿﻿@using FarmApp.Components.Components.InfiniteScrollColumn
+@using FarmApp.Components.Components.InfiniteScrollContainer
+
+<InfiniteScrollContainerComponent ColumnsWidth="150px">
+    <InfiniteScrollColumnComponent TItem="int"
+                                   Items="_hourCycleBase"
+                                   CurrentValue="@_viewDate.Hour"
+                                   OnValueChanged="SelectHour" />
+    <InfiniteScrollColumnComponent TItem="int"
+                                   Items="_minuteCycleBase"
+                                   CurrentValue="@_viewDate.Minute"
+                                   OnValueChanged="SelectMinute" />
+</InfiniteScrollContainerComponent>

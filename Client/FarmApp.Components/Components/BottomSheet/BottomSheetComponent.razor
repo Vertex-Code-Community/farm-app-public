@@ -1,0 +1,13 @@
+﻿<div class="bottom-sheet-cont">
+        <div class="overlay"></div>
+
+        <div class="bottom-sheet-wrapper @(AllowDrag ? "" : "no-drag")" id="sheet-wrapper" @ref="_sheetRef">
+            <div class="sheet-touchzone"></div>
+            <div class="sheet-handle"></div>
+            <div class="bottom-sheet">
+                <div class="sheet-content" @ref="_contentRef">
+                    @ChildContent
+                </div>
+            </div>
+        </div>
+</div>

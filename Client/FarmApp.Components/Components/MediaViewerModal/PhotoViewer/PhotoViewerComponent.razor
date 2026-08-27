@@ -1,0 +1,26 @@
+﻿@if (_isLoading)
+{
+    <FarmApp.Components.Components.PullLoader.PullLoaderComponent />
+}
+<div class="photo-viewer-container">
+    <img src="@Src" class="photo-viewer" @onload = "OnPhotoLoaded"
+    style="display: @(_isLoading ? "none" : "block")"/>
+
+    <button class="photo-close-btn" @onclick="() => OnClose.InvokeAsync()"
+    style="display: @(_isLoading ? "none" : "block")">
+        ✕
+    </button>
+</div>
+
+
+@code {
+    [Parameter] public string Src { get; set; } = default!;
+    [Parameter] public EventCallback OnClose { get; set; }
+    private bool _isLoading = true;
+
+    private void OnPhotoLoaded()
+    {
+        _isLoading = false;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,43 @@
+@using FarmApp.Components.Components.DropdownSelector
+@using FarmApp.Components.Components.StatusBlock
+@using FarmApp.Components.Components.TextWMaxWidth
+
+
+<DropdownSelectorComponent MaxHeight="376" Width="240" Gap="8" Right="9" Bottom="2" @bind-TriggerClosing="_closeSelect">
+    <SelectedItem>
+        <div class="select-content">
+            <div class="title">@Localizer["Property-Note_Task-Status"]</div>
+            <StatusBlockComponent Status="Selected" Small="true"/>
+        </div>
+    </SelectedItem>
+
+    <SelectOptions>
+        @foreach (var status in Statuses)
+        {
+            @if (status.IsDefault == true)
+            {
+                <div class="status-item"
+                     @onclick="() => Select(status)">
+                    <StatusBlockComponent Status="status" />
+                    <IconComponent IconSrc="_content/FarmApp.Components/img/shared/check-01.svg" IconContSize="24" Opacity="Selected == status ? 1 : 0" />
+                </div>
+            }
+        }
+        @if (Statuses.Any(x => x.IsDefault != true))
+        {
+            <div class="divider-line"></div>
+            @foreach (var status in Statuses)
+            {
+                @if (status.IsDefault != true)
+                {
+                    <div class="status-item"
+                         @onclick="() => Select(status)">
+                        <StatusBlockComponent Status="status" />
+                        <IconComponent IconSrc="_content/FarmApp.Components/img/shared/check-01.svg" IconContSize="24" Opacity="Selected == status ? 1 : 0" />
+                    </div>
+                }
+            }
+        }
+    </SelectOptions>
+
+</DropdownSelectorComponent>

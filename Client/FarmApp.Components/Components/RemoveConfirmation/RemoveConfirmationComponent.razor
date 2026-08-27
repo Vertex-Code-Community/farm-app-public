@@ -1,0 +1,24 @@
+<BchModal @bind-Show="@IsOpened"
+          CssClass="remove-conformation-modal"
+          Width="calc(100% - 40px)"
+          Height="auto"
+          CssStyles="max-width: 370px;"
+          ShowOverlay="true"
+          CloseOnOverlayClicked="true">
+
+    <div class="content-container">
+        <div class="top">Видалення</div>
+        <div class="middle scroll">
+            <div class="scroller">@Question</div>
+        </div>
+        <div class="bottom">
+            <div @onclick="() => { OnConfirm.InvokeAsync(); }" 
+                 ontouchstart="onRippleEffectTouchStartListener(event, true)"
+                 class="save noselectable-text">Так</div>
+            <div @onclick="() => { IsOpened = false; }" 
+                 ontouchstart="onRippleEffectTouchStartListener(event, true)"
+                 class="save noselectable-text">Ні</div>
+        </div>
+    </div>
+
+</BchModal>

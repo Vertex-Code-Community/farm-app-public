@@ -1,0 +1,12 @@
+@using Bch.Components.Modal
+<BchModal @ref="_bchModal" 
+          Show="@(MapModalService.ModalType is not null)"
+          X="@($"{MapModalService.Position.X.ToString(_nF)}px")"
+          Y="@($"{MapModalService.Position.Y.ToString(_nF)}px")"
+          Width="@($"{_dimensions.X.ToString(_nF)}px")"
+          Height="@($"{_dimensions.Y.ToString(_nF)}px")">
+    <div class="modal-wrapper @(!_hidden ? "shown" : "")">
+        @ChildContent.Invoke(MapModalService.ModalType)
+    </div>
+    <div class="modal-arrow arrow-mode-@MapModalService.ArrowMode @(!_hidden ? "shown" : "")" style="width: @(ArrowWidth)px;height: @(ArrowHeight)px"></div>
+</BchModal>

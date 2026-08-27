@@ -1,0 +1,12 @@
+.theme-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.ios-font {
+    font-family: "SF Pro Text", sans-serif;
+}
+
+.android-font {
+    font-family: "Roboto Flex", sans-serif;
+}

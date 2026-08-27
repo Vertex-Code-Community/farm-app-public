@@ -1,0 +1,20 @@
+<div class="search-bar">
+     
+    <div class="icon-cont">
+        <IconComponent IconContSize="40" IconSize="20" IconSrc="_content/FarmApp.Components/img/search/search.svg" 
+                       IconColor="var(--text-placeholder)" Opacity="!_hasFocus && !_hasInput ? 1 : 0" />
+        <IconComponent IconContSize="40" IconSize="20" IconSrc="_content/FarmApp.Components/img/shared/left-chevron.svg" 
+                       Opacity="_hasFocus || _hasInput ? 1 : 0" IconCallback="HandleBack"/>
+    </div>
+
+        <input class="body-16-regular text-secondary" placeholder="@Localizer["Search"]" type="text" @ref="_searchInput"
+               value="@SearchQuery" @oninput="HandleInput"
+               @onfocus="HandleFocus" @onblur="HandleBlur"/>
+
+    <div class="icon-cont">
+        <IconComponent IconContSize="40" IconSize="20" IconSrc="_content/FarmApp.Components/img/shared/microphone-01.svg" 
+                       Opacity="_hasFocus && !_hasInput ? 1 : 0" IconCallback="HandleAudioInput"/>
+        <IconComponent IconContSize="40" IconSize="20" IconSrc="_content/FarmApp.Components/img/shared/x-02.svg" 
+                       Opacity="_hasFocus && _hasInput ? 1 : 0" IconCallback="HandleClear" />
+    </div>
+</div>

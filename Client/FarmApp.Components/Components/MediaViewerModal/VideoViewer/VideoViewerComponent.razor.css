@@ -1,0 +1,45 @@
+.video-viewer-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+    .video-viewer-container video {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .video-viewer-container video.hidden {
+        visibility: hidden;
+    }
+
+/*    .video-viewer-container > .video-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+
+        background: rgba(0,0,0,0.6);
+        align-items: center;
+    }*/
+
+    .video-viewer-container > .video-controls button {
+        background: none;
+        border: none;
+        color: white;
+        font-size : 18px;
+    }
+
+        .video-viewer-container > .video-controls > .close-btn {
+            margin-left: auto;
+        }
+    .video-viewer-container > .video-controls input[type=range] {
+        flex: 1;
+    }

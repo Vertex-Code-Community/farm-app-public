@@ -1,0 +1,29 @@
+.terms-of-use-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .terms-of-use-container > .document-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex: 1 1;
+        overflow: auto;
+        position: relative;
+    
+        justify-content: center;
+        align-items: center;
+    }
+
+        .terms-of-use-container > .document-list > .scroller {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 8px;
+        }

@@ -1,0 +1,41 @@
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+@using FarmApp.Components.Extensions
+@attribute [Route(Constants.ClientRoutes.SelectThemePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Models.Theme
+
+@layout PageLayout
+
+<div class="select-theme-cont">
+    <TopNavigationComponent Title="@Localizer["Settings_Theme"]" />
+
+    <div class="ul-cont">
+        <UnorderedListComponent ItemHeight="48px">
+            <ListItemComponent ItemCallback="() => SetTheme(AppThemeMode.System)">
+                <p class="body-16-regular text-secondary">@AppThemeMode.System.ToLocalizedThemeName(Localizer)</p>
+                <IconComponent Opacity="@(ThemeService.Current == AppThemeMode.System ? 1 : 0)"
+                               IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                               ExtraStyles="margin-left: auto" />
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => SetTheme(AppThemeMode.Light)">
+                <p class="body-16-regular text-secondary">@AppThemeMode.Light.ToLocalizedThemeName(Localizer)</p>
+                <IconComponent Opacity="@(ThemeService.Current == AppThemeMode.Light ? 1 : 0)"
+                               IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                               ExtraStyles="margin-left: auto" />
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => SetTheme(AppThemeMode.Dark)">
+                <p class="body-16-regular text-secondary">@AppThemeMode.Dark.ToLocalizedThemeName(Localizer)</p>
+                <IconComponent Opacity="@(ThemeService.Current == AppThemeMode.Dark ? 1 : 0)"
+                               IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-02.svg"
+                               ExtraStyles="margin-left: auto" />
+            </ListItemComponent>
+        </UnorderedListComponent>
+    </div>
+</div>
+

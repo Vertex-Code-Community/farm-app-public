@@ -1,0 +1,40 @@
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.SearchBar
+@using FarmApp.Components.Components.UnorderedList
+@using FarmApp.Services.Services.Interfaces
+
+<div class="map-search-chrome @(IMapPropertyService.IsFieldCreateModalOpen ? "map-chrome-inert" : "")">
+<div class="search-cont">
+    <SearchBarComponent @bind-SearchQuery="SearchTerm" />
+
+    <div class="possible-matches">
+        <div class="matches-cont" style="max-height: @(_resultsContHeight)px">
+
+            <UnorderedListComponent ItemHeight="44px">
+                @if (_matchedProperties.Count > 0)
+                {
+                    @foreach (var property in _matchedProperties)
+                    {
+                        <ListItemComponent ItemCallback="() => OnMatchedPropertyClicked(property)">
+                            <img class="property-icon" src="@property.PictogramBase64Url" />
+                            <p class="body-16-regular text-secondary">@property.Name</p>
+                            <p class="property-area">@property.Area.ToString("f2")га</p>
+                        </ListItemComponent>
+                    }
+                }
+                else
+                {
+                    <ListItemComponent>  <p class="empty-state">Nothing found</p>  </ListItemComponent>
+                }
+            </UnorderedListComponent>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="how-to-use" @onclick="StartGuide">
+    <IconComponent IconContSize="20" IconSize="20" IconSrc="_content/FarmApp.Components/img/auth-icons/info.svg" />
+    <p>@Localizer["Map_How-To-Use"]</p>
+</div>
+</div>

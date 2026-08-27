@@ -1,0 +1,39 @@
+@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.FadeInLoader
+@using FarmApp.Components.Components.NoteBlock
+@using FarmApp.Components.Components.NoteBlockSkeleton
+@using FarmApp.Components.Components.SectionTitle
+@using FarmApp.Components.Components.PropertyNoteCreate
+
+<div class="section">
+    @if (NotesList.Count > 0)
+    {
+        @if (!String.IsNullOrEmpty(SectionTitle))
+        {
+            <SectionTitleComponent Title="@SectionTitle" IsHeading="true" IconCallback="() => _showCreateModal = true"
+                                   IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" IconOpacity="IsLoading ? 0 : 1" />
+        }
+
+        <div class="section-list">
+            @for (var i = 0; i < NotesList.Count; i++)
+            {
+                var index = i;
+                var note = NotesList[i];
+
+                <FadeInLoaderComponent IsLoading="@IsLoading" AnimationDuration="250" AnimationDelay="50 * (index + StartingAnimationIndex)">
+                    <Loader> <NoteBlockSkeletonComponent Height="74" /> </Loader>
+                    <Content> <NoteBlockComponent Note="note" AnimationIndex="(index + StartingAnimationIndex)" /> </Content>
+                </FadeInLoaderComponent>
+            }
+        </div>
+    }
+    else if (!IsLoading && NotesList.Count <= 0)
+    {
+        <CreateNoteComponent Styles="margin-top: 24px" Type="note" OnCreateClicked="() => _showCreateModal = true" />
+    }
+</div>
+
+@if (!String.IsNullOrEmpty(PropertyId))
+{
+    <PropertyNoteCreateModal @bind-IsOpen="_showCreateModal" isNested="IsNested" PropertyId="@PropertyId" />
+}

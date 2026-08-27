@@ -1,0 +1,112 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000014;
+    opacity: 0;
+    animation: appear 0.1s forwards;
+    transform: translate(0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 10;
+
+    --animations-duration: 0.3s;
+}
+
+.overlay.closing {
+    animation: fade-out 0.1s forwards;
+    animation-delay: 0.5s;
+}
+
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    flex: 1;
+    padding-top: 16px;
+    background-color: var(--surface-cards);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    transform: translateY(100%);
+
+    pointer-events: all;
+    
+    will-change: transform;
+
+    animation: slide-up var(--animations-duration) ease-out forwards;
+}
+
+    .modal-wrapper.closing {
+        animation: slide-down var(--animations-duration) ease-in forwards;
+        animation-delay: 0s;
+    }
+
+    .modal-wrapper > .loader-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    .content-wrapper {
+        margin-top: 16px;
+        padding: 8px 16px;
+
+        border-radius: 8px;
+
+        flex: 1;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+        touch-action: pan-y;
+        
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        
+        min-height: 0;
+    }
+
+        .content-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    } 
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}

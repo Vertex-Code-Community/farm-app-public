@@ -1,0 +1,35 @@
+@using FarmApp.Components.Components.ButtonSpinner
+@using FarmApp.Components.Components.Calendar
+@using FarmApp.Components.Components.DateAndTimePicker
+@using FarmApp.Components.Components.MediaLoader
+@using FarmApp.Components.Components.NotificationBlock
+@using FarmApp.Components.Components.PullLoader
+@attribute [Route(Constants.ClientRoutes.WelcomePage)]
+@attribute [Unauthorized]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+@attribute [Layout(typeof(AuthLayout))]
+
+<div class="welcome-page-content">
+    <ButtonComponent OnClick="OnClickSignUp" Name="@Localizer["Authentication_Sign-Up"]" ClassName="primary"></ButtonComponent>
+    <ButtonComponent Onclick="OnClickSignIn" Name="@Localizer["Authentication_Log-In"]" ClassName="secondary"></ButtonComponent>
+    @if (MobilePlatformService.IsIos)
+    {
+        <ButtonComponent Name="@Localizer["Authentication_Apple"]" ClassName="secondary"
+            IconUrl="_content/FarmApp.Components/img/auth-icons/apple.svg" Disabled="true" />
+    }
+    <ButtonComponent Name="@Localizer["Authentication_Google"]" ClassName="secondary" IconColor="original"
+                     IconUrl="_content/FarmApp.Components/img/auth-icons/google.svg" Disabled="true" />
+</div>
+
+
+<style>
+    body {
+        background: white;
+    }
+            body .auth-layout-container:has(.welcome-page-content) .auth-content {
+                margin-top: @(_marginTop)px;
+                padding: 16px;
+                max-height: @(MobilePlatformService.IsIos ? 288 : 220)px;
+    }
+</style>
+

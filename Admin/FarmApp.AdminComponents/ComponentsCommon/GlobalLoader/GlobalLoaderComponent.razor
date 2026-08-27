@@ -1,0 +1,23 @@
+@using FarmApp.AdminComponents.ComponentsCommon.PointsAnimationLoaderComponent
+@using Bch.Components.Modal
+
+<BchModal Show="GlobalLoaderService.IsLoading"
+		  CssClass="global-loader-container"
+		  Width="100%"
+		  Height="100%"
+		  ShowOverlay="false"
+		  CloseOnOverlayClicked="false">
+	@if (GlobalLoaderService.IsLoading)
+	{
+		<div class="loader-container">
+			<PointsAnimationLoaderComponent />
+		</div>
+	}
+</BchModal>
+
+<style>
+	.global-loader-container {
+		pointer-events: all !important;
+		z-index: 2147483647 !important;
+	}
+</style>

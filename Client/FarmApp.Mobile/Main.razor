@@ -1,0 +1,29 @@
+﻿@using FarmApp.Components.Components.GuideTour
+
+<FlexibleRouter AppAssembly="@typeof(Main).Assembly"
+                AdditionalAssemblies="new[] { typeof(StatusBarColorAttribute).Assembly }">
+
+    <Found Context="routeData">
+        <FlexibleRouteView RouteData="@routeData" DefaultLayout="@typeof(TabLayout)" />
+    </Found>
+
+    <NotFound>
+        <LayoutView Layout="@typeof(EmptyLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+
+</FlexibleRouter>
+
+<GuideTourComponent />
+<PictogramCanvasComponent/>
+<NotificationComponent/>
+<GlobalLoaderComponent/>
+<GlobalDialogsComponent />
+
+<style>
+    .bch-modal-overlay {
+        pointer-events: all;
+        background: #00000060;
+    }
+</style>

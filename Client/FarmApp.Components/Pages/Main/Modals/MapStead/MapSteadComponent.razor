@@ -1,0 +1,41 @@
+@using FarmApp.Services.Services.Interfaces
+
+<div class="property-stead-wrapper">
+
+    <div class="header">
+        <div class="name">Земельна ділянка</div>
+        <div class="icons">
+            @if (AuthStateProvider is { IsUserLoggedIn: true })
+            {
+                <div class="icon edit" @onclick="() => { IMapSteadService.InvokeSteadEdit(Stead.Id, null); }" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+            }
+        </div>
+    </div>
+
+    <div class="data">
+        @if (!string.IsNullOrWhiteSpace(Stead.CadNum))
+        {
+            <div class="line">
+                <div class="name">Кадастровий номер:</div>
+                <div class="value">@Stead.CadNum</div>
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Stead.AreaUnit))
+        {
+            <div class="line">
+                <div class="name">Площа:</div>
+                <div class="value">@(Math.Round(Stead.Area, 4, MidpointRounding.AwayFromZero).ToString(_nF))@Stead.AreaUnit</div>
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Stead.Address))
+        {
+            <div class="line">
+                <div class="name">Адреса:</div>
+                <div class="value">@Stead.Address</div>
+            </div>
+        }
+    </div>
+
+</div>

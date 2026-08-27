@@ -1,0 +1,77 @@
+.login-form {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    max-height: none;
+}
+
+    .login-form .form-header {
+        display: flex;
+        justify-content: center;
+    }
+
+.form-wrapper {
+    background: var(--color-bg-surface);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.login-form .btn {
+    margin-top: 7px;
+}
+
+.login-form .password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    .login-form .password-input > input.form-control {
+        padding-right: 40px;
+    }
+
+.login-form .password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 56%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .login-form .password-toggle:hover {
+        background: var(--color-bg-muted);
+    }
+
+    .login-form .password-toggle .icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: var(--icon-primary);
+        -webkit-mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+    }
+
+        .login-form .password-toggle .icon.eye {
+            -webkit-mask-image: url(./icon/login/eye.svg);
+            mask-image: url(./icon/login/eye.svg);
+        }
+
+        .login-form .password-toggle .icon.eye-off {
+            -webkit-mask-image: url(./icon/login/eye-off.svg);
+            mask-image: url(./icon/login/eye-off.svg);
+        }

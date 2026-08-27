@@ -1,0 +1,27 @@
+﻿@using FarmApp.Components.Components.DisplayMedia.Media
+@using FarmApp.Components.Components.MediaViewer
+@if(Files.Count > 0){
+
+    <div class="display-media">
+        @for (var i=0; i < Files.Count(); i++)
+        {
+            var index = i;
+            var file = Files[i];
+
+            <div class="media-cont">
+                <MediaComponent File="file" @key="file.Id" OpenMediaVeiwer="() => OpenMediaViewer(index)"
+                                RemoveFile="RemoveMedia" RetryUploadFile="RetryUpload" isEditMode="IsEditMode" />
+            </div>
+
+        }
+        @if (IsEditMode)
+        {
+            <IconComponent IconContBackground="var(--surface-inputs)" ExtraStyles="margin: auto 6px"
+            IconCallback="() => OnAddClick.InvokeAsync()" IconSrc="_content/FarmApp.Components/img/shared/plus-02.svg" />
+        }
+    </div>
+
+    <MediaViewerComponent @bind-IsOpen="_openMediaViewer" MediaFiles="Files" Title="@MediaViewerTitle" Subtitle="@MediaViewerSubtitle" RemoveFile="RemoveMedia" StartingIndex="_startingIndex" />
+}
+
+

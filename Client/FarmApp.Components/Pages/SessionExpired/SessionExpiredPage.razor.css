@@ -1,0 +1,25 @@
+.page-container {
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+    .page-container > .page-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .page-container > .page-content h2 {
+        color: var(--text-primary);
+    }
+        .page-container > .page-content > .login-btn {
+            color: white;
+            background: var(--accent-primary);
+            border-radius: 999px;
+            padding: 8px 16px;
+        }

@@ -1,0 +1,38 @@
+@* *@
+@* <BchModal @bind-Show="Show" *@
+@* 		  Width="100" *@
+@* 		  Height="100" *@
+@* 		  ShowOverlay="true" *@
+@* 		  CloseOnOverlayClicked="true" *@
+@* 		  OnOverlayClicked="() => ShowChanged.InvokeAsync(false)"> *@
+@* 	<div class="modal-container"> *@
+@* 		<div class="modal-header"> *@
+@* 			<h4>Settings</h4> *@
+@* *@
+@* 			<button type="button" *@
+@* 					class="close-button" *@
+@* 					@onclick="() => ShowChanged.InvokeAsync(false)"> *@
+@* 				<img src="_content/EpicApp.AdminConsole.Components/icon/close.svg" alt="Close" /> *@
+@* 			</button> *@
+@* 		</div> *@
+@* *@
+@* 		<div class="modal-content"> *@
+@* 			<div class="actions"> *@
+@* 				@if (HeaderControlsService.ShowDate) *@
+@* 				{ *@
+@* 					<BchCalendar Value="LocationService.SelectedDate" *@
+@* 								 ValueChanged="OnDateChangeAsync" *@
+@* 								 ShowClearButton="true" /> *@
+@* 				} *@
+@* 			</div> *@
+@* 		</div> *@
+@* *@
+@* 		<div class="modal-footer"> *@
+@* 			<button type="button" *@
+@* 					class="btn btn-outline full-width" *@
+@* 					@onclick="() => ShowChanged.InvokeAsync(false)"> *@
+@* 				Close *@
+@* 			</button> *@
+@* 		</div> *@
+@* 	</div> *@
+@* </BchModal> *@

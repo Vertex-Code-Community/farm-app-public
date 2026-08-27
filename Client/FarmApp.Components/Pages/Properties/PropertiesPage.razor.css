@@ -1,0 +1,41 @@
+.properties-container, .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.loader-cont {
+    flex: 1;
+    display: flex;
+}
+
+.properties-container {
+    height: fit-content;
+    min-height: 100%;
+    align-items: center;
+    padding: 0 16px;
+    position: relative;
+    gap: 12px;
+}
+
+.fields-page-title {
+    margin-top: 12px;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .fields-page-title h3 {
+        font-size: 32px;
+        line-height: 40px;
+        font-weight: 700;
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+.page-content {
+    flex: 1 1;
+}

@@ -1,0 +1,45 @@
+@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.ModalSheet
+@using FarmApp.Components.Components.PullLoader
+@using FarmApp.Components.Components.TopNavigation
+
+
+<div class="select-block" @onclick="OnSelectPropertyClicked">
+    <div class="select-content">
+        <div class="body-16-regular @(string.IsNullOrEmpty(PropertyId) ? "placeholder-text" : "")">
+            @(string.IsNullOrEmpty(PropertyId) ? Localizer["Property-Note_Choose-A-Field"] : StateService.Properties.Where(x => x.Id == PropertyId).FirstOrDefault()?.Name)
+        </div>
+        <IconComponent IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+    </div>
+</div>
+
+
+<ModalSheetComponent IsLoading="_isLoading" Title="@Localizer["Select-Field"]" TitleIconCallback="OnConfirmPropertyClicked" @bind-IsOpen="_isModalOpen"
+                     NestedModal="true" TopOffset="12">
+    <div class="properties-container">
+        <div class="page-content">
+            @if (Properties.Count > 0)
+            {
+                @foreach (var property in Properties)
+                {
+                    <div class="property" @onclick="async () => await OnSelectPropertyClicked(property.Id)">
+                        <div class="property-name">@property.Name</div>
+                        <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/check-01.svg" 
+                                       Opacity="PropertyId == property.Id ? 1 : 0" />
+                    </div>
+                }
+            }
+            else
+            {
+                <CreateNoteComponent Styles="margin-top: 24px;" Type="field" OnCreateClicked="NavigateToMap" />
+            }
+        </div>
+    </div>
+</ModalSheetComponent>
+
+
+<style>
+    body {
+        background: var(--background-surface);
+    }
+</style>

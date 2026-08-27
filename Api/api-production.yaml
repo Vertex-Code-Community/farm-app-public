@@ -1,0 +1,76 @@
+trigger:
+  - 'production'
+
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+variables:
+  buildConfiguration: 'Release'
+  projects: |
+    Api/FarmApp.API/FarmApp.API.csproj
+    Api/FarmApp.BusinessLogicLayer/FarmApp.BusinessLogicLayer.csproj
+    Data/FarmApp.DataAccessLayer/FarmApp.DataAccessLayer.csproj
+    Data/FarmApp.Entities/FarmApp.Entities.csproj
+    Data/FarmApp.ViewModels/FarmApp.ViewModels.csproj
+    FarmApp.Shared/FarmApp.Shared.csproj
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.x'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: 'restore'
+      projects: $(projects)
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build'
+    inputs:
+      command: 'build'
+      arguments: --configuration $(buildConfiguration)
+      projects: $(projects)
+
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+      command: 'publish'
+      publishWebProjects: false
+      projects: $(projects)
+      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: false
+
+  - script: |
+      find $(build.ArtifactStagingDirectory) -type f
+    displayName: 'Print build.ArtifactStagingDirectory'
+
+  - task: SSH@0
+    displayName: 'Stop FarmApp.Api on server'
+    inputs:
+      sshEndpoint: 'YOUR-SSH-SERVICE-CONNECTION-HERE'
+      runOptions: 'commands'
+      commands: |
+        sudo systemctl status farm-app-api || true
+        sudo systemctl stop farm-app-api || true
+
+  - task: CopyFilesOverSSH@0
+    displayName: 'Deploy to server'
+    inputs:
+      sshEndpoint: 'YOUR-SSH-SERVICE-CONNECTION-HERE'
+      sourceFolder: '$(build.ArtifactStagingDirectory)'
+      contents: '**'
+      targetFolder: '/var/www/YOUR-DEPLOY-FOLDER-HERE'
+      cleanTargetFolder: true
+
+  - task: SSH@0
+    displayName: 'Start FarmApp.Api on server'
+    inputs:
+      sshEndpoint: 'YOUR-SSH-SERVICE-CONNECTION-HERE'
+      runOptions: 'commands'
+      commands: |
+        sudo systemctl start farm-app-api
+        sudo systemctl status farm-app-api || true

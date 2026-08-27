@@ -1,0 +1,67 @@
+@using FarmApp.Components.Components.ModalSheet
+@using FarmApp.Components.Components.TopNavigation
+@using Microsoft.AspNetCore.Components.Forms
+@using FarmApp.Components.Components.PullLoader
+
+<ModalSheetComponent IsOpen="@_sheetOpen" IsOpenChanged="OnSheetOpenChanged" IsLoading="_isLoading"
+    Title="@(StatusId == -1 ? Localizer["Status_New"] : Localizer["Status_Edit"])"
+    TitleIconCallback="OnSubmit" TopOffset="StatusId == -1 ? 0 : 12">
+    <ChildContent>
+        <div class="create-property-note-status-container">
+            <EditForm EditContext="_editContext" class="edit-form">
+                <DataAnnotationsValidator />
+                <div class="page-content">
+                    <div class="title-block">
+                        <InputComponent @bind-Value="_status.Name"
+                                        Label="@Localizer["Status-Create_Name"]" />
+                    </div>
+
+                    <div class="text-block">
+                        <div class="color-profile">
+                            <span class="status-name">@Localizer["Status-Create_Color"]</span>
+                            <div class="color-content">
+                                @foreach (var color in AllowedColors)
+                                {
+                                    <button type="button"
+                                            class="color-picker @( _selectedColor == color ? "selected" : "" )"
+                                            style="background: linear-gradient(135deg,@color.TextHexColor 50%, @color.BGHexColor 50%)"
+                                            @onclick="() => OnColorSelected(color)">
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+            @if (StatusId != -1)
+            {
+                <div class="section">
+                    <ButtonComponent ClassName="delete" Name="@Localizer["Status_Delete"]" Background="var(--background-surface)" OnClick="() => _showDeleteModal = true" />
+                </div>
+            }
+
+        </div>
+    </ChildContent>
+    <OverlaySibling>
+        <BottomSheetComponent @bind-IsOpen="_showDeleteModal">
+            <div class="delete-modal">
+                <IconComponent IconContSize="56" IconSize="32" IconColor="var(--component-icon)" IconContBackground="var(--accent-primary-10)"
+                               IconSrc="_content/FarmApp.Components/img/profile/trash-02.svg" ExtraStyles="margin: 0 auto; margin-bottom: 8px;" />
+                <p class="body-18-medium text-secondary">@Localizer["Status_Delete_Title"]</p>
+
+                <div class="buttons-cont">
+                    <ButtonComponent ClassName="primary" Name="@Localizer["Status_Delete_Cancel"]" OnClick="() => _showDeleteModal = false" />
+                    <ButtonComponent ClassName="tertiary" Name="@Localizer["Status_Delete"]" TextColor="var(--state-error)" OnClick="DeleteStatusAsync" />
+                </div>
+            </div>
+        </BottomSheetComponent>
+    </OverlaySibling>
+</ModalSheetComponent>
+
+
+
+<style>
+    body {
+        background-color: var(--background-surface);
+    }
+</style>

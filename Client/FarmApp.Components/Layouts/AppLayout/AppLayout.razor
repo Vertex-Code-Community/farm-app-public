@@ -1,0 +1,5 @@
+﻿@inherits LayoutComponentBase
+
+<div id="main-wrapper" class="theme-wrapper @(OperatingSystem.IsIOS() ? "ios-font" : "android-font")" data-theme="@ThemeService.GetResolvedTheme()">
+    @Body
+</div>

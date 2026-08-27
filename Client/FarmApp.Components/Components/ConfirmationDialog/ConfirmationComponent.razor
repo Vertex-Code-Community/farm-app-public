@@ -1,0 +1,25 @@
+﻿<div class="content-container">
+    <div class="close-container">
+        <IconComponent IconSrc="_content/FarmApp.Components/img/shared/x-02.svg" 
+         IconSize="16" IconCallback="() => OnSubmit.InvokeAsync(false)"
+         ExtraStyles="height: 15px; position: relative; top: 15px;"/>
+    </div>
+    <div class="top-container">
+        <div class="top">@Localizer[_header]</div>
+        <div class="middle scroll">
+            <div class="scroller">@Localizer[_questionText]</div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div @onclick="() => { OnSubmit.InvokeAsync(true); }"
+             ontouchstart="onRippleEffectTouchStartListener(event, true)"
+             class="save noselectable-text yes">
+            @Localizer["Yes"]
+        </div>
+        <div @onclick="() => { OnSubmit.InvokeAsync(false); }"
+             ontouchstart="onRippleEffectTouchStartListener(event, true)"
+             class="save noselectable-text no">
+            @Localizer["No"]
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿.farm-input-with-error {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .farm-input-container {
+        position: relative;
+        width: 100%;
+        height:117px;
+        border-radius: 3px;
+    }
+
+farm-input-with-error {
+    width: 100%;
+    position: relative;
+}
+
+.farm-input {
+    width: 100%;
+    height: 117px;
+    background-color: var(--surface-inputs);
+    border: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    color: var(--text-secondary);
+
+}
+
+    .farm-input:focus {
+        outline: none;
+        border: 1px solid var(--accent-primary);
+        caret-color: var(--accent-primary);
+    }
+
+    .farm-input.valid.modified {
+        outline: none;
+    }
+
+::deep .invalid {
+    outline: none;
+}
+
+                .farm-input-container > .farm-input:focus + .farm-input-label + .focus-bg {
+                    transform: scaleX(1);
+                    transition: all 0.1s ease;
+                }
+
+    .farm-input::placeholder {
+        color: var(--text-placeholder);
+    }
+
+.farm-input-with-error ::deep .error-container {
+    margin-top: -8px;
+    max-height: 0px;
+    opacity: 0;
+}
+
+.farm-input-with-error:has(.invalid.modified):not(:focus-within) ::deep .error-container {
+    margin-top: 0px;
+    max-height: 100px;
+    opacity: 1;
+}
+
+.farm-input-with-error:has(.invalid.modified):not(:focus-within) .farm-input {
+    border-color: var(--state-error);
+}

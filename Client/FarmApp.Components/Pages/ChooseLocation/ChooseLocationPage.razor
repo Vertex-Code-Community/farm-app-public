@@ -1,0 +1,54 @@
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.SearchBar
+@using FarmApp.Components.Components.Switch
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+@attribute [Route(Constants.ClientRoutes.ChooseLocationPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Models.Theme
+@using Microsoft.AspNetCore.Components.Forms
+
+@layout PageLayout
+
+<div class="choose-location-cont">
+    <TopNavigationComponent Title="Location" Subtitle="@_currentLocation" />
+
+    <div class="page-cont" style="padding-bottom: @(ScreenOffsetProvider.Bottom + 16)px;">
+        <SearchBarComponent @bind-SearchQuery="_searchQuery" />
+
+        <UnorderedListComponent ItemHeight="52px" SeparatorColor="var(--surface-cards)" BackgroundColor="transparent" ExtraStyles="padding: 0">
+            @if (_searchQuery.Length > 0)
+            {
+                @foreach (var location in _filteredLocations)
+                {
+                    <ListItemComponent ItemCallback="() => OnLocationSelected(location)">
+                        <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/marker-02.svg" />
+                        <p class="option-text">@location.Label</p>
+                    </ListItemComponent>
+                }
+            }
+            else
+            {
+                <ListItemComponent ItemCallback="OnCurrentLocationClicked">
+                    <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/map-icons/pointer-01.svg" />
+                    <div>
+                        <p class="option-text">Current location</p>
+                        <p class="option-subtext">@_currentLocation</p>
+                    </div>
+                </ListItemComponent>
+
+                @foreach (var location in _recentLocations)
+                {
+                    <ListItemComponent ItemCallback="() => OnLocationSelectedByLabel(location)">
+                        <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/marker-02.svg" />
+                        <p class="option-text">@location</p>
+                    </ListItemComponent>
+                }
+            }
+        </UnorderedListComponent>
+
+    </div>
+</div>
+

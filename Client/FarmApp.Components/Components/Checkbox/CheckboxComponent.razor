@@ -1,0 +1,8 @@
+﻿@inherits Microsoft.AspNetCore.Components.Forms.InputBase<bool>
+
+<label data-animate class="farmapp-checkbox @(Disabled ? "disabled" : "")">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.1998 5.59961L6.42679 10.3996L4.7998 8.76342" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <input hidden disabled="@Disabled" type="checkbox" checked="@CurrentValue" @onchange="OnChange" />
+</label>

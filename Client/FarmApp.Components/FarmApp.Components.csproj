@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Bch.Components.Calendar" Version="0.0.19-alpha" />
+        <PackageReference Include="Bch.Components.InputFile" Version="0.0.19-alpha" />
+        <PackageReference Include="Bch.Modules.GlobalEvents" Version="0.0.19-alpha" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="10.0.4" />
+        <PackageReference Include="NetTopologySuite.Features" Version="2.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Data\FarmApp.ViewModels\FarmApp.ViewModels.csproj" />
+      <ProjectReference Include="..\..\Client\FarmApp.Services\FarmApp.Services.csproj" />
+      <ProjectReference Include="..\..\FarmApp.Shared\FarmApp.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\Subscription\SubscriptionProduct\SubscriptionProductComponent.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Components\DateAndTimePicker\DateAndTimePickerComponent.razor" />
+      <None Include="wwwroot\js\mainPageScrollLock.js" />
+    </ItemGroup>
+</Project>

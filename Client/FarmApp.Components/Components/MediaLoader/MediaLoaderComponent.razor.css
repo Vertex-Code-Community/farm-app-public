@@ -1,0 +1,146 @@
+.loader {
+    --animation-speed: 3s;
+
+    margin: auto;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.circle,
+.rotate-start {
+    stroke-dasharray: 78.5;
+    stroke-linecap: round;
+    transform-origin: center;
+}
+
+.circle {
+    animation: shrink var(--animation-speed) infinite linear;
+    stroke-dashoffset: 0;
+    transform: rotate(90deg);
+}
+
+    .circle.ios {
+        transform: rotate(270deg) scaleX(-1);
+        animation: shrink-ios var(--animation-speed) infinite linear, opacity calc(var(--animation-speed) / 4) linear alternate infinite;
+    }
+
+.conic-gradient-bg {
+    width: 100%;
+    height: 100%;
+    background-image: conic-gradient(var(--media-loader), rgba(0, 0, 0, 0));
+    animation: rotate-bg var(--animation-speed) infinite linear;
+    transform: rotate(1260deg) scaleX(1);
+}
+
+.rotate-start {
+    stroke-dashoffset: 78.4;
+    animation: rotate-start var(--animation-speed) infinite linear;
+    transform: rotate(810deg);
+}
+
+@keyframes rotate-bg {
+    0% {
+        transform: rotate(180deg) scaleX(1);
+    }
+
+    25% {
+        transform: rotate(540deg) scaleX(1);
+    }
+
+    25.001% {
+        transform: rotate(540deg) scaleX(-1);
+    }
+
+    50% {
+        transform: rotate(900deg) scaleX(-1);
+    }
+
+    75% {
+        transform: rotate(900deg) scaleX(-1);
+    }
+
+    75.001% {
+        transform: rotate(915deg) scaleX(1);
+    }
+
+    98.9% {
+        transform: rotate(1260deg) scaleX(1);
+    }
+
+    99% {
+        transform: rotate(1260deg) scaleX(1);
+    }
+
+    100% {
+        transform: rotate(1260deg) scaleX(1);
+    }
+}
+
+@keyframes rotate-start {
+    0% {
+        stroke-dashoffset: 78.4;
+        transform: rotate(90deg);
+    }
+
+    50% {
+        stroke-dashoffset: 78.4;
+        transform: rotate(810deg);
+    }
+
+    75% {
+        stroke-dashoffset: 78.4;
+        transform: rotate(810deg);
+    }
+
+    75.001% {
+        stroke-dashoffset: 78.5;
+        transform: rotate(810deg);
+    }
+
+    97% {
+        stroke-dashoffset: 78.5;
+        transform: rotate(810deg);
+    }
+
+    97.9% {
+        stroke-dashoffset: 78.4;
+        transform: rotate(810deg);
+    }
+
+    100% {
+        stroke-dashoffset: 78.4;
+        transform: rotate(810deg);
+    }
+}
+
+@keyframes shrink {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -314;
+    }
+}
+
+@keyframes shrink-ios {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 314;
+    }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}

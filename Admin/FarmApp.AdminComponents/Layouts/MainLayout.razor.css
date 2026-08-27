@@ -1,0 +1,29 @@
+.main-layout-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background: var(--color-bg-page);
+}
+
+    .main-layout-container > .content-left {
+        flex-shrink: 0;
+    }
+
+    .main-layout-container > .main-layout-container-inner {
+        padding-left: 20px;
+        flex-grow: 1;
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        overflow: hidden;
+        background: var(--color-bg-page);
+        color: var(--color-text-primary);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .main-layout-container > .main-layout-container-inner > .content-area {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: auto;
+        }

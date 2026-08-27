@@ -1,0 +1,21 @@
+@using FarmApp.Components.Components.BottomSheet
+
+<BottomSheetComponent IsOpen="IsOpen" IsOpenChanged="IsOpenChanged">
+    <div class="title-row">
+        <div class="title">@Localizer["Media-Picker_Capture-Media"]</div>
+    </div>
+
+    <IconComponent BorderRadius="8" IconContSize="80" IconCallback="OnPhotoOrVideoCaptureAsync" ExtraStyles="margin-bottom: 16px"
+     IconSrc="_content/FarmApp.Components/img/media/camera-01.svg" IconContBackground="var(--background-surface)" />
+
+    <div class="title-row">
+        <div class="title">@Localizer["Media-Picker_Select-Media"]</div>
+        <div class="btn-all-images" @onclick="OnMediaSelectAsync">
+            <div class="text">@Localizer["Media-Picker_All-Photos"]</div>
+            <IconComponent IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" IconContSize="24" />
+        </div>
+    </div>
+
+    <IconComponent BorderRadius="8" IconContSize="80" IconCallback="OnMediaSelectAsync"
+     IconSrc="_content/FarmApp.Components/img/media/picture.svg" IconContBackground="var(--background-surface)" />
+</BottomSheetComponent>

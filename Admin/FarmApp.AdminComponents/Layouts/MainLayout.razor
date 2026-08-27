@@ -1,0 +1,36 @@
+﻿
+@using FarmApp.AdminComponents.ComponentsCommon.Sidebar
+@using FarmApp.AdminComponents.ComponentsCommon.GlobalLoader
+@using FarmApp.AdminComponents.ComponentsCommon.HeaderComponent
+@using Bch.Modules.Themes;
+@using FarmApp.AdminComponents.ComponentsCommon.GlobalError
+@using Microsoft.AspNetCore.Authorization
+@using FarmApp.AdminComponents.ComponentsCommon.Snackbar
+@inherits LayoutComponentBase
+
+<BchThemeProvider>
+    <div class="main-layout-container">
+        <div class="content-left">
+            <SidebarComponent />
+        </div>
+
+        <div class="main-layout-container-inner">
+            <HeaderComponent />
+
+            <div class="content-area">
+                @Body
+                <ContentLoaderComponent />
+            </div>
+
+             <GlobalLoaderComponent /> 
+        </div>
+        <GlobalErrorComponent />
+        <SnackbarHost />
+    </div>
+</BchThemeProvider>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

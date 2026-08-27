@@ -1,0 +1,153 @@
+trigger: none
+pr: none
+name: 1.0.$(Build.BuildId)
+
+pool:
+  vmImage: 'macOS-15'
+
+variables:
+  buildConfiguration: 'Release'
+  dotNetVersion: 'net10.0'
+  appPackageId: 'dev.vertexcode.farmapp'
+  baseVersion: '1.0'
+
+steps:
+
+  - task: Bash@3
+    displayName: 'select xcode version'
+    inputs:
+      targetType: 'inline'
+      script: |
+        XCODE_PATH=""
+        for candidate in /Applications/Xcode_26.2.app /Applications/Xcode_26.0.1.app /Applications/Xcode_26.0.app /Applications/Xcode_26.app /Applications/Xcode_16.4.app; do
+          if [ -d "$candidate/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs" ] \
+             && ls "$candidate/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/" 2>/dev/null | grep -q "MacOSX.*\.sdk"; then
+            XCODE_PATH="$candidate"; break
+          fi
+        done
+        if [ -z "$XCODE_PATH" ]; then echo "##vso[task.logissue type=error]No suitable Xcode found"; exit 1; fi
+        sudo xcode-select -s "$XCODE_PATH"
+        xcodebuild -version
+
+  - task: UseDotNet@2
+    displayName: 'install .net 10.0 sdk'
+    inputs:
+      packageType: 'sdk'
+      version: '10.0.103'
+
+  - task: Bash@3
+    displayName: 'pin global.json to 10.0.103'
+    inputs:
+      targetType: 'inline'
+      script: |
+        cat > global.json <<'EOF'
+        {
+          "sdk": {
+            "version": "10.0.103",
+            "rollForward": "latestPatch"
+          }
+        }
+        EOF
+
+  - task: Bash@3
+    displayName: 'install maui'
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet workload install maui --version 10.0.103
+
+  - task: Bash@3
+    displayName: 'set app version'
+    inputs:
+      targetType: 'inline'
+      script: |
+        sed -i '' "s|<ApplicationVersion>.*</ApplicationVersion>|<ApplicationVersion>$(baseVersion).$(Build.BuildId)</ApplicationVersion>|" Client/FarmApp.Mobile/FarmApp.Mobile.csproj
+        sed -i '' "s|<ApplicationDisplayVersion>.*</ApplicationDisplayVersion>|<ApplicationDisplayVersion>$(baseVersion).$(Build.BuildId)</ApplicationDisplayVersion>|" Client/FarmApp.Mobile/FarmApp.Mobile.csproj
+
+  - task: ios-bundle-version@1
+    displayName: 'iOS bundle version'
+    inputs:
+      sourcePath: 'Client/FarmApp.Mobile/Platforms/iOS/Info.plist'
+      versionCodeOption: 'buildid'
+      versionCode: '$(Build.BuildId)'
+      versionName: '$(baseVersion).$(Build.BuildId)'
+      printFile: true
+
+  - task: InstallAppleCertificate@2
+    displayName: 'install p12'
+    inputs:
+      certSecureFile: 'ios-distribution.p12'
+      certPwd: '$(CertificatePassword)'
+      keychain: 'temp'
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'install mobileprovision'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: 'farmapp.mobileprovision'
+
+  - task: Bash@3
+    displayName: 'install iOS 26 simulator runtime'
+    inputs:
+      targetType: 'inline'
+      script: |
+        echo "=== Xcode version ==="
+        xcodebuild -version
+        echo "=== iphonesimulator SDK build ==="
+        xcrun --sdk iphonesimulator --show-sdk-build-version 2>/dev/null || true
+        echo "=== Installed runtimes ==="
+        xcrun simctl list runtimes 2>/dev/null || true
+        echo "=== Downloading iOS 26.0 GA simulator runtime (build 23A339) ==="
+        xcrun simctl runtime download "iOS 26" 2>&1 || \
+          xcrun simctl runtime download "com.apple.CoreSimulator.SimRuntime.iOS-26-0" 2>&1 || \
+          xcrun simctl runtime download "iOS 19" 2>&1 || \
+          echo "simctl download unavailable or runtime already present"
+        echo "=== Runtimes after download ==="
+        xcrun simctl list runtimes 2>/dev/null || true
+
+  - task: Bash@3
+    displayName: 'build iOS app (signed)'
+    inputs:
+      targetType: 'inline'
+      script: |
+          sudo dotnet publish Client/FarmApp.Mobile/FarmApp.Mobile.csproj \
+            -f $(dotNetVersion)-ios \
+            -c Release \
+            /p:ApplicationId="$(appPackageId)" \
+            /p:RuntimeIdentifier=ios-arm64 \
+            /p:ArchiveOnBuild=true \
+            /p:CodesignKey="$(CodesignKey)" \
+            /p:CodesignProvision="$(CodesignProvision)"
+
+  - script: |
+      sudo mv Client/FarmApp.Mobile/bin/Release/$(dotNetVersion)-ios/ios-arm64/publish/*.ipa \
+              Client/FarmApp.Mobile/bin/Release/$(dotNetVersion)-ios/ios-arm64/publish/$(appPackageId)-Signed.ipa
+    displayName: 'rename .ipa'
+
+  - task: CopyFiles@2
+    displayName: 'copy iOS files'
+    inputs:
+      Contents: |
+        Client/FarmApp.Mobile/bin/Release/$(dotNetVersion)-ios/ios-arm64/publish/*.ipa
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - script: |
+      find $(build.ArtifactStagingDirectory) -type f
+    displayName: 'print build.ArtifactStagingDirectory'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'make $(appPackageId)-Signed.ipa downloadable'
+    inputs:
+      pathToPublish: $(Build.ArtifactStagingDirectory)/Client/FarmApp.Mobile/bin/Release/$(dotNetVersion)-ios/ios-arm64/publish/$(appPackageId)-Signed.ipa
+      artifactName: '$(appPackageId)-Signed.ipa'
+      publishLocation: 'Container'
+
+  - task: AppStoreRelease@1
+    displayName: 'send app to TestFlight'
+    inputs:
+      serviceEndpoint: 'apple-store-service-connection'
+      releaseTrack: 'TestFlight'
+      appIdentifier: '$(appPackageId)'
+      appType: 'iOS'
+      shouldSkipWaitingForProcessing: false
+      appSpecificId: '$(AppAppleId)'

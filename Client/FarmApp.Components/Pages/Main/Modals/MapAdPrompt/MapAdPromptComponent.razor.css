@@ -1,0 +1,67 @@
+.ad-prompt-container {
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-prompt-container > .header > .icons > .icon.edit {
+    background: white url(img/map-icons/modal/edit-icon.png) no-repeat center;
+    background-size: 90%;
+    background-position-x: 1px;
+    background-position-y: center;
+}
+
+.ad-prompt-container > .header > .icons > .icon.calendar {
+    background: white url(img/map-icons/modal/calendar-icon.png) no-repeat center;
+    background-size: 75%;
+}
+
+.ad-prompt-container > .header > .icons > .icon.remove {
+    background: white url(img/map-icons/modal/throwout-icon.png) no-repeat center;
+    background-size: 80%;
+}
+
+.ad-prompt-container > .data {
+    width: 100%;
+    height: calc(100% - 5px);
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    gap: 2px;
+}
+
+.ad-prompt-container > .data > .line {
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-prompt-container > .data > .line > .value {
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.ad-prompt-container > .data > .line > .button {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+    /*background: #074B82;*/
+    border: 1px solid #71737840;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    text-align: center;
+    color: #333842;
+    cursor: pointer;
+    margin-bottom: 4px;
+}

@@ -1,0 +1,126 @@
+body:has(.ios-font) {
+    font-family: "SF Pro Text", sans-serif;
+}
+
+body:has(.android-font) {
+    font-family: "Roboto Flex", sans-serif;
+}
+
+
+.icon {
+    color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-track {
+    display: flex;
+    justify-content: center;
+}
+
+::-webkit-scrollbar-corner {
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #71737880;
+    border: 4px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #71737840;
+    border: 4px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+}
+
+.ripple-span {
+    position: absolute;
+    background: #eafbf2;
+    z-index: 100000;
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center center;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: ripple-animation 600ms linear forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes ripple-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transform-origin: top center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.text-primary {
+    color: var(--text-primary) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-tertiary {
+    color: var(--text-tertiary) !important;
+}
+
+.body-14-regular, .body-16-regular, .body-18-medium {
+    margin: 0;
+}
+
+.body-14-regular {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.body-16-regular {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.body-18-medium {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.heading-24-semibold {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+}

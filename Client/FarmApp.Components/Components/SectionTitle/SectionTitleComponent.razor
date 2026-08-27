@@ -1,0 +1,7 @@
+﻿<div class="section-title-row @(IsHeading ? "heading-title" : "")">
+    <h3 class="section-title">@Title</h3>
+    @if(!String.IsNullOrWhiteSpace(IconUrl))
+    {
+        <IconComponent IconSrc="@IconUrl" IconCallback="@IconCallback" IconContSize="@(IsHeading ? 44 : 40)" Opacity="@IconOpacity" />
+    }
+</div>

@@ -1,0 +1,62 @@
+@attribute [Route(Constants.ClientRoutes.NoteStatusesPage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+@layout PageLayout
+@using FarmApp.Components.Components.CreateNote
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.PropertyNoteStatusCreate
+@using FarmApp.Components.Components.SectionTitle
+@using FarmApp.Components.Components.StatusBlock
+@using FarmApp.Components.Components.TextWMaxWidth
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.UnorderedList
+
+<div class="statuses-container">
+    <TopNavigationComponent Title="@Localizer["Statuses"]" IconUrl="_content/FarmApp.Components/img/shared/plus-02.svg" IconCallback="CreateCallback"/>
+
+    <div class="content-container" style="padding-bottom: @(ScreenOffsetProvider.Bottom)px">
+
+        <div class="section">
+            <SectionTitleComponent Title="@Localizer["Statuses_System"]" />
+            <UnorderedListComponent ItemHeight="58px" ItemsInteractable="false">
+                @foreach (var status in _noteDefaultStatuses)
+                {
+                    <ListItemComponent>
+                        <StatusBlockComponent Status="status"/>
+                    </ListItemComponent>
+                }
+            </UnorderedListComponent>
+
+        </div>
+
+        <div class="section">
+            <SectionTitleComponent Title="@Localizer["Statuses_Custom"]" />
+            @if (_noteCustomStatuses.Count > 0)
+            {
+                <UnorderedListComponent ItemHeight="58px">
+                    @foreach (var status in _noteCustomStatuses)
+                    {
+                        <ListItemComponent ItemCallback="() => _editingStatusId = status.Id">
+                            <StatusBlockComponent Status="status"/>
+                            <IconComponent IconContSize="24" ExtraStyles="margin-left: auto"
+                                IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg"  />
+                        </ListItemComponent>
+                    }
+                </UnorderedListComponent>
+            } else
+            {
+                <CreateNoteComponent Styles="margin-top: 12px" Type="status" OnCreateClicked="CreateCallback" />
+            }
+        </div>
+    </div>
+</div>
+
+@if (_showCreateStatusModal)
+{
+    <PropertyNoteStatusCreateModal CloseModalCallback="CloseModal" />
+}
+
+@if (_editingStatusId != -1)
+{
+    <PropertyNoteStatusCreateModal CloseModalCallback="CloseModal" StatusId="_editingStatusId" />
+}

@@ -1,0 +1,94 @@
+@using FarmApp.Components.Components.ModalSheet
+@using FarmApp.Components.Components.PropertyNoteCreate.SelectStatus
+@using FarmApp.Components.Components.SelectField
+@using FarmApp.Components.Components.TextWMaxWidth
+@using FarmApp.Components.Components.TimeDropdown
+@using FarmApp.ViewModels.PropertyNoteStatuses
+@using FarmApp.Components.Components.PropertyNoteCreate.MediaPickerSheet
+
+<ModalSheetComponent NestedModal="isNested" IsEditMode="_editMode" IsOpen="IsOpen"
+        IsOpenChanged="IsOpenChanged" CanClose="CanCloseModal" IsLoading="_isLoading"
+        Title="@_modalTitle" TitleIconCallback="SubmitAsync">
+
+    <ChildContent>
+        <div class="create-property-note-container @(!string.IsNullOrEmpty(PropertyId) ? "item-mode" : "") @(_editMode ? "edit-mode" : "")
+            @(!_isLoading ? "loaded" : "")">
+            <EditForm EditContext="_editContext" class="edit-form">
+                <DataAnnotationsValidator />
+                <div class="page-content">
+
+                <DisplayMediaComponent OnAddClick="OpenFilePicker" @bind-Files="Files" IsEditMode="true" PropertyNoteId="@PropertyNoteId" OnPreviewSet="OnPreviewNoteSet" />
+
+                    <div class="title-block">
+                        <InputComponent @bind-Value="_propertyNote.Header"
+                                        Label="@Localizer["Property-Note_Name"]"
+                                        Type="Text" />
+                    </div>
+
+                    <SelectFieldComponent @bind-PropertyId="PropertyId" />
+
+                    <ErrorMessage For="@(() => PropertyId)" />
+
+                    <div class="text-block">
+                        <TextAreaComponent @bind-Value="_propertyNote.Text"
+                                           Label="@Localizer["Property-Note_Description"]" />
+                    </div>
+
+                    <div class="multi-select-block">
+                        <div class="select-item">
+                            <DateAndTimePickerComponent Label="@Localizer["Property-Note_Start"]" @bind-SelectedDate="_propertyNote.StartTime" />
+                            <ErrorMessage For="() => _propertyNote.StartTime" />
+                        </div>
+
+                        <div class="select-item">
+                            <DateAndTimePickerComponent Label="@Localizer["Property-Note_End"]" @bind-SelectedDate="_propertyNote.EndTime" />
+                            <ErrorMessage For="() => _propertyNote.EndTime" />
+                        </div>
+                    </div>
+
+
+                    <div class="multi-select-block notifs">
+                        <div class="notifications">
+                            <span class="body-16-regular text-secondary">@Localizer["Property-Note_Notifications"]</span>
+
+                        <FarmApp.Components.Components.Switch.SwitchComponent @bind-IsEnabled="_propertyNote.NotificationsEnabled"/>
+                    </div>
+                    <div class="notif-options">
+                        <div class="select-item">
+                            <TimeDropdownComponent SelectTitle="@Localizer["Notifications_Remind-Start"]" SelectedTime="RemindAtStart" OnSelect="OnRemindAtStartSelected" />
+                        </div>
+                        <div class="select-item">
+                            <TimeDropdownComponent SelectTitle="@Localizer["Notifications_Remind-end"]" SelectedTime="RemindAtEnd" OnSelect="OnRemindAtEndSelected" />
+                        </div>
+                    </div>
+                </div>
+
+                    <SelectStatusComponent Statuses="_statuses"
+                                           Selected="_selectedStatus"
+                                           OnSelect="OnStatusSelected" />
+
+                    <div class="select-block" @onclick="OpenFilePicker">
+                        <div class="select-content">
+                            <div>@Localizer["Property-Note_Add-Photo-Video"]</div>
+                            <IconComponent IconContSize="40" IconSrc="_content/FarmApp.Components/img/shared/plus-02.svg" />
+                        </div>
+                    </div>
+                </div>
+
+            </EditForm>
+        </div>
+    </ChildContent>
+
+    <OverlaySibling>
+        <MediaPickerSheet @bind-IsOpen="_isFilePickerOpen" OnFilesPicked="OnFilesPicked" />
+    </OverlaySibling>
+
+</ModalSheetComponent>
+
+
+<style>
+    body {
+        background: var(--background-surface);
+    }
+
+</style>

@@ -1,0 +1,39 @@
+﻿@using Bch.Components.Modal
+@typeparam TItem
+
+<div id="@_containerId" class="select-container @(_isOpened ? "opened" : "")" style="@($"width: {Width}; height: {Height};")"
+     @onclick="OnSelectClickedAsync">
+    <div class="header-wrapper">
+        @HeaderTemplate(_selectedValue)
+    </div>
+
+    <div class="clear-button-wrapper">
+        @if (Selected is not null)
+        {
+            <div class="clear-button"
+                 @onclick="() => OnOptionClickedAsync(default)"
+                 @onclick:stopPropagation>
+            </div>
+        }
+    </div>
+</div>
+
+<BchModal @bind-Show="IsOpened"
+          Width="@Width"
+          Height="@($"{DropDownHeight.ToString(_nF)}px")"
+          X="@($"{_ddlContentPos.X.ToString(_nF)}px")"
+          Y="@($"{_ddlContentPos.Y.ToString(_nF)}px")">
+    <div id="@_contentContainerId" class="select-ddl-content">
+        <div class="scroller">
+            @foreach (var item in Items)
+            {
+                <div @key="@item"
+                     class="select-item"
+                     style="height: @($"{DropDownItemHeight.ToString(_nF)}px")"
+                     @onclick="() => OnOptionClickedAsync(item)">
+                    @ItemTemplate(item)
+                </div>
+            }
+        </div>
+    </div>
+</BchModal>

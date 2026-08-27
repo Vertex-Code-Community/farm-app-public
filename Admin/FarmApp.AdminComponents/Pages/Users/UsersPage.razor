@@ -1,0 +1,69 @@
+@using Bch.Components.Table
+@using FarmApp.ViewModels.Users
+@using Bch.Components.Table.TableColumn
+@using Microsoft.AspNetCore.Authorization
+@using FarmApp.AdminComponents.ComponentsCommon.ConfirmComponent
+@using FarmApp.AdminComponents.Pages.Users.EditUserModal
+
+@attribute [Authorize]
+@page "/users"
+@page "/"
+
+
+<BchTable @ref="_usersTable"
+          TRowData="UserViewModel"
+          Items="_models"
+          MinWidth="100%"
+          PageSize="_countTake"
+          IsPagination="true"
+          IsScrollPagination="false"
+          @bind-CurrentPage="_currentPage">
+    <BchTableColumn TRowData="UserViewModel"
+                    Title="ImagePreview">
+        <TdTemplate Context="user">
+            <div class="action-buttons">
+                <button class="btn btn-success" @onclick="() => OpenEditModal(user)">
+                    Edit
+                </button>
+                <button class="btn btn-danger" @onclick="() => OpenConfirmModalForDelete(user.Id)">
+                    Delete
+                </button>
+            </div>
+        </TdTemplate>
+    </BchTableColumn>
+
+    <BchTableColumn TRowData="UserViewModel" Title="Email" Expression="x => x.Email"/>
+    <BchTableColumn TRowData="UserViewModel" Title="First Name" Expression="x => x?.FirstName">
+        <TdTemplate Context="model">
+            @if (!string.IsNullOrWhiteSpace(model.FirstName))
+            {
+                @model.FirstName
+            }
+        </TdTemplate>
+    </BchTableColumn>
+    <BchTableColumn TRowData="UserViewModel" Title="Last Name" Expression="x => x?.LastName">
+        <TdTemplate Context="model">
+            @if (!string.IsNullOrWhiteSpace(model.LastName))
+            {
+                @model.LastName
+            }
+        </TdTemplate>
+    </BchTableColumn>
+    <BchTableColumn TRowData="UserViewModel" Title="User Type" Expression="x => x.UserType"/>
+    <BchTableColumn TRowData="UserViewModel" Title="Registration Date" Expression="x => x.Created"/>
+</BchTable>
+
+
+<ConfirmModalComponent @bind-Opened="_confirmationModalOpen"
+                       Title="Delete this user?"
+                       ResultChanged="RemoveUserAsync"/>
+
+
+@if (_editModalOpen)
+{
+    <EditUserModalComponent OnCloseClick="CloseEditModal"
+                            OnUpdateUser="OnUpdateUser"
+                            Title="Update User"
+                            Opened="_editModalOpen"
+                            UserViewModel="_editUserViewModel"/>
+}

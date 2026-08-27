@@ -1,0 +1,20 @@
+@using FarmApp.Components.Components.TractorAnimation
+
+<BchModal Show="@(GlobalLoaderService.IsLoading)"
+          CssClass="notification-container"
+          Width="100%"
+          Height="100%"
+          ShowOverlay="false"
+          CloseOnOverlayClicked="false">
+
+    <div class="loader-container @(NotificationService.LastNotification is not null ? "hide-background" : "")">
+        <TractorAnimationComponent Width="35%"/>
+    </div>
+
+</BchModal>
+
+<style>
+    .notification-container {
+        z-index: 2147483647 !important;
+    }
+</style>

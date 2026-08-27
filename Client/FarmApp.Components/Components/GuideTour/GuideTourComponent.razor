@@ -1,0 +1,60 @@
+﻿<BchModal ShowOverlay="false" Show="true" Width="100%" Height="100%">
+    <div class="guide-wrapper" style="opacity: @(GlobalLoaderService.IsLoading ? 0 : 1)">
+        <div @ref="_guideElRef" class="tour-guide hidden">
+            <div class="overlay-cutout"></div>
+
+            <div class="tour-bubble">
+                <div class="heading" style="padding-top: @(_curStep?.Icon?.IconContSize > 40 ? "16px" : "6px")">
+                    <div class="steps">
+                        @if (_curStep != null)
+                        {
+                            @if (_curStep.Icon == null)
+                            {
+                                <p class="body-14-regular text-tertiary">@_curStep.Sequence/@_totalSteps</p>
+                            }
+                            else
+                            {
+                                <IconComponent IconSrc="@_curStep.Icon.IconSrc" IconSize="@_curStep.Icon.IconSize" IconContSize="@_curStep.Icon.IconContSize"
+                                               IconColor="@_curStep.Icon.IconColor" IconContBackground="@_curStep.Icon.IconContBackground" BorderRadius="@_curStep.Icon.BorderRadius" />
+                            }
+                        }
+                    </div>
+                    @if (GuideTourService.ActiveGroupMetadata?.HasButtons != true)
+                    {
+                        <div class="close-guide">
+                            <IconComponent IconSrc="_content/FarmApp.Components/img/shared/x-03.svg"
+                                           IconColor="var(--text-secondary)" IconContSize="40" IconSize="24" IconCallback="() => {}" />
+                        </div>
+                    }
+                </div>
+                <p class="body-18-medium text-primary step-header">@(_curStep != null ? _curStep.Title : "")</p>
+            
+                @if (GuideTourService.ActiveGroup == Services.Interfaces.TourGroup.HowToUse && _curStep?.Sequence == 3)
+                {
+                    <HowToUseStepThree />
+                }
+                else
+                {
+                    <p class="body-16-regular text-secondary">@(_curStep != null ? _curStep.Subtitle : "")</p>
+                }
+
+                @if (GuideTourService.ActiveGroupMetadata?.HasButtons == true)
+                {
+                    <div class="buttons-cont">
+                        @if (_curStep != null && _curStep.Sequence != _totalSteps)
+                        {
+                            <ButtonComponent Name="@(Localizer["Skip"])" ClassName="tertiary tour-guide-skip-btn" Height="44px" />
+                            <ButtonComponent Name="@(Localizer["Next"])" ClassName="primary tour-guide-next-btn" Height="44px" />
+                        }
+                        else
+                        {
+                            <ButtonComponent Name="@(Localizer["Get_Started"])" ClassName="primary tour-guide-next-btn" Height="44px" />
+                        }
+                    </div>
+                }
+
+                <div class="bubble-triangle"></div>
+            </div>
+        </div>
+    </div>
+</BchModal>

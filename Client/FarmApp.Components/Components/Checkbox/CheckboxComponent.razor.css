@@ -1,0 +1,29 @@
+.farmapp-checkbox {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-color: var(--surface-inputs);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .farmapp-checkbox:has(:checked) {
+        background-color: var(--status-done);
+    }
+
+    .farmapp-checkbox svg {
+        opacity: 0;
+        transition: 0.3s;
+    }
+
+    .farmapp-checkbox:has(:checked) svg {
+        opacity: 1;
+    }
+
+    .farmapp-checkbox.disabled {
+        background-color: var(--text-disabled);
+    }

@@ -1,0 +1,42 @@
+﻿@using FarmApp.Components.Pages.Onboarding.FifthStepImage
+@attribute [Route(Constants.ClientRoutes.OnboardingPage)]
+
+@layout PageLayout
+
+<div class="onboarding-container">
+    @if (_currentStep != null)
+    {
+        <button class="skip-btn" style="top: @(_skipTopOffset)px" @onclick="FinishOnboarding">
+            <p>@Localizer["Skip"]</p>
+        </button>
+
+        <div class="onboarding-bottom-sheet" style="padding-bottom: @(ScreenOffsetProvider.Bottom)px">
+            <div @ref="_animCont" style="overflow: hidden;" class="text-content @(_hideImg ? "hidden" : "")">
+                <h3 class="heading-24-semibold text-primary">@_currentStep?.Title</h3>
+                <p class="body-16-regular text-secondary">@_currentStep?.Subtitle</p>
+            </div>
+
+            <div class="bottom-part">
+                <div class="dots-cont">
+                    @for (var i = 0; i < _steps.Length; i++)
+                    {
+                        var index = i;
+                        <div class="dot @(index == _currentStepIndex ? "selected" : "")"></div>
+                    }
+                </div>
+                <ButtonComponent Name="@((_currentStepIndex < _steps.Length - 1) ? Localizer["Next"] : Localizer["Get_Started"])" OnClick="NextStep" />
+            </div>
+        </div>
+
+        <div class="image-cont @(_hideImg ? "hidden" : "")" style="top: @(_skipTopOffset + 32 + 10)px;">
+            <div class="absolute-pos-cont" style="display: @(_currentStep.Image?.Src != "" ? "flex" : "none")">
+                <img src="@_currentStep.Image?.Src"
+                     style="max-width: @(_currentStep.Image?.MaxWidth); margin-bottom: @(_currentStep.Image?.MarginBottom)" />
+            </div>
+
+            <div class="absolute-pos-cont" style="display: @(_currentStep.Image?.Src == "" ? "flex" : "none")">
+                <FifthStepImageComponent Animate="_animateFinalStep" OnAnimationComplete="FinishOnboarding" />
+            </div>
+        </div>
+    }
+</div>

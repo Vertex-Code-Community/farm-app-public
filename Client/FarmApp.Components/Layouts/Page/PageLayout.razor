@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+@using AppLayout
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<LayoutView Layout="typeof(AppLayout)">
+    <div class="page-layout-container" style="padding-top: @(offsetTop)px;">
+        @Body
+    </div>
+</LayoutView>
+
+<style>
+    body {
+        background: var(--background-surface);
+    }
+</style>

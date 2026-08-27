@@ -1,0 +1,77 @@
+.create-property-note-status-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.page-content {
+    width: 100%;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 12px;
+}
+        .create-property-note-status-container > .page-content > .title-block {
+            width: 100%;
+            margin-top: 10px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .create-property-note-status-container > .page-content > .text-block {
+            width: 100%;
+            padding: 8px;
+        }
+
+.color-profile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px;
+    gap: 12px;
+    justify-content: center;
+}
+
+.color-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    height: 42px;
+}
+
+.color-picker {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    outline-offset: 5px;
+
+    transition: outline 0.2s;
+}
+
+    .color-picker.selected {
+        outline: 2px solid var(--status-done);
+    }
+
+.status-name {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.delete-modal {
+    gap: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons-cont {
+    gap: 8px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}

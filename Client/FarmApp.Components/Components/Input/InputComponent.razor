@@ -1,0 +1,26 @@
+﻿﻿@using FarmApp.Components.Components.ErrorMessage
+@using Microsoft.AspNetCore.Components.Forms
+@inherits InputBase<string>
+
+<div data-animate class="farm-input-with-error">
+    <div class="farm-input-container @(!string.IsNullOrEmpty(IconUrl) ? "has-icon" : "")">
+
+        <input id="@_id"
+               class="farm-input @CssClass"
+               type="@Type"
+               disabled="@Disabled"
+               readonly="@ReadOnly"
+               placeholder="@Label"
+               value="@CurrentValueAsString"
+               @oninput="HandleInput" />
+
+        @if (!string.IsNullOrEmpty(IconUrl))
+        {
+            <div class="farm-input-icon">
+                <IconComponent IconSrc="@IconUrl" IconContSize="40"/>
+            </div>
+        }
+    </div>
+    
+    <ErrorMessage For="ValueExpression" />
+</div>

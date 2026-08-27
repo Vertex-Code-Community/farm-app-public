@@ -1,0 +1,40 @@
+:root {
+    /* SURFACE */
+    --surface-cards: #FFFFFF;
+    --surface-inputs: #F5F3FF;
+    --background-surface: #F5F3FF;
+    /* TEXT */
+    --text-primary: #000000;
+    --text-secondary: #191919;
+    --text-tertiary: #414141;
+    --text-placeholder: #646B75;
+    --text-disabled: #D3D3D3;
+    /* ACCENTS */
+    --accent-primary: #006848;
+    --accent-primary-10: #0068481A;
+    --accent-secondary: #D7EDDD;
+    /* STATES */
+    --state-error: #FF3131;
+    --status-in-progress: #FF9D00;
+    --status-done: #0CBA65;
+    /* MAP BUTTON */
+    --drawing-mode-on-bg: #0CBA65;
+    /*  ICONS  */
+    --component-icon: #006848;
+    /* NOTIFICATIONS */
+    --notification-icon-bg: #0CBA6514;
+    /* SKELETONS */
+    --skeleton-bg: #E6ECF7;
+    --skeleton-shimmer: #F5F3FF;
+    /* CALENDAR TABLE */
+    --calendar-outside-border: #E9E4FF;
+    --calendar-inside-border: #F5F3FF;
+    /* NOTIFICATION */
+    --border-color: #71737840;
+    /* LOADER */
+    --media-loader: #484848;
+    /* DROPDOWN MODAL */
+    --modal-border: #F3F2F8;
+    /*  WEATHER BLUR BG  */
+    --weather-blur-bg: rgba(255,255,255,0.4);
+}

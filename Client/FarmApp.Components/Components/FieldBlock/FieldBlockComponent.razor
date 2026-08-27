@@ -1,0 +1,26 @@
+@using FarmApp.Components.Components.TextWMaxWidth
+<div class="field block @(_isReadyToAnimate ? "animate" : "")" @onclick="() => NavigateToPropertyDetails(Property.Id)"
+     style="@(_isReadyToAnimate ? $"animation-delay: {AnimationIndex * 50}ms;" : "")">
+
+    @if (!String.IsNullOrEmpty(Property.PictogramBase64Url))
+    {
+        <img class="field-img" src="@Property.PictogramBase64Url" />
+    }
+    <div class="note-columns-wrapepr">
+        <div class="note-column">
+            <p class="note-title">
+                <TextWMaxWidthComponent TextContent="@Property.Name" />
+            </p>
+            <p class="description">
+                <TextWMaxWidthComponent TextContent="@_areaText" />
+            </p>
+        </div>
+
+        <div class="note-column field-icons-column" @onclick:stopPropagation="true">
+            <div class="field-icons-row">
+                <IconComponent IconContSize="40" IconSrc="_content/FarmApp.Components/img/shared/point.svg" IconCallback="NavigateToPropertyOnMap" />
+                <IconComponent IconContSize="40" IconSrc="_content/FarmApp.Components/img/shared/edit.svg" IconCallback="() => { }" />
+            </div>
+        </div>
+    </div>
+</div>

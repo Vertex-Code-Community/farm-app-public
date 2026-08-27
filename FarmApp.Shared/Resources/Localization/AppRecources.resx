@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Settings_Change_Password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Settings_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Settings_Statuses" xml:space="preserve">
+    <value>Statuses</value>
+  </data>
+  <data name="Other_Our_Website" xml:space="preserve">
+    <value>Our website</value>
+  </data>
+  <data name="Other_Log_Out" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Other_Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="TabPanel_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="TabPanel_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="TabPanel_Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="TabPanel_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Select_Language" xml:space="preserve">
+    <value>Select language</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Theme_System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="All_Notes" xml:space="preserve">
+    <value>All Notes</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Map_How-To-Use" xml:space="preserve">
+    <value>How to use</value>
+  </data>
+  <data name="Home_Last-Fields" xml:space="preserve">
+    <value>Last fields</value>
+  </data>
+  <data name="Home_Last-Notes" xml:space="preserve">
+    <value>Last notes</value>
+  </data>
+  <data name="Weather_Sunny" xml:space="preserve">
+    <value>Sunny</value>
+  </data>
+  <data name="Weather_Partly-Cloudy" xml:space="preserve">
+    <value>Partly Cloudy</value>
+  </data>
+  <data name="Weather_Clear-Night" xml:space="preserve">
+    <value>Clear night</value>
+  </data>
+  <data name="Weather_Cloudy-Night" xml:space="preserve">
+    <value>Cloudy night</value>
+  </data>
+  <data name="Weather_Cloudy" xml:space="preserve">
+    <value>Cloudy</value>
+  </data>
+  <data name="Weather_Rain" xml:space="preserve">
+    <value>Rain</value>
+  </data>
+  <data name="Weather_Heavy-Rain" xml:space="preserve">
+    <value>Heavy rain</value>
+  </data>
+  <data name="Weather_Thunderstrom" xml:space="preserve">
+    <value>Thunderstorm</value>
+  </data>
+  <data name="Weather_Snow" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="Weather_Mist" xml:space="preserve">
+    <value>Mist</value>
+  </data>
+  <data name="Weather_Load_Error" xml:space="preserve">
+    <value>Failed to load weather info.</value>
+  </data>
+  <data name="Property-Note_New-Note" xml:space="preserve">
+    <value>New Note</value>
+  </data>
+  <data name="Property-Note_Edit-Note" xml:space="preserve">
+    <value>Edit Note</value>
+  </data>
+  <data name="Property-Note_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property-Note_Choose-A-Field" xml:space="preserve">
+    <value>Choose a field</value>
+  </data>
+  <data name="Property-Note_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property-Note_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Property-Note_End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Property-Note_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Property-Note_Task-Status" xml:space="preserve">
+    <value>Task status</value>
+  </data>
+  <data name="Property-Note_Add-Photo-Video" xml:space="preserve">
+    <value>Add photo/video</value>
+  </data>
+  <data name="Select-Field" xml:space="preserve">
+    <value>Select Field</value>
+  </data>
+  <data name="Media-Picker_Capture-Media" xml:space="preserve">
+    <value>Capture photo or video</value>
+  </data>
+  <data name="Media-Picker_Select-Media" xml:space="preserve">
+    <value>Select photo or video</value>
+  </data>
+  <data name="Media-Picker_All-Photos" xml:space="preserve">
+    <value>All photos</value>
+  </data>
+  <data name="Statuses_System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Statuses_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Statuses" xml:space="preserve">
+    <value>Statuses</value>
+  </data>
+  <data name="Status-Create_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Status-Create_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Authentication_Sign-Up" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Authentication_Log-In" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Authentication_Google" xml:space="preserve">
+    <value>Continue with Google</value>
+  </data>
+  <data name="Authentication_Apple" xml:space="preserve">
+    <value>Continue with Apple</value>
+  </data>
+  <data name="Log-in_Title" xml:space="preserve">
+    <value>Log into your account</value>
+  </data>
+  <data name="Log-in_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Log-in_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Log-in_Forgot-The-Password" xml:space="preserve">
+    <value>Forgot the Password?</value>
+  </data>
+  <data name="Log-in" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Log-in_Sign-up" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Sign-up_Title" xml:space="preserve">
+    <value>Create new Account</value>
+  </data>
+  <data name="Sign-up_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Sign-up_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Sign-up_Confirm-Password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Sign-up_Policy" xml:space="preserve">
+    <value>I agree to the Terms &amp; Conditions and Privacy Policy</value>
+  </data>
+  <data name="Sign-up" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="Sign-up_Already" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Sign-up_Log-in" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Sign-up_Validation_Characters" xml:space="preserve">
+    <value>At least 8 characters</value>
+  </data>
+  <data name="Sign-up_Validation_Uppercase" xml:space="preserve">
+    <value>One uppercase</value>
+  </data>
+  <data name="Sign-up_Validation_Lowercase" xml:space="preserve">
+    <value>One lowercase letter</value>
+  </data>
+  <data name="Sign-up_Validation_Digit" xml:space="preserve">
+    <value>One number</value>
+  </data>
+  <data name="Sign-up_Validation_Latin" xml:space="preserve">
+    <value>Latin letters only</value>
+  </data>
+  <data name="Sign-up_Validation_No-Spaces" xml:space="preserve">
+    <value>No spaces</value>
+  </data>
+  <data name="Sign-up_Validation_Password" xml:space="preserve">
+    <value>Create a strong password:</value>
+  </data>
+  <data name="Sign-up_Agree" xml:space="preserve">
+    <value>I agree to the</value>
+  </data>
+  <data name="Sign-up_Terms-Conditions" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+  </data>
+  <data name="Sign-up_Privacy-Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="Password-Reset_Description" xml:space="preserve">
+    <value>Enter your register email to get reset code</value>
+  </data>
+  <data name="Password-Reset_Title" xml:space="preserve">
+    <value>Password reset</value>
+  </data>
+  <data name="Password-Reset_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password-Reset_Send" xml:space="preserve">
+    <value>Send code</value>
+  </data>
+  <data name="Password-Reset_Code_Title" xml:space="preserve">
+    <value>Enter code</value>
+  </data>
+  <data name="Password-Reset_Code_Description" xml:space="preserve">
+    <value>Code sent to</value>
+  </data>
+  <data name="Password-Reset_Code_Resend" xml:space="preserve">
+    <value>Resend code</value>
+  </data>
+  <data name="Password-Reset_Code_Description_2" xml:space="preserve">
+    <value>This code will expire in 5 minutes</value>
+  </data>
+  <data name="Password-Reset_Code_Invalid" xml:space="preserve">
+    <value>Invalid code. Try again</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Notifications_All-Notifications" xml:space="preserve">
+    <value>All notifications</value>
+  </data>
+  <data name="Notifications_Unread" xml:space="preserve">
+    <value>Unread</value>
+  </data>
+  <data name="Notifications_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Notifications_Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Notifications_Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Notifications_Choose" xml:space="preserve">
+    <value>You can choose which notifications you receive</value>
+  </data>
+  <data name="Notifications_System_Desc" xml:space="preserve">
+    <value>App updates, maintenance, and important system messages.</value>
+  </data>
+  <data name="Notifications_Weather" xml:space="preserve">
+    <value>Weather alerts</value>
+  </data>
+  <data name="Notifications_Weather_Desc" xml:space="preserve">
+    <value>Get alerts about weather conditions that may affect your fields.</value>
+  </data>
+  <data name="Notifications_Activity" xml:space="preserve">
+    <value>Activity &amp; reminders</value>
+  </data>
+  <data name="Notifications_Activity_Desc" xml:space="preserve">
+    <value>Updates about field activity, status changes, and reminders.</value>
+  </data>
+  <data name="Notifications_Turn-Off" xml:space="preserve">
+    <value>Turn off all notifications</value>
+  </data>
+  <data name="Notifications_Turn-Off_Desc" xml:space="preserve">
+    <value>Stop receiving all notifications from the app.</value>
+  </data>
+  <data name="Notifications_App-Only" xml:space="preserve">
+    <value>Recieve notifications in app only</value>
+  </data>
+  <data name="Notifications_App-Only_Desc" xml:space="preserve">
+    <value>Notifications will appear inside the app but not as push alerts.</value>
+  </data>
+  <data name="Notifications_System" xml:space="preserve">
+    <value>System notifications</value>
+  </data>
+  <data name="Country_Select-Country" xml:space="preserve">
+    <value>Select country</value>
+  </data>
+  <data name="Country_Ukraine" xml:space="preserve">
+    <value>Ukraine</value>
+  </data>
+  <data name="Country_US" xml:space="preserve">
+    <value>United Stated</value>
+  </data>
+  <data name="Country_Poland" xml:space="preserve">
+    <value>Poland</value>
+  </data>
+  <data name="Country_Italy" xml:space="preserve">
+    <value>Italy</value>
+  </data>
+  <data name="Country_Germany" xml:space="preserve">
+    <value>Germany</value>
+  </data>
+  <data name="Notifications_Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Notifications_Vibration" xml:space="preserve">
+    <value>Vibration</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="Monday_Short" xml:space="preserve">
+    <value>Mon</value>
+  </data>
+  <data name="Tuesday_Short" xml:space="preserve">
+    <value>Tue</value>
+  </data>
+  <data name="Wednesday_Short" xml:space="preserve">
+    <value>Wd</value>
+  </data>
+  <data name="Thursday_Short" xml:space="preserve">
+    <value>Th</value>
+  </data>
+  <data name="Friday_Short" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="Saturday_Short" xml:space="preserve">
+    <value>St</value>
+  </data>
+  <data name="Sunday_Short" xml:space="preserve">
+    <value>Sn</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Calendar_Notes" xml:space="preserve">
+    <value>Notes for day</value>
+  </data>
+  <data name="Calendar_Not-Planned" xml:space="preserve">
+    <value>You don't have anything planned for this day yet</value>
+  </data>
+  <data name="Status_FAILED" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="Status_IN_PROGRESS" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="Status_DONE" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Profile_Title" xml:space="preserve">
+    <value>Edit profile</value>
+  </data>
+  <data name="Profile_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Profile_Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Profile_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Profile_Delete-Account" xml:space="preserve">
+    <value>Delete account</value>
+  </data>
+  <data name="Delete-Account_Title" xml:space="preserve">
+    <value>Are you sure you want to delete the account?</value>
+  </data>
+  <data name="Delete-Account_Desc" xml:space="preserve">
+    <value>When you delete your account from the app, all data, settings and history will be lost.</value>
+  </data>
+  <data name="Delete-Account_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Delete-Account_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Notifications_Remind-Start" xml:space="preserve">
+    <value>Remind at start</value>
+  </data>
+  <data name="Notifications_Remind-end" xml:space="preserve">
+    <value>Remind at end</value>
+  </data>
+  <data name="Notifications_Remind_5-min" xml:space="preserve">
+    <value>5 minutes before</value>
+  </data>
+  <data name="Notifications_Remind_10-min" xml:space="preserve">
+    <value>10 minutes before</value>
+  </data>
+  <data name="Notifications_Remind_15-min" xml:space="preserve">
+    <value>15 minutes before</value>
+  </data>
+  <data name="Notifications_Remind_20-min" xml:space="preserve">
+    <value>20 minutes before</value>
+  </data>
+  <data name="Notifications_Remind_30-min" xml:space="preserve">
+    <value>30 minutes before</value>
+  </data>
+  <data name="Notifications_Remind_1-hour" xml:space="preserve">
+    <value>1 hour before</value>
+  </data>
+  <data name="Notifications_Remind_2-hours" xml:space="preserve">
+    <value>2 hours before</value>
+  </data>
+  <data name="Notifications_Remind_1-day" xml:space="preserve">
+    <value>1 day before</value>
+  </data>
+  <data name="Notifications_Remind_1-week" xml:space="preserve">
+    <value>1 week before</value>
+  </data>
+  <data name="Notifications_Remind_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Delete_Note_Title" xml:space="preserve">
+    <value>Delete note</value>
+  </data>
+  <data name="Delete_Note_Desc" xml:space="preserve">
+    <value>Are you sure you want to delete this note?</value>
+  </data>
+  <data name="Delete_Note-Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Delete_Note-Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Log-Out_Title" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="Log-Out_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Log-Out" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="Support_Title" xml:space="preserve">
+    <value>Choose a way to contact us below</value>
+  </data>
+  <data name="Session-Expired_Title" xml:space="preserve">
+    <value>Unfortunately, your session has been expired. Please login again</value>
+  </data>
+  <data name="Session-Expired_Log-in" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Log-in_Create" xml:space="preserve">
+    <value>Create new account?</value>
+  </data>
+  <data name="Error_USER_ALREADY_EXISTS" xml:space="preserve">
+    <value>User already exists</value>
+  </data>
+  <data name="Error_ERROR_WHILE_SAVING_MEDIA_FILE" xml:space="preserve">
+    <value>Error happened while saving media file</value>
+  </data>
+  <data name="Error_MEDIA_FILE_DOES_NOT_BELONG_TO_PROPERTY_NOTE" xml:space="preserve">
+    <value>Media file doesn't belong to property note</value>
+  </data>
+  <data name="Error_STATUS_DOES_NOT_EXIST" xml:space="preserve">
+    <value>Status does not exist</value>
+  </data>
+  <data name="Error_MEDIA_FILE_DOES_NOT_EXISTS" xml:space="preserve">
+    <value>Media file doesn't exist</value>
+  </data>
+  <data name="Error_FILE_IS_EMPTY" xml:space="preserve">
+    <value>File is empty</value>
+  </data>
+  <data name="Error_FILE_IS_NOT_MEDIA" xml:space="preserve">
+    <value>File is not media</value>
+  </data>
+  <data name="Error_PROPERTY_DOES_NOT_EXIST" xml:space="preserve">
+    <value>Property does not exist</value>
+  </data>
+  <data name="Error_PROPERTY_NOTE_DOES_NOT_EXISTS" xml:space="preserve">
+    <value>Property note does not exist</value>
+  </data>
+  <data name="Error_STEAD_DOES_NOT_EXIST" xml:space="preserve">
+    <value>Stead does not exist</value>
+  </data>
+  <data name="Error_EMAIL_OR_PASSWORD_IS_INCORRECT" xml:space="preserve">
+    <value>Email or password is not correct</value>
+  </data>
+  <data name="Error_EMAIL_IS_NOT_CONFIRMED" xml:space="preserve">
+    <value>Email is not confirmed</value>
+  </data>
+  <data name="Error_CODE_IS_NOT_SENT" xml:space="preserve">
+    <value>Code hasn't been sent</value>
+  </data>
+  <data name="Error_PASSWORDS_DONT_MATCH" xml:space="preserve">
+    <value>Passwords don't match</value>
+  </data>
+  <data name="Error_PASSWORD_IS_INCORRECT" xml:space="preserve">
+    <value>Password is incorrect</value>
+  </data>
+  <data name="Error_EMAIL_IS_INVALID" xml:space="preserve">
+    <value>Email is not valid</value>
+  </data>
+  <data name="Error_CODE_EXPIRED" xml:space="preserve">
+    <value>Code is expired</value>
+  </data>
+  <data name="Error_WRONG_CODE" xml:space="preserve">
+    <value>Wrong code</value>
+  </data>
+  <data name="Error_USER_DOES_NOT_EXIST" xml:space="preserve">
+    <value>User does not exist</value>
+  </data>
+  <data name="Profile_Change-Photo" xml:space="preserve">
+    <value>Change photo</value>
+  </data>
+  <data name="Error_LOGIN_FAILED" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
+  <data name="Error_NETWORK_ERROR" xml:space="preserve">
+    <value>Network error</value>
+  </data>
+  <data name="Error_INVALID_TOKEN_RESPONSE" xml:space="preserve">
+    <value>Invalid token response</value>
+  </data>
+  <data name="Error_CHANGE_PASSWORD_FAILED" xml:space="preserve">
+    <value>Change password failed</value>
+  </data>
+  <data name="Sign-up_Validation_Required_Email" xml:space="preserve">
+    <value>Please enter your email</value>
+  </data>
+  <data name="Sign-up_Validation_Required_Accept" xml:space="preserve">
+    <value>You must accept the terms to continue.</value>
+  </data>
+  <data name="Sign-up_Validation_Required_Password" xml:space="preserve">
+    <value>Please confirm your password</value>
+  </data>
+  <data name="Sign-up_Validation_Compare_Password" xml:space="preserve">
+    <value>The passwords do not match</value>
+  </data>
+  <data name="New-Password_Title" xml:space="preserve">
+    <value>Create new password</value>
+  </data>
+  <data name="New-Password_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="New-Password_Confirm-Password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Password-Reset_Validation_Password" xml:space="preserve">
+    <value>Please confirm your password</value>
+  </data>
+  <data name="Password-Reset_Validation_Confirm-Password" xml:space="preserve">
+    <value>Please enter your new valid password</value>
+  </data>
+  <data name="Error_TOO_MANY_ATTEMPTS" xml:space="preserve">
+    <value>Too many attempts</value>
+  </data>
+  <data name="Error_VALIDATE_CODE_FAILED" xml:space="preserve">
+    <value>Validation code failed</value>
+  </data>
+  <data name="Error_INVALID_TOKEN" xml:space="preserve">
+    <value>Invalid token</value>
+  </data>
+  <data name="Error_RESET_PASSWORD_FAILED" xml:space="preserve">
+    <value>Reset password failed</value>
+  </data>
+  <data name="Error_SIGN_UP_FAILED" xml:space="preserve">
+    <value>Sign up failed</value>
+  </data>
+  <data name="Error_CONFIRMATION_EMAIL_FAILED" xml:space="preserve">
+    <value>Confirmation email failed</value>
+  </data>
+  <data name="Error_RESEND_CODE_FAILED" xml:space="preserve">
+    <value>Resend code failed</value>
+  </data>
+  <data name="First_Guide_Step1_Title" xml:space="preserve">
+    <value>Start by adding your first field</value>
+  </data>
+  <data name="First_Guide_Step1_Subtitle" xml:space="preserve">
+    <value>Fields help you organize all your farming activities</value>
+  </data>
+  <data name="First_Guide_Step2_Subtitle" xml:space="preserve">
+    <value>Tap the button to add your field. Select a plot on the map or draw your own.</value>
+  </data>
+  <data name="First_Guide_Step3_Subtitle" xml:space="preserve">
+    <value>Go to fields to manage it and add notes.</value>
+  </data>
+  <data name="First_Guide_Step4_Subtitle" xml:space="preserve">
+    <value>Open it to add notes and track activities.</value>
+  </data>
+  <data name="First_Guide_Step5_Subtitle" xml:space="preserve">
+    <value>Track activities like planting, watering, or harvesting</value>
+  </data>
+  <data name="First_Guide_Step6_Subtitle" xml:space="preserve">
+    <value>Now you can track all activities for this field</value>
+  </data>
+  <data name="First_Guide_Step2_Title" xml:space="preserve">
+    <value>Select your field on the map</value>
+  </data>
+  <data name="First_Guide_Step3_Title" xml:space="preserve">
+    <value>Field added successfully!</value>
+  </data>
+  <data name="First_Guide_Step4_Title" xml:space="preserve">
+    <value>Your fields will appear here</value>
+  </data>
+  <data name="First_Guide_Step5_Title" xml:space="preserve">
+    <value>Add your first note</value>
+  </data>
+  <data name="First_Guide_Step6_Title" xml:space="preserve">
+    <value>You’re all set!</value>
+  </data>
+  <data name="HowToUse_Step1_Title" xml:space="preserve">
+    <value>Add a field plot</value>
+  </data>
+  <data name="HowToUse_Step2_Title" xml:space="preserve">
+    <value>Choose a method</value>
+  </data>
+  <data name="HowToUse_Step3_Title" xml:space="preserve">
+    <value>Use this tools</value>
+  </data>
+  <data name="HowToUse_Step1_Subtitle" xml:space="preserve">
+    <value>Tap the “+” to create a new field</value>
+  </data>
+  <data name="HowToUse_Step2_Subtitle" xml:space="preserve">
+    <value>You can tap a field on the map or draw it manually</value>
+  </data>
+  <data name="Calendar_Guide_Step1_Title" xml:space="preserve">
+    <value>You can also create a note via calendar</value>
+  </data>
+  <data name="Calendar_Guide_Step2_Title" xml:space="preserve">
+    <value>View your tasks easily</value>
+  </data>
+  <data name="Calendar_Guide_Step1_Subtitle" xml:space="preserve">
+    <value>Tap the “+” to create a note and select the field it belongs to.</value>
+  </data>
+  <data name="Calendar_Guide_Step2_Subtitle" xml:space="preserve">
+    <value>Pull up to see what’s planned for the selected day.</value>
+  </data>
+  <data name="Tap" xml:space="preserve">
+    <value>Tap</value>
+  </data>
+  <data name="HowToUse_Step3_Row1" xml:space="preserve">
+    <value>to draw manually</value>
+  </data>
+  <data name="HowToUse_Step3_Row2" xml:space="preserve">
+    <value>to cancel drawing</value>
+  </data>
+  <data name="HowToUse_Step3_Row3" xml:space="preserve">
+    <value>to save the field</value>
+  </data>
+  <data name="HowToUse_Step3_Row4" xml:space="preserve">
+    <value>to discard changes</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="Get_Started" xml:space="preserve">
+    <value>Get Started</value>
+  </data>
+  <data name="Status_NONE" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Property-Note_No-Notes" xml:space="preserve">
+    <value>No notes yet</value>
+  </data>
+  <data name="Property-Note_No-Notes_Desc" xml:space="preserve">
+    <value>Add your first note for this field</value>
+  </data>
+  <data name="Field_No-Fields" xml:space="preserve">
+    <value>No fields yet</value>
+  </data>
+  <data name="Field_No-Fields_Desc" xml:space="preserve">
+    <value>Create a field to keep notes in one place.</value>
+  </data>
+  <data name="Status_No-Statuses" xml:space="preserve">
+    <value>No custom statuses yet</value>
+  </data>
+  <data name="Status_No-Statuses_Desc" xml:space="preserve">
+    <value>Create your first custom status.</value>
+  </data>
+  <data name="Notifications_No-Notifications" xml:space="preserve">
+    <value>No notifications yet</value>
+  </data>
+  <data name="Notifications_No-Notifications_Desc" xml:space="preserve">
+    <value>When we send you notifications, you’ll see them here.</value>
+  </data>
+  <data name="Notifications_No-New-Notifications" xml:space="preserve">
+    <value>No new notifications</value>
+  </data>
+  <data name="Notifications_No-New-Notifications_Desc" xml:space="preserve">
+    <value>You don't have any new notifications.</value>
+  </data>
+  <data name="Notifications_No-Read-Notifications" xml:space="preserve">
+    <value>No read notifications</value>
+  </data>
+  <data name="Notifications_No-Read-Notifications_Desc" xml:space="preserve">
+    <value>You haven't read any of the notifications.</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="New-Password_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Property-Note_Validation_Required_Name" xml:space="preserve">
+    <value>Please enter Name</value>
+  </data>
+  <data name="Property-Note_Validation_Required_Desc" xml:space="preserve">
+    <value>Please enter Description</value>
+  </data>
+  <data name="Property-Note_Validation_Min-Length_Name" xml:space="preserve">
+    <value>Name must be at least 3 characters long</value>
+  </data>
+  <data name="Property-Note_Validation_Min-Length_Desc" xml:space="preserve">
+    <value>Description must be at least 10 characters long</value>
+  </data>
+  <data name="Status_Validation_Required_Name" xml:space="preserve">
+    <value>Please enter status name</value>
+  </data>
+  <data name="Status_New" xml:space="preserve">
+    <value>New status</value>
+  </data>
+  <data name="Status_Edit" xml:space="preserve">
+    <value>Edit status</value>
+  </data>
+  <data name="Property-Note_Delete-Note" xml:space="preserve">
+    <value>Delete note</value>
+  </data>
+  <data name="Status_Delete" xml:space="preserve">
+    <value>Delete status</value>
+  </data>
+  <data name="Status_Delete_Title" xml:space="preserve">
+    <value>Are you sure you want to delete this status?</value>
+  </data>
+  <data name="Status_Delete_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Status_Validation_Required_Color" xml:space="preserve">
+    <value>Please select a color</value>
+  </data>
+  <data name="Status_Validation_Min-Length_Name" xml:space="preserve">
+    <value>Status name must be at least 3 characters long</value>
+  </data>
+  <data name="Error_CANNOT_DELETE_DEFAULT_STATUS" xml:space="preserve">
+    <value>Cannot delete system status</value>
+  </data>
+  <data name="Log-in_Validation_Required_Email" xml:space="preserve">
+    <value>Please enter your email</value>
+  </data>
+  <data name="Log-in_Validation_Required_Password" xml:space="preserve">
+    <value>Please enter your password</value>
+  </data>
+  <data name="Deletion" xml:space="preserve">
+    <value>Deletion</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Media_Remove" xml:space="preserve">
+    <value>Are you sure you want to remove this media file?</value>
+  </data>
+  <data name="Property-Note_Unsaved_Data" xml:space="preserve">
+    <value>You still have unsaved data. Are you sure?</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Are you sure you want to do it?</value>
+  </data>
+  <data name="Unsaved_Data" xml:space="preserve">
+    <value>Unsaved data</value>
+  </data>
+  <data name="Onboarding_Step1_Title" xml:space="preserve">
+    <value>Organize your farm work in one place</value>
+  </data>
+  <data name="Onboarding_Step2_Title" xml:space="preserve">
+    <value>Easily manage all fields and add notes</value>
+  </data>
+  <data name="Onboarding_Step3_Title" xml:space="preserve">
+    <value>Manage tasks and set timely reminders</value>
+  </data>
+  <data name="Onboarding_Step4_Title" xml:space="preserve">
+    <value>Weather updates for your fields in the app</value>
+  </data>
+  <data name="Onboarding_Step5_Title" xml:space="preserve">
+    <value>Boost all efficiency on your farm daily</value>
+  </data>
+  <data name="Onboarding_Step1_Subtitle" xml:space="preserve">
+    <value>No more messy notes or lost information. Everything about your fields, tasks, and events in one app.</value>
+  </data>
+  <data name="Onboarding_Step2_Subtitle" xml:space="preserve">
+    <value>Draw or select plots on the map, then add notes with descriptions, photos, and videos for each field.</value>
+  </data>
+  <data name="Onboarding_Step3_Subtitle" xml:space="preserve">
+    <value>Schedule tasks with start and end dates, set reminders, and track progress through a simple calendar view.</value>
+  </data>
+  <data name="Onboarding_Step4_Subtitle" xml:space="preserve">
+    <value>Receive timely notifications about any weather changes so you can act on time and protect your crops.</value>
+  </data>
+  <data name="Onboarding_Step5_Subtitle" xml:space="preserve">
+    <value>Start using the app today and see how simple and truly efficient farm management can be for you.</value>
+  </data>
+  <data name="Weather_Enable-Location" xml:space="preserve">
+    <value>Please provide your location to view weather</value>
+  </data>
+  <data name="Weather_Enable-Location_Title" xml:space="preserve">
+    <value>Enable location</value>
+  </data>
+  <data name="Policy_General-Provisions_Title" xml:space="preserve">
+    <value>General Provisions</value>
+  </data>
+  <data name="Policy_General-Provisions_Desc" xml:space="preserve">
+    <value>This Privacy Policy explains how FarmApp collects, uses, stores, and protects your personal data when using the FarmApp mobile application.</value>
+  </data>
+  <data name="Policy_Information-Collection_Title" xml:space="preserve">
+    <value>Information Collection</value>
+  </data>
+  <data name="Policy_Information-Collection_Desc" xml:space="preserve">
+    <value>We collect information you provide during registration (phone number).
+The application may automatically collect information about your device, including IP address, device type, operating system version, and app usage data.</value>
+  </data>
+  <data name="Policy_Use-of-Information_Title" xml:space="preserve">
+    <value>Use of Information</value>
+  </data>
+  <data name="Policy_Use-of-Information_Desc" xml:space="preserve">
+    <value>The information we collect is used to provide and improve our services, respond to user requests, and analyze product usage.</value>
+  </data>
+  <data name="Policy_Data-Protection_Title" xml:space="preserve">
+    <value>Data Protection</value>
+  </data>
+  <data name="Policy_Data-Protection_Desc" xml:space="preserve">
+    <value>We implement various security measures to protect your information, including data encryption and restricted access.</value>
+  </data>
+  <data name="Policy_Information-Sharing_Title" xml:space="preserve">
+    <value>Information Sharing</value>
+  </data>
+  <data name="Policy_Information-Sharing_Desc" xml:space="preserve">
+    <value>We do not share your personal information with third parties without your consent, except when necessary to provide services or required by law.</value>
+  </data>
+  <data name="Policy_Your-Rights_Title" xml:space="preserve">
+    <value>Your Rights</value>
+  </data>
+  <data name="Policy_Your-Rights_Desc" xml:space="preserve">
+    <value>You have the right to request access to your information, correct it, or delete it. You may also opt out of receiving marketing materials.</value>
+  </data>
+  <data name="Policy_Changes-to-Privacy-Policy_Title" xml:space="preserve">
+    <value>Changes to Privacy Policy</value>
+  </data>
+  <data name="Policy_Changes-to-Privacy-Policy_Desc" xml:space="preserve">
+    <value>We may update this Privacy Policy from time to time. All changes will be published in this section with the date of the last update.</value>
+  </data>
+  <data name="Policy_Contact-Information_Title" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="Policy_Contact-Information_Desc" xml:space="preserve">
+    <value>If you have questions or complaints regarding this Privacy Policy, please contact: websvitua@gmail.com</value>
+  </data>
+  <data name="Privacy_Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Terms_Data-Security_Title" xml:space="preserve">
+    <value>Data Security</value>
+  </data>
+  <data name="Terms_Data-Security_Desc" xml:space="preserve">
+    <value>Always keep your login and password secret. Do not share your authentication data with others.</value>
+  </data>
+  <data name="Terms_Accurate-Information_Title" xml:space="preserve">
+    <value>Accurate Information</value>
+  </data>
+  <data name="Terms_Accurate-Information_Desc" xml:space="preserve">
+    <value>When registering, provide only truthful and up‑to‑date information.</value>
+  </data>
+  <data name="Terms_Respect-for-Others_Title" xml:space="preserve">
+    <value>Respect for Others</value>
+  </data>
+  <data name="Terms_Respect-for-Others_Desc" xml:space="preserve">
+    <value>Be polite and respect other users. Avoid offensive or aggressive behavior.</value>
+  </data>
+  <data name="Terms_Prohibited-Actions_Title" xml:space="preserve">
+    <value>Prohibited Actions</value>
+  </data>
+  <data name="Terms_Prohibited-Actions_Desc" xml:space="preserve">
+    <value>Do not use the app for illegal activities, including distributing pirated content or viruses.</value>
+  </data>
+  <data name="Terms_Intellectual-Property_Title" xml:space="preserve">
+    <value>Intellectual Property</value>
+  </data>
+  <data name="Terms_Intellectual-Property_Desc" xml:space="preserve">
+    <value>Respect the copyrights and intellectual property of others.</value>
+  </data>
+  <data name="Terms_Changes-to-Rules_Title" xml:space="preserve">
+    <value>Changes to Rules</value>
+  </data>
+  <data name="Terms_Changes-to-Rules_Desc" xml:space="preserve">
+    <value>The app may periodically update its rules and terms. Check for updates and follow the new rules.</value>
+  </data>
+  <data name="Terms_Use-of-Data_Title" xml:space="preserve">
+    <value>Use of Data</value>
+  </data>
+  <data name="Terms_Use-of-Data_Desc" xml:space="preserve">
+    <value>Your personal data will be used in accordance with the app’s Privacy Policy.</value>
+  </data>
+  <data name="Terms-of-Use" xml:space="preserve">
+    <value>Terms of Use</value>
+  </data>
+  <data name="Error_Default" xml:space="preserve">
+    <value>An error has occurred. Please try again later.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+</root>

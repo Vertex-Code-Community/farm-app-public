@@ -1,0 +1,30 @@
+@using FarmApp.AdminComponents.Services.Interfaces
+@inject ISnackbarService SnackbarService
+
+<div class="snackbar-host">
+	@foreach (var group in SnackbarService.Messages.GroupBy(m => m.Position))
+    {
+		<div class="snackbar-stack @group.Key">
+			@foreach (var msg in group)
+			{
+				<div class="snackbar @msg.ColorClass">
+					<button type="button"
+							class="snackbar-close"
+							@onclick="() => SnackbarService.Dismiss(msg.Id)">
+						<img src="_content/FarmApp.AdminComponents/icons/close.svg"
+							 alt="Close" />
+					</button>
+
+					@if (msg.Content is not null)
+					{
+						@msg.Content
+					}
+					else
+					{
+						<span>@msg.Message</span>
+					}
+				</div>
+			}
+		</div>
+	}
+</div>

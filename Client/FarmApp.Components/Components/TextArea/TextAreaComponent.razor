@@ -1,0 +1,19 @@
+﻿﻿@using FarmApp.Components.Components.ErrorMessage
+@using Microsoft.AspNetCore.Components.Forms
+@inherits InputBase<string>
+
+<div class="farm-input-with-error">
+    <div for="@_id" class="farm-input-container">
+        <textarea id="@_id"
+                  class="farm-input @CssClass"
+                  readonly="@ReadOnly"
+                  placeholder="@Label"
+                  value="@CurrentValueAsString" 
+                  @oninput="HandleInput"
+                  style="resize: none"
+        > 
+                  
+        </textarea>
+    </div>
+    <ErrorMessage For="ValueExpression" />
+</div>

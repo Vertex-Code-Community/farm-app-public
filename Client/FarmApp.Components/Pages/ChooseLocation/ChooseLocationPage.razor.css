@@ -1,0 +1,30 @@
+.choose-location-cont, .page-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.choose-location-cont {
+    padding-top: 2px;
+    height: 100%;
+}
+
+.page-cont {
+    padding: 0 16px;
+    flex: 1;
+    min-height: 0;
+}
+
+.option-text {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.option-subtext {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+}

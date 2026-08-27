@@ -1,0 +1,66 @@
+@using Bch.Components.Modal
+
+<BchModal Width="@Width"
+          Height="auto"
+          @bind-Show="Opened"
+          ShowOverlay="true"
+          CloseOnOverlayClicked="true"
+          OnOverlayClicked="() => OnCloseClick.InvokeAsync()">
+
+    <div class="modal-container">
+        <EditForm Model="@_modelForUpdate" OnValidSubmit="OnSave">
+            <DataAnnotationsValidator/>
+            
+            <div class="modal-header">
+                <h4>@Title</h4>
+                <button type="button" class="close-button" @onclick="() => OnCloseClick.InvokeAsync()">
+                    <img src="_content/FarmApp.AdminComponents/icons/close.svg" alt="Close"/>
+                </button>
+            </div>
+
+            <div class="modal-content">
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <label class="custom-label">Email</label>
+                        <input type="text" class="form-control" @bind="_modelForUpdate.Email"
+                               placeholder="Email"
+                               ValidateOnInput="true"
+                               disabled="disabled"/>
+                        <ValidationMessage For="@(() => _modelForUpdate.Email)"/>
+                    </div>
+                    <div class="custom-col">
+                        <label class="custom-label">Password</label>
+                        <input type="text" class="form-control" @bind="_modelForUpdate.Password"
+                               placeholder="***********"
+                               ValidateOnInput="true"/>
+                        <ValidationMessage For="@(() => _modelForUpdate.Password)"/>
+                    </div>
+                </div>
+
+                <div class="custom-row">
+                    <div class="custom-col">
+                        <label class="custom-label">First Name</label>
+                        <input type="text" class="form-control" @bind="_modelForUpdate.FirstName"
+                               placeholder="User Name"
+                               ValidateOnInput="true"/>
+                        <ValidationMessage For="@(() => _modelForUpdate.FirstName)"/>
+                    </div>
+                    <div class="custom-col">
+                        <label class="custom-label">Last Name</label>
+                        <input type="text" class="form-control" @bind="_modelForUpdate.LastName"
+                               placeholder="Last Name"
+                               ValidateOnInput="true"/>
+                        <ValidationMessage For="@(() => _modelForUpdate.LastName)"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success"
+                            @onclick="() => { }">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+</BchModal>

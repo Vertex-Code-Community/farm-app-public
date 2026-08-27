@@ -1,0 +1,92 @@
+@attribute [Route(Constants.ClientRoutes.SignUpPage)]
+@attribute [Layout(typeof(AuthLayout))]
+@attribute [Unauthorized]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.AuthHeader
+@using FarmApp.Components.Components.ButtonSpinner
+@using FarmApp.Components.Components.Checkbox
+@using FarmApp.Components.Components.ErrorMessage
+@using FarmApp.Components.Components.PasswordInput
+@using FarmApp.Components.Pages.PrivacyPolicy
+@using FarmApp.Components.Pages.TermsOfUse
+@using Microsoft.AspNetCore.Components.Forms
+
+@{
+    var offsetTop = !OperatingSystem.IsIOS() ? ScreenOffsetProvider.Top : 0;
+}
+
+<div class="sign-up-container @(_isLoading ? "loading" : "")">
+    <AuthHeaderComponent Title="@Localizer["Sign-up_Title"]" BackCallback="OnClickWelcomePage" />
+
+    <EditForm EditContext="_editContext" OnSubmit="SignUpAsync">
+        <DataAnnotationsValidator />
+
+        <div class="sign-up-form">
+            <div class="sign-up-form-control">
+                <div class="sign-up-form-field">
+                    <InputComponent Label="@Localizer["Sign-up_Email"]" Type="text" IconUrl="_content/FarmApp.Components/img/auth-icons/mail.svg" @bind-Value="_signUpViewModel.Email" />
+                </div>
+
+                <div class="sign-up-form-field pass-w-req-field ignore-error @(_signUpViewModel.Password?.Length > 0 ? "has-password" : "")">
+                    <PasswordInputComponent @bind-Value="_signUpViewModel.Password" Label="@Localizer["Sign-up_Password"]" />
+                    <div class="pass-requirements">
+                        <p>@Localizer["Sign-up_Validation_Password"]</p>
+                        <ul>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.Length >= 8 ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_Characters"]</li>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.Any(char.IsUpper) ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_Uppercase"] (A-Z)</li>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.Any(char.IsLower) ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_Lowercase"] (a-z)</li>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.Any(char.IsNumber) ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_Digit"] (0-9)</li>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.All(char.IsAscii) ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_Latin"] (A-Z)</li>
+                            <li class="@(_signUpViewModel.Password?.Length > 0 ? (_signUpViewModel.Password.All(c => !char.IsWhiteSpace(c)) ? "green-text" : "red-text") : "")">@Localizer["Sign-up_Validation_No-Spaces"]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <PasswordInputComponent Label="@Localizer["Sign-up_Confirm-Password"]" @bind-Value="_signUpViewModel.ConfirmPassword" />
+
+            </div>
+            <div class="sign-up-actions">
+                <div class="sign-up-agree-policy">
+                    <CheckboxComponent @bind-Value="_signUpViewModel.IsAccepted" />
+                    <label data-animate class="agree-text">
+                        @Localizer["Sign-up_Agree"]
+                        <a @onclick="() => { _showTermsOfUseModal = true; }">@Localizer["Sign-up_Terms-Conditions"]</a>&nbsp;@Localizer["And"]&nbsp;
+                        <a @onclick="() => { _showPrivacyPolicyModal = true; }">@Localizer["Sign-up_Privacy-Policy"]</a>
+                    </label>
+                </div>
+
+                <div class="sign-up-button">
+                    <ButtonComponent Type="submit" Loading="@_isLoading"
+                     Disabled="@(_isLoading)" Name="@Localizer["Sign-up"]" />
+                </div>
+
+                <div data-animate class="sign-up-sign-in-link">
+                    @Localizer["Sign-up_Already"] <a class="sign-in-redirect-link" @onclick='() => { NavigationService.NavigateTo(Constants.ClientRoutes.SignInPage); }'>@Localizer["Sign-up_Log-in"]</a>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+<PrivacyPolicyPage @bind-IsOpen="_showPrivacyPolicyModal" >
+
+</PrivacyPolicyPage>
+
+<FarmApp.Components.Pages.TermsOfUse.TermsOfUsePage @bind-IsOpen="_showTermsOfUseModal">
+ </FarmApp.Components.Pages.TermsOfUse.TermsOfUsePage>
+
+<style>
+    body {
+        background: white;
+    }
+
+        body .auth-layout-container .auth-content:has(.sign-up-container) {
+            max-height: calc(474px + var(--global-error-offset));
+        }
+
+        body .auth-layout-container .auth-content:has(.pass-w-req-field:focus-within),
+        body .auth-layout-container .auth-content:has(.pass-w-req-field.has-password) {
+            max-height: calc(631px + var(--global-error-offset));
+        }
+</style>

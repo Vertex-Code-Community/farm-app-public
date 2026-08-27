@@ -1,0 +1,83 @@
+.select-container {
+    background: #FFFFFF;
+    filter: drop-shadow(0px 4px 8px rgba(183, 183, 183, 0.2));
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+    .select-container > .header-wrapper {
+        flex: 1 1;
+    }
+
+    .select-container > .clear-button-wrapper {
+        min-width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .select-container > .clear-button-wrapper > .clear-button {
+            width: 16px;
+            height: 16px;
+            background: transparent url("img/clear.svg") no-repeat center;
+            background-size: 16px 16px;
+            transition: transfrom 300ms ease-in-out;
+            transform: scale(1.0);
+        }
+
+            .select-container > .clear-button-wrapper > .clear-button:hover {
+                transform: scale(1.1);
+            }
+
+    .select-container.opened {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+.select-ddl-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    pointer-events: all;
+    background: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    filter: drop-shadow(0px 6px 3px rgba(183, 183, 183, 0.2));
+}
+
+    .select-ddl-content > .scroller {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .select-ddl-content > .scroller > .select-item {
+            width: 100%;
+        }
+
+
+
+    .select-ddl-content::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    .select-ddl-content::-webkit-scrollbar-thumb {
+        background: #33B469;
+        border: 0.7px solid transparent;
+        border-radius: 12px;
+        background-clip: content-box;
+    }
+
+    .select-ddl-content::-webkit-scrollbar-track {
+        display: flex;
+        justify-content: center;
+        /*border-top: 1px solid #E8EAED;*/
+        background: transparent;
+    }

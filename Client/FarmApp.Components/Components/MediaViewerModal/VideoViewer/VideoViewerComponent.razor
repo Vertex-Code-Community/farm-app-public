@@ -1,0 +1,36 @@
+﻿@if (_isLoading)
+{
+    <FarmApp.Components.Components.PullLoader.PullLoaderComponent />
+}
+<div class="video-viewer-container">
+    <video 
+        class="@(_isLoading ? "hidden" : "")"
+        @onloadedmetadata = "OnMetadataLoaded"
+        @ref="_video" src="@Src" controls playsinline preload="metadata">
+    </video>
+
+    <div class="video-controls">
+
+@*         <button @onclick="TogglePlay">
+            @(IsPlaying ? "⏸" : "▶")
+        </button>
+
+        <input type="range"
+               min="0"
+               max="@Duration"
+               step="0.1"
+               value="@CurrentTime"
+               @oninput="OnSeek" />
+
+        <input type="range"
+               min="0"
+               max="1"
+               step="0.05"
+               value="@Volume"
+               @oninput="OnVolumeChanged" />
+
+        <button class="close-btn">
+            ✕
+        </button> *@
+    </div>
+</div>

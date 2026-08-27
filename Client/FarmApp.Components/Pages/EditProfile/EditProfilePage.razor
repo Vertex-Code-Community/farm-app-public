@@ -1,0 +1,71 @@
+@attribute [Route(Constants.ClientRoutes.EditProfilePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.BottomSheet
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.TopNavigation
+@using FarmApp.Components.Components.TractorAnimation
+@using FarmApp.Components.Components.UnorderedList
+
+@layout PageLayout
+
+<div class="profile-cont flex-column @(_isLoading ? "loading" : "")">
+
+    <TopNavigationComponent Title="@Localizer["Profile_Title"]" IconUrl="_content/FarmApp.Components/img/shared/check-02.svg" IconCallback="SaveChanges" />
+
+    @if (!_isLoading)
+    {
+        <div class="flex-column profile-info" style="padding-bottom: @(ScreenOffsetProvider.Bottom)px">
+            <div class="flex-column profile-picture-cont">
+                <img class="pfp" src="@_imgUrl" alt="" />
+                <div class="change-photo">
+                    <p class="medium-text">@Localizer["Profile_Change-Photo"]</p>
+                </div>
+            </div>
+
+            <UnorderedListComponent ItemHeight="56px" ItemsInteractable="false" Height="fit-content">
+                <ListItemComponent>
+                    <p class="field-name">@Localizer["Profile_Name"]</p>
+                    <input class="field-value medium-text" type="text" @bind="_firstName" @bind:event="oninput" />
+                </ListItemComponent>
+                <ListItemComponent>
+                    <p class="field-name">@Localizer["Profile_Surname"]</p>
+                    <input class="field-value medium-text" type="text" @bind="_lastName" @bind:event="oninput" />
+                </ListItemComponent>
+                <ListItemComponent>
+                    <p class="field-name">@Localizer["Email"]</p>
+                    <input class="field-value medium-text" type="email" value="@_email" readonly />
+                </ListItemComponent>
+            </UnorderedListComponent>
+
+            <ButtonComponent ClassName="delete" Name="@Localizer["Profile_Delete-Account"]" OnClick="() => _showDelteModal = true" ExtraStyles="margin-top: auto" />
+        </div>
+
+    }
+    else
+    {
+        <TractorAnimationComponent Width="15%" />
+    }
+
+</div>
+
+<BottomSheetComponent @bind-IsOpen="_showDelteModal">
+    <div class="modal-cont">
+        <IconComponent IconContSize="56" IconSize="32" IconColor="var(--component-icon)" IconContBackground="var(--accent-primary-10)"
+                       IconSrc="_content/FarmApp.Components/img/profile/trash-02.svg" ExtraStyles="margin: 0 auto; margin-bottom: 8px;" />
+
+        <h3 class="body-18-medium text-secondary">@Localizer["Delete-Account_Title"]</h3>
+        <p class="body-16-regular text-secondary">
+            @Localizer["Delete-Account_Desc"]
+        </p>
+
+        <div class="modal-buttons-cont">
+            <ButtonComponent ClassName="primary" Name="@Localizer["Delete-Account_Cancel"]" OnClick="() => _showDelteModal = false" />
+            <ButtonComponent ClassName="tertiary" Name="@Localizer["Delete-Account_Delete"]" TextColor="var(--state-error)" />
+        </div>
+    </div>
+</BottomSheetComponent>
+
+
+

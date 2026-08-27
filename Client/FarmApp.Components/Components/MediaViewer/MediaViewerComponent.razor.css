@@ -1,0 +1,105 @@
+.media-viewer-cont {
+    position: fixed;
+    inset: 0;
+    background-color: var(--surface-cards);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.media-viewer-cont.open {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+}
+
+.media-display {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+.cur-pos-display {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 30px;
+    width: 90px;
+    transform: translate(-50%,-50%);
+    background-color: var(--background-surface);
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.viewed-now {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.all-media-list {
+    position: absolute;
+    bottom: 0px;
+    max-width: 100%;
+    padding: 0 16px;
+    margin: 0 -16px;
+    display: flex;
+    gap: 4px;
+    overflow-x: visible;
+    overflow-y: auto;
+    opacity: 0;
+    scrollbar-width: none;
+    pointer-events: none;
+    transition: opacity 0.3s linear;
+}
+
+.all-media-visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+    .all-media-list::-webkit-scrollbar {
+        display: none;
+    }
+
+.el-wrapper {
+    opacity: 0.6;
+    flex-shrink: 0;
+    transition: opacity 0.3s linear;
+    height: 32px;
+    width: 32px;
+
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.current {
+    opacity: 1;
+}

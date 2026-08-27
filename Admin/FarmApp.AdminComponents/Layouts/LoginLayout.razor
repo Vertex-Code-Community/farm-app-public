@@ -1,0 +1,19 @@
+
+@using FarmApp.AdminComponents.ComponentsCommon.GlobalLoader
+@inherits LayoutComponentBase
+
+<div class="page-center">
+    @Body
+    <GlobalLoaderComponent />
+    <GlobalErrorComponent />
+</div>
+
+<style>
+    .page-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+    }
+</style>

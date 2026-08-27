@@ -1,0 +1,91 @@
+﻿.content-container {
+    max-width: 306px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background: var(--surface-cards);
+    pointer-events: all;
+    overflow-x: hidden;
+    gap: 10px;
+    overflow: hidden;
+}
+
+    .content-container .close-container {
+        display: flex;
+        justify-content: right;
+    }
+
+    .content-container .top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .content-container .top {
+        margin-left: 16px;
+        padding-left: 4px;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .content-container .middle.scroll {
+        overflow: auto;
+        margin: 8px 2px 8px 20px;
+        padding-right: 14px;
+        display: grid;
+        place-items: center;
+    }
+
+        .content-container .middle.scroll > .scroller {
+            width: 100%;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            color: var(--text-secondary);
+        }
+
+    .content-container .bottom {
+        width: calc(100% - 32px);
+        height: 54px;
+        margin-left: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+        .content-container .bottom .save {
+            width: 100%;
+            padding: 8px 16px;
+            border-radius: 999px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .content-container .bottom .yes {
+            background: var(--surface-inputs);
+            color: var(--text-primary);
+        }
+
+        .content-container .bottom .no {
+            background: var(--accent-primary);
+            color: var(--surface-cards);
+        }

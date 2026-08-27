@@ -1,0 +1,12 @@
+﻿@typeparam TItem
+
+<div class="column" @ref="_scrollContainer">
+    @foreach (var item in _fullCycle)
+    {
+        <div class="picker-item" @onclick="() => HandleItemClick(item)">
+            <p class="picker-item-text">
+                @item?.ToString()
+            </p>
+        </div>
+    }
+</div>

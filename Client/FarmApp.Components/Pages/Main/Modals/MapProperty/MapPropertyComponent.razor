@@ -1,0 +1,49 @@
+@using FarmApp.Components.Components.RemoveConfirmation
+
+<div class="property-stead-wrapper">
+
+    <div class="header">
+        <div class="name">Поле</div>
+        <div class="icons">
+            <div class="icon calendar" @onclick="OnPropertyCalendarClicked" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+
+            @if (AuthStateProvider is { IsUserLoggedIn: true })
+            {
+                <div class="icon remove" @onclick="() => { _showRemovePropertyDialog = true; }" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+            }
+        </div>
+    </div>
+
+    <div class="data property">
+
+        <div class="line">
+            <div class="name">Назва:</div>
+            <div class="value">@Property.Name</div>
+        </div>
+
+        <div class="line">
+            <div class="name">Площа:</div>
+            <div class="value">@(Math.Round(Property.Area, 4, MidpointRounding.AwayFromZero).ToString(_nF))га</div>
+        </div>
+
+        @if (StateService.PropertyPreviewNotes.TryGetValue(Property.Id,
+            out var propertyNotePreviewModels))
+        {
+            foreach (var propertyNotePreview in propertyNotePreviewModels)
+            {
+                <div class="item">
+                    <div class="labels">
+                        <div class="name">@propertyNotePreview.Header</div>
+                        <div class="date">@propertyNotePreview.StartTime.ToString("dd.MM.yyyy")</div>
+                    </div>
+                    <div class="icon" @onclick="() => { OnPropertyCalendarClicked(propertyNotePreview.StartTime); }" ontouchstart="onRippleEffectTouchStartListener(event, true)"></div>
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
+<RemoveConfirmationComponent @bind-IsOpened="_showRemovePropertyDialog"
+                             Question="Ви дійсно хочете видалити обране поле?"
+                             OnConfirm="OnRemovePropertyAsync"/>

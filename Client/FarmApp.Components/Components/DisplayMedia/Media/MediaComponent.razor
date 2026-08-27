@@ -1,0 +1,28 @@
+﻿@using FarmApp.Components.Components.MediaLoader
+<div class="media @(ImageFit)" @onclick="OpenViewer"
+    style="@(File.UploadState != FarmApp.ViewModels.Media.UploadState.Uploaded || string.IsNullOrEmpty(_previewUrl)
+        ? "background: var(--surface-inputs)" : $"background-image: url('{_previewUrl}');")">
+
+    @if (IsLoading)
+    {
+        <MediaLoaderComponent />
+    }
+    else if (File.UploadState == FarmApp.ViewModels.Media.UploadState.Uploaded && _isVideo)
+    {
+        <div class="thumbnail">
+            <img src="_content/FarmApp.Components/img/media/video-play.svg"/>
+        </div>
+    }
+    else if (File.UploadState == FarmApp.ViewModels.Media.UploadState.Failed)
+    {
+        <div class="retry-upload" @onclick="OnRetryUpload">
+            <img src="_content/FarmApp.Components/img/media/retry-upload.svg"/>
+        </div>
+    }
+    @if (isEditMode)
+    {
+        <div class="delete-btn" @onclick="OnDeleteMedia" @onclick:stopPropagation="true">
+            <img src="_content/FarmApp.Components/img/media/delete-icon.svg" />
+        </div>        
+    }
+</div>

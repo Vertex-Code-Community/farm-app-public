@@ -1,0 +1,33 @@
+﻿@using Bch.Components.Modal 
+
+<BchModal Width="@Width"
+		  Height="auto"
+		  @bind-Show="Opened"
+		  ShowOverlay="true"
+		  CloseOnOverlayClicked="true"
+		  OnOverlayClicked="() => OnConfirmAsync(false)">
+	<div class="modal-container">
+		<div class="modal-header">
+			<h4>@Title</h4>
+			<button type="button" class="close-button" @onclick="() => OnConfirmAsync(false)">
+				<img src="_content/FarmApp.AdminComponents/icons/close.svg" alt="Close" />
+			</button>
+		</div>
+
+		<div class="modal-content">
+			<p>@(string.IsNullOrEmpty(Message) ? "Are you sure you want to proceed with the operation?" : Message)</p>
+		</div>
+		
+		<div class="modal-footer">
+			<button class="btn btn-danger"
+					@onclick="() => OnConfirmAsync(true)">
+				Yes
+			</button>
+
+			<button class="btn btn-outline"
+					@onclick="() => OnConfirmAsync(false)">
+				No
+			</button>
+		</div>
+	</div>
+</BchModal>

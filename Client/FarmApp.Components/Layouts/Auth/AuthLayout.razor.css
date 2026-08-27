@@ -1,0 +1,32 @@
+﻿.auth-layout-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    background-image: linear-gradient(#0000004D, #0000004D), url("img/auth-icons/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: auto;
+    padding: 16px;
+
+    container-type: inline-size;
+
+}
+
+    .auth-layout-container .auth-content {
+        max-width: 361px;
+        min-height: 0;
+        width: 100%;
+        background-color: var(--surface-cards);
+        border-radius: 16px;
+        padding: 24px;
+        overflow: hidden;
+        flex: 1;
+        transition: all 0.4s ease-in-out;
+    }

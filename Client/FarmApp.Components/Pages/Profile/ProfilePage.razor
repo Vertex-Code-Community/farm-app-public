@@ -1,0 +1,174 @@
+@attribute [Route(Constants.ClientRoutes.ProfilePage)]
+@attribute [Authorize]
+@attribute [StatusBarColor(Constants.StatusbarColors.WHITE)]
+
+@using FarmApp.Components.Components.ListItem
+@using FarmApp.Components.Components.SectionTitle
+@using FarmApp.Components.Components.TextWMaxWidth
+@using FarmApp.Components.Components.TractorAnimation
+@using FarmApp.Components.Components.UnorderedList
+@using FarmApp.Models.Theme
+@using FarmApp.Components.Extensions
+
+@layout TabLayout
+
+<div class="profile-container">
+
+    <div class="profile-page-section">
+        <SectionTitleComponent Title="@Localizer["Profile"]" />
+        <div class="profile-user-info @(_isLoading ? "loading" : "")">
+
+            @if (!_isLoading)
+            {
+                if (_userModel is null)
+                {
+                    <div class="error">Помилка зʼєднання</div>
+                }
+                else
+                {
+                    <img class="profile-picture" src="_content/FarmApp.Components/img/profile/andriy.png" />
+                    <div class="profile-user-details">
+                        <h2 class="username"><TextWMaxWidthComponent TextContent="@_displayName" /></h2>
+                        <p class="user-email">
+                            <TextWMaxWidthComponent TextContent="@_userModel.Email" />
+                        </p>
+                    </div>
+                    <IconComponent IconSrc="_content/FarmApp.Components/img/shared/edit.svg" IconContSize="40"
+                                   IconCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.EditProfilePage)" />
+                }
+            }
+            else
+            {
+                <TractorAnimationComponent Width="15%" />
+            }
+
+        </div>
+    </div>
+
+    <div class="profile-page-section">
+        <SectionTitleComponent Title="@Localizer["Settings"]" />
+        <UnorderedListComponent ItemHeight="52px">
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.SelectCountryPage)">
+                <div class="side-cont left-side">
+                    <div class="flag-icon-cont">
+                        <img class="flag" src="_content/FarmApp.Components/img/flags/@FlagFile(_selectedCountry)" />
+                    </div>
+                    <p>@Localizer["Settings_Country"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <p>@LocalizedCountryName(_selectedCountry)</p>
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.SelectLanguagePage)">
+                <div class="side-cont left-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/settings/globus.svg" />
+                    <p>@Localizer["Settings_Language"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <p>@_selectedLanguage</p>
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.SelectThemePage)">
+                <div class="side-cont left-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/settings/sun.svg" />
+                    <p>@Localizer["Settings_Theme"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <p>@(ThemeService.Current.ToLocalizedThemeName(Localizer))</p>
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.ChangePasswordPage)">
+                <div class="side-cont left-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/settings/lock.svg" />
+                    <p>@Localizer["Settings_Change_Password"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.NotificationsPage)">
+                <div class="side-cont left-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/bell.svg" />
+                    <p>@Localizer["Settings_Notifications"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.NoteStatusesPage)">
+                <div class="side-cont left-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/settings/3-balls.svg" />
+                    <p>@Localizer["Settings_Statuses"]</p>
+                </div>
+                <div class="side-cont right-side">
+                    <IconComponent IconContSize="24"
+                                   IconSrc="_content/FarmApp.Components/img/shared/right-chevron.svg" />
+                </div>
+            </ListItemComponent>
+        </UnorderedListComponent>
+
+    </div>
+
+    <div class="profile-page-section">
+        <SectionTitleComponent Title="@Localizer["Other"]" />
+        <UnorderedListComponent ItemHeight="52px">
+            <li> 
+                <a class="link" href="https://farm-app.site/">
+                    <ListItemComponent>
+                        <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/shared/share.svg" />
+                        <div class="item-text">@Localizer["Other_Our_Website"]</div>    
+                    </ListItemComponent>
+                </a>
+            </li>
+
+
+            <ListItemComponent ItemCallback="() => NavigationService.NavigateTo(Constants.ClientRoutes.SupportPage)">
+                <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/profile/message.svg" />
+                <div class="item-text">@Localizer["Other_Support"]</div>
+            </ListItemComponent>
+
+            <ListItemComponent ItemCallback="() => { _showLogoutModal = true; ChangeTabVisibility(false); }">
+                <IconComponent IconContSize="24" IconSrc="_content/FarmApp.Components/img/profile/logout.svg" />
+                <div class="item-text">@Localizer["Other_Log_Out"]</div>
+            </ListItemComponent>
+        </UnorderedListComponent>
+
+    </div>
+</div>
+
+<BottomSheetComponent @bind-IsOpen="_showLogoutModal" OnClose="() => ChangeTabVisibility(true)">
+   <IconComponent IconContSize="56" IconSize="32" IconColor="var(--component-icon)" IconContBackground="var(--accent-primary-10)"
+                  IconSrc="_content/FarmApp.Components/img/profile/logout.svg" ExtraStyles="margin: 0 auto; margin-bottom: 8px;" />
+    <div class="delete-modal">
+        <p class="body-18-medium text-secondary" style="padding-bottom: 8px;">@Localizer["Log-Out_Title"]</p>
+
+        <div class="buttons-cont">
+            <ButtonComponent ClassName="primary" ExtraStyles="margin-bottom: 12px;" Name="@Localizer["Log-Out_Cancel"]" OnClick="() => {_showLogoutModal = false; ChangeTabVisibility(true);}" />
+            <ButtonComponent ClassName="tertiary" Name="@Localizer["Log-Out"]" TextColor="var(--state-error)" OnClick="OnLogout" />
+        </div>
+    </div>
+</BottomSheetComponent>
+
+<style>
+    body {
+        background: var(--color-bg-secondary);
+    }
+</style>

@@ -1,0 +1,54 @@
+.create-field-sheet {
+    width: 100%;
+    pointer-events: all;
+    box-sizing: border-box;
+    height: 80vh;
+    height: 80dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-field-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 4px 12px 4px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.create-field-title {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--text-primary);
+    padding: 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.create-field-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding-top: 16px;
+}
+
+.create-field-inputs ::deep .farm-input-container {
+    background-color: var(--surface-inputs);
+}
+
+.create-field-inputs ::deep .farm-input:not(:focus) {
+    border-color: var(--surface-inputs);
+}
+
+.create-field-inputs ::deep .farm-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 1px var(--accent-primary);
+}
